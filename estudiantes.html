@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos para Estudiantes - Prof. Ronald</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="icon" type="image/png" href="./images/favicon.png">
+    <!-- Aseguramos la carga de Font Awesome para el ícono de regresar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ87CqE/0xX4F933sR52jJ0F/y3A6v7bF9P6hG0Qn5I/u4o8R5H1n04p5+q9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Estilos del botón de pestaña (Tarjeta) */
+        .tab-button {
+            @apply p-4 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] cursor-pointer text-center flex flex-col items-center justify-center h-full;
+            @apply bg-white border border-gray-200 text-gray-700 font-semibold;
+        }
+        
+        /* Estilos de la tarjeta activa */
+        .tab-button.active {
+            @apply bg-sky-600 text-white shadow-xl ring-4 ring-sky-300/50;
+        }
+
+        /* Ocultar y mostrar contenido */
+        .tab-content {
+            display: none;
+            /* Aplicamos una animación simple para la transición */
+            animation: fadeIn 0.5s ease-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Estilo para los íconos de las tarjetas activas */
+        .tab-button.active .tab-icon {
+             @apply text-white;
+        }
+
+        /* Footer siempre abajo en pantallas pequeñas */
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-wrap {
+            flex: 1;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8 page-container">
+    
+    <div class="content-wrap container mx-auto max-w-6xl">
+        
+        <!-- Header Principal con Imagen de Marca -->
+        <header class="mb-10 p-6 bg-white rounded-3xl shadow-lg">
+            <div class="flex items-center justify-between flex-col md:flex-row text-center md:text-left">
+                
+                <!-- Contenedor del Título y Eslogan -->
+                <div class="flex items-center mb-4 md:mb-0">
+                    <!-- Placeholder de Imagen/Logo -->
+                    <!-- NOTA: He incluido una imagen placeholder con la URL que subiste. 
+                         Si deseas un logo o imagen con un nombre diferente, actualiza el 'src'. -->
+                    <img 
+                        src="Retrato amigable con gafas y logo.jpg-6213bd6e-cda2-4301-ae16-558f94201aec"
+                        alt="Foto de Marca de Prof. Ronald" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/80x80/228dff/ffffff?text=Logo';"
+                        class="w-20 h-20 rounded-full object-cover mr-4 shadow-md"
+                    >
+                    <div>
+                        <h1 class="text-4xl sm:text-5xl font-extrabold text-sky-800">Portal Estudiantil 🎓</h1>
+                        <p class="text-lg sm:text-xl text-gray-600">
+                            Tu centro de recursos y noticias tech.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Nuevo Botón de Regreso (Visual y con Ícono) -->
+                <a href="index.html" class="flex items-center text-white bg-sky-600 px-6 py-3 rounded-xl shadow-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-[1.05] font-semibold mt-4 md:mt-0">
+                    <i class="fas fa-home mr-2 text-xl"></i>
+                    Página Principal
+                </a>
+            </div>
+        </header>
+        
+        <!-- Contenedor Principal: Menú de Pestañas (Grid) + Contenido -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+            <!-- Columna de Navegación (Pestañas en Vertical) -->
+            <nav class="lg:col-span-1 space-y-4">
+                
+                <button class="tab-button active" onclick="openTab(event, 'principal')">
+                    <span class="text-3xl mb-1 tab-icon">📚</span>
+                    Contenido Principal
+                </button>
+                
+                <button class="tab-button" onclick="openTab(event, 'enlaces')">
+                    <span class="text-3xl mb-1 tab-icon">🔗</span>
+                    Enlaces de Interés
+                </button>
+
+                <button class="tab-button" onclick="openTab(event, 'recursos')">
+                    <span class="text-3xl mb-1 tab-icon">📹</span>
+                    Otros Recursos
+                </button>
+
+                <button class="tab-button" onclick="openTab(event, 'noticias')">
+                    <span class="text-3xl mb-1 tab-icon">📰</span>
+                    Noticias Tech
+                </button>
+            </nav>
+
+            <!-- Columna de Contenido (Contenido de la Pestaña Activa) -->
+            <main class="lg:col-span-3 bg-white p-8 rounded-2xl shadow-lg">
+                
+                <!-- Pestaña 1: Contenido Principal -->
+                <div id="principal" class="tab-content active">
+                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b pb-2">Módulos de Clase y Guías</h2>
+                    <p class="text-gray-700 mb-6">
+                        Aquí encontrarás las guías, presentaciones y material fundamental para el seguimiento de la clase. Descarga los archivos clave para el módulo actual.
+                    </p>
+                    <!-- Ejemplos de Contenido Principal -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                            <span class="text-lg font-medium text-gray-800">Guía: Introducción a Python y Pensamiento Lógico (PDF)</span>
+                            <a href="#" class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                Descargar &rarr;
+                            </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                            <span class="text-lg font-medium text-gray-800">Presentación: Ética Digital y Ciudadanía (PPT)</span>
+                            <a href="#" class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                Descargar &rarr;
+                            </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                            <span class="text-lg font-medium text-gray-800">Acceso a ARUKAY (Plataforma de Programación)</span>
+                            <a href="#" target="_blank" class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                Ir a la Plataforma &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pestaña 2: Enlaces de Interés -->
+                <div id="enlaces" class="tab-content">
+                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b pb-2">Plataformas y Referencias Clave</h2>
+                    <p class="text-gray-700 mb-6">
+                        Sitios web y herramientas externas esenciales para practicar, crear y profundizar en los temas vistos en clase.
+                    </p>
+                    <!-- Ejemplos de Enlaces de Interés -->
+                    <ul class="list-disc list-inside space-y-4 ml-6 text-gray-700">
+                        <li>
+                            <p class="font-medium text-lg text-gray-800">W3Schools</p>
+                            <p class="text-sm">Tutoriales y referencias completas para desarrollo web (HTML, CSS, JS).</p>
+                            <a href="https://www.w3schools.com/" target="_blank" class="text-sky-600 hover:underline text-sm">Visitar sitio</a>
+                        </li>
+                        <li>
+                            <p class="font-medium text-lg text-gray-800">Replit</p>
+                            <p class="text-sm">Entorno de programación online multi-lenguaje. Ideal para ejercicios rápidos.</p>
+                            <a href="https://repl.it/" target="_blank" class="text-sky-600 hover:underline text-sm">Visitar sitio</a>
+                        </li>
+                        <li>
+                            <p class="font-medium text-lg text-gray-800">Scratch</p>
+                            <p class="text-sm">Plataforma de programación visual por bloques. Perfecta para iniciación.</p>
+                            <a href="https://scratch.mit.edu/" target="_blank" class="text-sky-600 hover:underline text-sm">Visitar sitio</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Pestaña 3: Otros Recursos -->
+                <div id="recursos" class="tab-content">
+                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b pb-2">Material Audiovisual y Complementario</h2>
+                    <p class="text-gray-700 mb-6">
+                        Videos, libros recomendados y herramientas IA que te servirán para ser un autodidacta en el mundo tech.
+                    </p>
+                    <!-- Ejemplos de Otros Recursos -->
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-md">
+                            <h3 class="font-bold text-gray-800">Playlist de YouTube: Fundamentos de Programación</h3>
+                            <p class="text-sm text-gray-600">Videos seleccionados para afianzar conceptos básicos.</p>
+                            <a href="#" class="text-sky-600 hover:underline text-sm font-semibold">Ver Playlist &rarr;</a>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-md">
+                            <h3 class="font-bold text-gray-800">Libro: Pensamiento Computacional para Jóvenes</h3>
+                            <p class="text-sm text-gray-600">Enlace a material de lectura esencial.</p>
+                            <a href="#" class="text-sky-600 hover:underline text-sm font-semibold">Acceder a Lectura &rarr;</a>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-md">
+                            <h3 class="font-bold text-gray-800">Herramientas IA para Estudiantes (Guía Rápida)</h3>
+                            <p class="text-sm text-gray-600">Descubre cómo usar la IA como asistente académico.</p>
+                            <a href="#" class="text-sky-600 hover:underline text-sm font-semibold">Ver Guía &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestaña 4: Noticias Tech (Simulación de actualización automática) -->
+                <div id="noticias" class="tab-content">
+                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b pb-2">Lo Último en Tecnología y Ciencia</h2>
+                    <p class="text-gray-700 mb-6">
+                        Mantente al día con las novedades más importantes. <span class="font-medium text-red-500">*Recuerda: esta sección es una simulación de un feed de noticias en vivo.*</span>
+                    </p>
+                    <div id="news-feed" class="space-y-4">
+                        <!-- Artículos de noticias simulados -->
+                        <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
+                            <h3 class="font-bold text-gray-800 text-lg">El nuevo avance de la IA en la robótica 🤖</h3>
+                            <p class="text-sm text-gray-600">Fecha: 10 de octubre de 2025</p>
+                            <a href="#" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
+                            <h3 class="font-bold text-gray-800 text-lg">Lanzamiento del próximo lenguaje de programación emergente</h3>
+                            <p class="text-sm text-gray-600">Fecha: 05 de octubre de 2025</p>
+                            <a href="#" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
+                        </div>
+                        <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
+                            <h3 class="font-bold text-gray-800 text-lg">La importancia de la Ciberseguridad en el colegio 🔒</h3>
+                            <p class="text-sm text-gray-600">Fecha: 28 de septiembre de 2025</p>
+                            <a href="#" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+        
+    </div>
+    
+    <!-- Pie de Página (Footer) con estilos permanentes -->
+    <footer class="bg-gray-800 text-white mt-10 p-6">
+        <div class="container mx-auto max-w-6xl text-center">
+            <div class="mb-4">
+                <a href="index.html" class="mx-3 hover:text-sky-400 transition duration-300">Portafolio</a>
+                <a href="./index.html#contacto" class="mx-3 hover:text-sky-400 transition duration-300">Contacto</a>
+                <a href="./#recursos" class="mx-3 hover:text-sky-400 transition duration-300">Recursos</a>
+            </div>
+            <p class="text-sm text-gray-400">
+                &copy; 2025 Profesor Ronald. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Función para cambiar de pestaña
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+
+            // Oculta todos los contenidos de pestaña y desactiva botones
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove('active');
+            }
+
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove('active');
+            }
+
+            // Muestra la pestaña actual y activa el botón
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Simulación de actualización automática de noticias
+        function updateNewsFeed() {
+            const newsFeed = document.getElementById('news-feed');
+            
+            // Simular la obtención de una nueva noticia y añadirla al inicio
+            const newArticle = `
+                <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
+                    <h3 class="font-bold text-gray-800 text-lg">¡ÚLTIMO! Novedades en la próxima versión de JavaScript 💻</h3>
+                    <p class="text-sm text-gray-600">Fecha: ${new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+                    <a href="#" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
+                </div>
+            `;
+            // Añade la noticia al inicio de la lista
+            newsFeed.insertAdjacentHTML('afterbegin', newArticle);
+        }
+
+        // Ejecutar la simulación de noticias al cargar
+        document.addEventListener('DOMContentLoaded', updateNewsFeed);
+
+    </script>
+</body>
+</html>
