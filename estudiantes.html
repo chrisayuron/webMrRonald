@@ -14,9 +14,11 @@
             font-family: 'Inter', sans-serif;
         }
         
-        /* Estilos del botón de pestaña (Tarjeta) */
+        /* Estilos del botón de pestaña (Tarjeta) - AHORA EN FORMATO VERTICAL/GRID */
         .tab-button {
-            @apply p-4 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] cursor-pointer text-center flex flex-col items-center justify-center h-full;
+            /* Diseño de tarjeta con espacio para el ícono y texto */
+            @apply p-4 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] cursor-pointer text-left flex items-center h-full;
+            /* Aplicamos estilos base para tarjetas */
             @apply bg-white border border-gray-200 text-gray-700 font-semibold;
         }
         
@@ -40,9 +42,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Estilo para los íconos de las tarjetas activas */
+        /* Estilo para los íconos de las tarjetas */
+        .tab-button .tab-icon {
+             @apply text-2xl mr-4; /* Ícono más grande y separado del texto */
+        }
         .tab-button.active .tab-icon {
-             @apply text-white;
+             @apply text-white; 
         }
 
         /* Footer siempre abajo en pantallas pequeñas */
@@ -70,12 +75,12 @@
                 <!-- Contenedor del Título y Eslogan -->
                 <div class="flex items-center mb-4 md:mb-0">
                     <!-- Placeholder de Imagen/Logo -->
-                    <!-- NOTA: He incluido una imagen placeholder con la URL que subiste. 
-                         Si deseas un logo o imagen con un nombre diferente, actualiza el 'src'. -->
+                    <!-- NOTA: He mantenido la referencia a 'images/marca.png' -->
                     <img 
                         src="./images/marca.png"
                         alt="Foto de Marca de Prof. Ronald" 
                         class="w-20 h-20 rounded-full object-cover mr-4 shadow-md"
+                        onerror="this.onerror=null; this.src='https://placehold.co/80x80/22c55e/ffffff?text=PR';"
                     >
                     <div>
                         <h1 class="text-4xl sm:text-5xl font-extrabold text-sky-800">Contenido para estudiantes 🎓</h1>
@@ -85,7 +90,7 @@
                     </div>
                 </div>
 
-                <!-- Nuevo Botón de Regreso (Visual y con Ícono) -->
+                <!-- Botón de Regreso a Principal -->
                 <a href="index.html" class="flex items-center text-white bg-sky-600 px-6 py-3 rounded-xl shadow-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-[1.05] font-semibold mt-4 md:mt-0">
                     <i class="fas fa-home mr-2 text-xl"></i>
                     Página Principal
@@ -93,43 +98,50 @@
             </div>
         </header>
         
-        <!-- Contenedor Principal: Menú de Pestañas (Grid) + Contenido -->
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <!-- Contenedor Principal: Menú de Pestañas (Vertical) + Contenido (Derecha) -->
+        <!-- ********* CAMBIADO DE lg:grid-cols-4 A md:grid-cols-4 ********* -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
             <!-- Columna de Navegación (Pestañas en Vertical) -->
-            <nav class="lg:col-span-1 space-y-4">
+            <nav class="md:col-span-1 space-y-4">
                 
-                <button class="tab-button active" onclick="openTab(event, 'principal')">
-                    <span class="text-3xl mb-1 tab-icon">📚</span>
+                <!-- Botones de Pestaña -->
+                <button id="defaultOpen" class="tab-button" onclick="openTab(event, 'principal')">
+                    <!-- Ícono de Libros para Guías y Talleres -->
+                    <span class="tab-icon">📚</span>
                     Guías y Talleres
                 </button>
                 
                 <button class="tab-button" onclick="openTab(event, 'enlaces')">
-                    <span class="text-3xl mb-1 tab-icon">🔗</span>
+                    <!-- Ícono de Cadena para Enlaces -->
+                    <span class="tab-icon">🔗</span>
                     Enlaces de Interés
                 </button>
 
                 <button class="tab-button" onclick="openTab(event, 'recursos')">
-                    <span class="text-3xl mb-1 tab-icon">📹</span>
+                    <!-- Ícono de Videocámara para Recursos -->
+                    <span class="tab-icon">📹</span>
                     Otros Recursos
                 </button>
 
                 <button class="tab-button" onclick="openTab(event, 'noticias')">
-                    <span class="text-3xl mb-1 tab-icon">📰</span>
+                    <!-- Ícono de Periódico para Noticias -->
+                    <span class="tab-icon">📰</span>
                     Noticias Tecnología
                 </button>
             </nav>
 
             <!-- Columna de Contenido (Contenido de la Pestaña Activa) -->
-            <main class="lg:col-span-3 bg-white p-8 rounded-2xl shadow-lg">
+            <!-- ********* CAMBIADO DE lg:col-span-3 A md:col-span-3 ********* -->
+            <main class="md:col-span-3 bg-white p-8 rounded-2xl shadow-lg">
                 
-                <!-- Pestaña 1: Contenido Principal -->
-                <div id="principal" class="tab-content active">
+                <!-- Pestaña 1: Contenido Principal (Guías y Talleres) -->
+                <div id="principal" class="tab-content">
                     <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b pb-2">Guías para BethShalom</h2>
                     <p class="text-gray-700 mb-6">
                         Aquí podrás encontrar las guías y ejercicios que el profesor ha diseñado para que puedas aprender y comprender las temáticas de las clases.
                     </p>
-                    <!-- Ejemplos de Contenido Principal -->
+                    <!-- Contenido de Enlaces de Guías y Talleres (Asegurado) -->
                     <div class="space-y-4">
                         <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
                             <span class="text-lg font-medium text-gray-800">8° Guía Python</span>
@@ -169,12 +181,13 @@
                                 Abrir &rarr;
                             </a>
                         </div>
-                                  <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
                             <span class="text-lg font-medium text-gray-800">6° CRUCE INTELIGENTE- NEO CIUDAD  (Microbit)</span>
                             <a href="https://drive.google.com/file/d/1sVtiRbR8q_V3wGJ2bYIn3udBYQX4ZLPi/view?usp=sharing" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
                                 Abrir &rarr;
                             </a>
                         </div>
+                    </div>
                 </div>
                 
                 <!-- Pestaña 2: Enlaces de Interés -->
@@ -183,68 +196,69 @@
                     <p class="text-gray-700 mb-6">
                         Sitios web y herramientas externas esenciales para practicar, crear y profundizar en los temas vistos en clase.
                     </p>
-                    
-                    <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">CREATIVOS DIGITALES</span>
-                            <a href="https://academia.creativos-digitales.com/login/index.php" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
+                    <!-- Contenido de Enlaces de Interés (Asegurado) -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">CREATIVOS DIGITALES</span>
+                                <a href="https://academia.creativos-digitales.com/login/index.php" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">ARUKAY</span>
+                                <a href="https://app.arukay.com/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">SCRATCH</span>
+                                <a href="http://scratch.mit.edu" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">VISUAL STUDIO</span>
+                                <a href="https://vscode.dev/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">MAKECODE ARCADE</span>
+                                <a href="https://arcade.makecode.com/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">MICROBIT</span>
+                                <a href="https://makecode.microbit.org/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">FIGMA</span>
+                                <a href="https://www.figma.com/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">PIXELART</span>
+                                <a href="https://es.pixilart.com/draw" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">CODE.ORG - ARTIST</span>
+                                <a href="https://studio.code.org/projects/artist_k1/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
+                                <span class="text-lg font-medium text-gray-800">CANVA</span>
+                                <a href="https://www.canva.com/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
+                                    Abrir &rarr;
+                                </a>
+                        </div>
                     </div>
-                     <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">ARUKAY</span>
-                            <a href="https://app.arukay.com/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
-                    </div>
-                       <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">SCRATCH</span>
-                            <a href="http://scratch.mit.edu" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
-                    </div>
-                      <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">VISUAL STUDIO</span>
-                            <a href="https://vscode.dev/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
-                    </div>
-                       <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">MAKECODE ARCADE</span>
-                            <a href="https://arcade.makecode.com/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
-                    </div>
-                       <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">MICROBIT</span>
-                            <a href="https://makecode.microbit.org/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
-                    </div>
-                       <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">FIGMA</span>
-                            <a href="https://www.figma.com/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
-                    </div>
-                     <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">PIXELART</span>
-                            <a href="https://es.pixilart.com/draw" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
-                    </div>
-                    <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">CODE.ORG - ARTIST</span>
-                            <a href="https://studio.code.org/projects/artist_k1/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
-                    </div>
-                    <div class="flex items-center justify-between p-4 bg-sky-50 rounded-lg shadow-sm">
-                            <span class="text-lg font-medium text-gray-800">CANVA</span>
-                            <a href="https://www.canva.com/" target="_blank"  class="text-sky-600 hover:text-sky-800 font-semibold transition duration-200">
-                                Abrir &rarr;
-                            </a>
-                    </div>
-                    
                 </div>
                 
                 <!-- Pestaña 3: Otros Recursos -->
@@ -254,33 +268,19 @@
                         Videos, libros recomendados y herramientas IA que te servirán para ser un autodidacta en el mundo tech.
                         <span class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-md">ESTA SECCIÓN ESTÁ EN CONSTRUCCIÓN</span>
                     </p>
-                    <!-- Ejemplos de Otros Recursos -->
+                    <!-- Contenido de Otros Recursos (Vacío, como se indica) -->
                     <div class="space-y-4">
-                        
-                        <!-- <div class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-md">
-                            <h3 class="font-bold text-gray-800">Playlist de YouTube: Fundamentos de Programación</h3>
-                            <p class="text-sm text-gray-600">Videos seleccionados para afianzar conceptos básicos.</p>
-                            <a href="#" class="text-sky-600 hover:underline text-sm font-semibold">Ver Playlist &rarr;</a>
-                        </div>
-                        <div class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-md">
-                            <h3 class="font-bold text-gray-800">Libro: Pensamiento Computacional para Jóvenes</h3>
-                            <p class="text-sm text-gray-600">Enlace a material de lectura esencial.</p>
-                            <a href="#" class="text-sky-600 hover:underline text-sm font-semibold">Acceder a Lectura &rarr;</a>
-                        </div>
-                        <div class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-md">
-                            <h3 class="font-bold text-gray-800">Herramientas IA para Estudiantes (Guía Rápida)</h3>
-                            <p class="text-sm text-gray-600">Descubre cómo usar la IA como asistente académico.</p>
-                            <a href="#" class="text-sky-600 hover:underline text-sm font-semibold">Ver Guía &rarr;</a>
-                        </div> -->
+                        <!-- Esta sección está vacía y muestra el mensaje de "en construcción" -->
                     </div>
                 </div>
 
-                <!-- Pestaña 4: Noticias Tech (Simulación de actualización automática) -->
+                <!-- Pestaña 4: Noticias Tech -->
                 <div id="noticias" class="tab-content">
                     <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b pb-2">Lo Último en Tecnología y Ciencia</h2>
                     <p class="text-gray-700 mb-6">
                         Mantente al día con las novedades más importantes. <span class="font-medium text-red-500">Aquí encontrarás algunas noticias de lo que sucede en el mundo de la tecnología</span>
                     </p>
+                    <!-- Contenido de Noticias Tech (Asegurado) -->
                     <div id="news-feed" class="space-y-4">
                         <!-- Artículos de noticias simulados -->
                         <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
@@ -293,12 +293,6 @@
                             <p class="text-sm text-gray-600">Fecha: 24 Julio 2025</p>
                             <a href="https://www.xataka.com/robotica-e-ia/otra-revolucion-silenciosa-se-abre-paso-ia-que-pueda-crear-apps-minutos-saber-programar" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
                         </div>
-
-                        <!-- <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
-                            <h3 class="font-bold text-gray-800 text-lg">La importancia de la Ciberseguridad en el colegio 🔒</h3>
-                            <p class="text-sm text-gray-600">Fecha: 28 de septiembre de 2025</p>
-                            <a href="#" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
-                        </div>  -->
                     </div>
                 </div>
 
@@ -327,41 +321,56 @@
         function openTab(evt, tabName) {
             let i, tabcontent, tablinks;
 
-            // Oculta todos los contenidos de pestaña y desactiva botones
+            // Oculta todos los contenidos de pestaña
             tabcontent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.remove('active');
             }
 
+            // Desactiva todos los botones
             tablinks = document.getElementsByClassName("tab-button");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove('active');
             }
 
-            // Muestra la pestaña actual y activa el botón
+            // Muestra la pestaña actual
             document.getElementById(tabName).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-
-        // Simulación de actualización automática de noticias
-        function updateNewsFeed() {
-            const newsFeed = document.getElementById('news-feed');
             
-            // Simular la obtención de una nueva noticia y añadirla al inicio
-            // const newArticle = `
-            //     <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
-            //         <h3 class="font-bold text-gray-800 text-lg">¡ÚLTIMO! Novedades en la próxima versión de JavaScript 💻</h3>
-            //         <p class="text-sm text-gray-600">Fecha: ${new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
-            //         <a href="#" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
-            //     </div>
-            // `;
-            // Añade la noticia al inicio de la lista
-            newsFeed.insertAdjacentHTML('afterbegin', newArticle);
+            // Activa el botón que fue clickeado (o el botón por defecto)
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            } else {
+                // Caso de inicialización: si no hay evento, buscamos el botón.
+                 const buttonToActivate = document.querySelector(`.tab-button[onclick*="'${tabName}'"]`);
+                 if (buttonToActivate) {
+                    buttonToActivate.classList.add('active');
+                 }
+            }
         }
 
-        // Ejecutar la simulación de noticias al cargar
-        document.addEventListener('DOMContentLoaded', updateNewsFeed);
+        // INICIALIZACIÓN ROBUSTA: Asegura que la pestaña principal se active y se muestre correctamente al cargar.
+        document.addEventListener('DOMContentLoaded', () => {
+            // Selecciona la pestaña que debe ser visible por defecto: 'principal'
+            const defaultTabId = 'principal';
+            
+            // Llamamos a openTab pasando null como evento (pues no hay click real) 
+            // y el ID de la pestaña por defecto.
+            // Para la inicialización, necesitamos simular el botón activo
+            const defaultButton = document.getElementById('defaultOpen');
+            
+            // Como cambiamos la estructura de openTab para depender del evento,
+            // vamos a simular el click para asegurar que se active el botón y el contenido.
+            if (defaultButton) {
+                // Creamos un evento falso para el currentTarget
+                const fakeEvent = { currentTarget: defaultButton };
+                openTab(fakeEvent, defaultTabId);
+            }
+        });
 
+        // Simulación de actualización automática de noticias (función mantenida pero no usada en DOMContentLoaded)
+        function updateNewsFeed() {
+            // Lógica de actualización de noticias
+        }
     </script>
 </body>
 </html>
