@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recursos para Estudiantes - Prof. Ronald</title>
     <script src="https://cdn.tailwindcss.com"></script>
-     <link rel="icon" type="image/png" href="./images/favicon.png">
+    <link rel="icon" type="image/png" href="./images/favicon.png">
     <!-- Aseguramos la carga de Font Awesome para el ícono de regresar -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ87CqE/0xX4F933sR52jJ0F/y3A6v7bF9P6hG0Qn5I/u4o8R5H1n04p5+q9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ87CqE/0xX4F933sR52jJ0F/y3A6v7bF9P6hG0Qn5I/u4o8R5H1n04p5+q9g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-        
+
         /* Estilos del botón de pestaña (Tarjeta) */
         .tab-button {
             /* Diseño de tarjeta con espacio para el ícono y texto */
@@ -21,7 +25,7 @@
             /* Aplicamos estilos base para tarjetas */
             @apply bg-white border border-gray-200 text-gray-700 font-semibold;
         }
-        
+
         /* Estilos de la tarjeta activa */
         .tab-button.active {
             @apply bg-sky-600 text-white shadow-xl ring-4 ring-sky-300/50;
@@ -33,21 +37,31 @@
             /* Aplicamos una animación simple para la transición */
             animation: fadeIn 0.5s ease-out;
         }
+
         .tab-content.active {
             display: block;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         /* Estilo para los íconos de las tarjetas */
         .tab-button .tab-icon {
-             @apply text-2xl mr-4; /* Ícono más grande y separado del texto */
+            @apply text-2xl mr-4;
+            /* Ícono más grande y separado del texto */
         }
+
         .tab-button.active .tab-icon {
-             @apply text-white; 
+            @apply text-white;
         }
 
         /* Footer siempre abajo en pantallas pequeñas */
@@ -56,32 +70,32 @@
             flex-direction: column;
             min-height: 100vh;
         }
+
         .content-wrap {
             flex: 1;
         }
+
         footer {
             flex-shrink: 0;
         }
     </style>
 </head>
+
 <body class="bg-gray-100 p-4 sm:p-8 page-container">
-    
+
     <div class="content-wrap container mx-auto max-w-6xl">
-        
+
         <!-- Header Principal con Imagen de Marca -->
         <header class="mb-10 p-6 bg-white rounded-3xl shadow-lg">
             <div class="flex items-center justify-between flex-col md:flex-row text-center md:text-left">
-                
+
                 <!-- Contenedor del Título y Eslogan -->
                 <div class="flex items-center mb-4 md:mb-0">
                     <!-- Placeholder de Imagen/Logo -->
-                 
-                    <img 
-                        src="./images/marca.png"
-                        alt="Foto de Marca de Prof. Ronald" 
+
+                    <img src="./images/marca.png" alt="Foto de Marca de Prof. Ronald"
                         class="w-20 h-20 rounded-full object-cover mr-4 shadow-md"
-                        onerror="this.onerror=null; this.src='https://placehold.co/80x80/22c55e/ffffff?text=PR';"
-                    >
+                        onerror="this.onerror=null; this.src='https://placehold.co/80x80/22c55e/ffffff?text=PR';">
                     <div>
                         <h1 class="text-4xl sm:text-5xl font-extrabold text-sky-800">Contenido para estudiantes 🎓</h1>
                         <p class="text-lg sm:text-xl text-gray-600">
@@ -91,27 +105,28 @@
                 </div>
 
                 <!-- Botón de Regreso a Principal -->
-                <a href="index.html" class="flex items-center text-white bg-sky-600 px-6 py-3 rounded-xl shadow-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-[1.05] font-semibold mt-4 md:mt-0">
+                <a href="index.html"
+                    class="flex items-center text-white bg-sky-600 px-6 py-3 rounded-xl shadow-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-[1.05] font-semibold mt-4 md:mt-0">
                     <i class="fas fa-home mr-2 text-xl"></i>
                     Página Principal
                 </a>
             </div>
         </header>
-        
+
         <!-- Contenedor Principal: Menú de Pestañas (Vertical) + Contenido (Derecha) -->
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
             <!-- Columna de Navegación (Pestañas en Vertical) -->
             <nav class="md:col-span-1 space-y-4">
-                
+
                 <!-- Botones de Pestaña -->
                 <button id="defaultOpen" class="tab-button" onclick="openTab(event, 'principal')">
                     <!-- Ícono de Libros para Guías y Talleres -->
                     <span class="tab-icon">📚</span>
                     Guías y Talleres
                 </button>
-                
+
                 <button class="tab-button" onclick="openTab(event, 'enlaces')">
                     <!-- Ícono de Cadena para Enlaces -->
                     <span class="tab-icon">🔗</span>
@@ -132,18 +147,23 @@
             </nav>
 
             <!-- Columna de Contenido (Contenido de la Pestaña Activa) -->
-           
+            <!-- NOTA: El padding (p-8) y fondo (bg-white) ya están en este 'main', 
+                 por lo que se eliminaron de las pestañas internas para unificar. -->
             <main class="md:col-span-3 bg-white p-8 rounded-2xl shadow-lg">
-                
+
                 <!-- Pestaña 1: Contenido Principal (Guías y Talleres) -->
                 <div id="principal" class="tab-content">
-                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b pb-2">Guías para BethShalom</h2>
-                    <p class="text-gray-700 mb-6">
-                        Aquí podrás encontrar las guías y ejercicios que el profesor ha diseñado para que puedas aprender y comprender las temáticas de las clases.
+                    <!-- TÍTULO UNIFICADO -->
+                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b border-sky-100 pb-3">Guías para BethShalom</h2>
+                    <p class="text-gray-700 mb-8">
+                        Aquí podrás encontrar las guías y ejercicios que el profesor ha diseñado para que puedas
+                        aprender y comprender las temáticas de las clases.
                     </p>
-                    <!-- Contenido de Enlaces de Guías y Talleres  -->
-                    <div class="space-y-4">
-                         <!-- RECURSO 1: 6° EL LABORATORIO SECRETO DE ROBLOX (Microbit) -->
+                    
+                    <!-- LAYOUT UNIFICADO: Grid de 2 columnas -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- RECURSO 1: 6° EL LABORATORIO SECRETO DE ROBLOX (Microbit) -->
                         <div class="group 
                                     bg-white 
                                     border border-sky-100 
@@ -155,17 +175,16 @@
                                     transition duration-500 ease-in-out">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div class="flex-grow">
-                                    <span class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
                                         6° Grado | Microbit
                                     </span>
                                     <h2 class="text-xl font-bold text-gray-900 leading-snug">
                                         EL LABORATORIO SECRETO DE ROBLOX
                                     </h2>
                                 </div>
-                                <a href="https://drive.google.com/file/d/1hnQfWyNSVOji-BG5NACKT_vwoKObbr0A/view?usp=sharing" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-2 
+                                <a href="https://drive.google.com/file/d/1hnQfWyNSVOji-BG5NACKT_vwoKObbr0A/view?usp=sharing"
+                                    target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 
                                         shrink-0 
                                         px-5 py-3 
                                         bg-sky-500 hover:bg-sky-600 
@@ -176,10 +195,12 @@
                                         transition duration-300 transform 
                                         group-hover:translate-x-1">
                                     <span>Abrir Recurso</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                        <path d="M15 3h6v6"/>
-                                        <path d="M10 14 21 3"/>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-5 h-5">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                     </svg>
                                 </a>
                             </div>
@@ -197,17 +218,16 @@
                                     transition duration-500 ease-in-out">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div class="flex-grow">
-                                    <span class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
                                         6° Grado | Microbit
                                     </span>
                                     <h2 class="text-xl font-bold text-gray-900 leading-snug">
                                         EL TEMPLO ESPECTRAL
                                     </h2>
                                 </div>
-                                <a href="https://drive.google.com/file/d/1sVtiRbR8q_V3wGJ2bYIn3udBYQX4ZLPi/view?usp=sharing" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-2 
+                                <a href="https://drive.google.com/file/d/1sVtiRbR8q_V3wGJ2bYIn3udBYQX4ZLPi/view?usp=sharing"
+                                    target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 
                                         shrink-0 
                                         px-5 py-3 
                                         bg-sky-500 hover:bg-sky-600 
@@ -218,10 +238,12 @@
                                         transition duration-300 transform 
                                         group-hover:translate-x-1">
                                     <span>Abrir Recurso</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                        <path d="M15 3h6v6"/>
-                                        <path d="M10 14 21 3"/>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-5 h-5">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                     </svg>
                                 </a>
                             </div>
@@ -239,17 +261,16 @@
                                     transition duration-500 ease-in-out">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div class="flex-grow">
-                                    <span class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
                                         6° Grado | Microbit
                                     </span>
                                     <h2 class="text-xl font-bold text-gray-900 leading-snug">
                                         CRUCE INTELIGENTE - NEO CIUDAD
                                     </h2>
                                 </div>
-                                <a href="https://drive.google.com/file/d/1bq6pJZ6QIXWs_xI5dS_TvcaxfdgPHjvr/view?usp=sharing" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-2 
+                                <a href="https://drive.google.com/file/d/1bq6pJZ6QIXWs_xI5dS_TvcaxfdgPHjvr/view?usp=sharing"
+                                    target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 
                                         shrink-0 
                                         px-5 py-3 
                                         bg-sky-500 hover:bg-sky-600 
@@ -260,10 +281,12 @@
                                         transition duration-300 transform 
                                         group-hover:translate-x-1">
                                     <span>Abrir Recurso</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                        <path d="M15 3h6v6"/>
-                                        <path d="M10 14 21 3"/>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-5 h-5">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                     </svg>
                                 </a>
                             </div>
@@ -281,17 +304,16 @@
                                     transition duration-500 ease-in-out">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div class="flex-grow">
-                                    <span class="inline-block mb-1 text-sm font-semibold text-indigo-600 uppercase tracking-wider">
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-indigo-600 uppercase tracking-wider">
                                         8° Grado | Guía
                                     </span>
                                     <h2 class="text-xl font-bold text-gray-900 leading-snug">
                                         Guía de Fundamentos de Python
                                     </h2>
                                 </div>
-                                <a href="https://drive.google.com/file/d/1GhGMBJUPZcWV_wACRimvG5FmvKdDiujO/view?usp=sharing" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-2 
+                                <a href="https://drive.google.com/file/d/1GhGMBJUPZcWV_wACRimvG5FmvKdDiujO/view?usp=sharing"
+                                    target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 
                                         shrink-0 
                                         px-5 py-3 
                                         bg-indigo-500 hover:bg-indigo-600 
@@ -302,10 +324,12 @@
                                         transition duration-300 transform 
                                         group-hover:translate-x-1">
                                     <span>Abrir Recurso</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                        <path d="M15 3h6v6"/>
-                                        <path d="M10 14 21 3"/>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-5 h-5">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                     </svg>
                                 </a>
                             </div>
@@ -323,17 +347,16 @@
                                     transition duration-500 ease-in-out">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div class="flex-grow">
-                                    <span class="inline-block mb-1 text-sm font-semibold text-indigo-600 uppercase tracking-wider">
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-indigo-600 uppercase tracking-wider">
                                         8° Grado | Python
                                     </span>
                                     <h2 class="text-xl font-bold text-gray-900 leading-snug">
                                         AVENTURA: TU INVENTARIO DE MINECRAFT
                                     </h2>
                                 </div>
-                                <a href="https://drive.google.com/file/d/1GhGMBJUPZcWV_wACRimvG5FmvKdDiujO/view?usp=sharing" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-2 
+                                <a href="https://drive.google.com/file/d/1GhGMBJUPZcWV_wACRimvG5FmvKdDiujO/view?usp=sharing"
+                                    target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 
                                         shrink-0 
                                         px-5 py-3 
                                         bg-indigo-500 hover:bg-indigo-600 
@@ -344,10 +367,12 @@
                                         transition duration-300 transform 
                                         group-hover:translate-x-1">
                                     <span>Abrir Recurso</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                        <path d="M15 3h6v6"/>
-                                        <path d="M10 14 21 3"/>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-5 h-5">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                     </svg>
                                 </a>
                             </div>
@@ -365,17 +390,16 @@
                                     transition duration-500 ease-in-out">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div class="flex-grow">
-                                    <span class="inline-block mb-1 text-sm font-semibold text-indigo-600 uppercase tracking-wider">
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-indigo-600 uppercase tracking-wider">
                                         8° Grado | Python
                                     </span>
                                     <h2 class="text-xl font-bold text-gray-900 leading-snug">
                                         EL COFRE DE ENDER Y EL PODER DE LAS TUPLAS
                                     </h2>
                                 </div>
-                                <a href="https://drive.google.com/file/d/1FsuSFYHn6OEY2tb1hYemPnH_yctnld38/view?usp=sharing" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-2 
+                                <a href="https://drive.google.com/file/d/1FsuSFYHn6OEY2tb1hYemPnH_yctnld38/view?usp=sharing"
+                                    target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 
                                         shrink-0 
                                         px-5 py-3 
                                         bg-indigo-500 hover:bg-indigo-600 
@@ -386,15 +410,17 @@
                                         transition duration-300 transform 
                                         group-hover:translate-x-1">
                                     <span>Abrir Recurso</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                        <path d="M15 3h6v6"/>
-                                        <path d="M10 14 21 3"/>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-5 h-5">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                     </svg>
                                 </a>
                             </div>
                         </div>
-                        
+
                         <!-- RECURSO 7: 9-10° Guía HTML-CSS (Crafteadores) -->
                         <div class="group 
                                     bg-white 
@@ -407,17 +433,16 @@
                                     transition duration-500 ease-in-out">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div class="flex-grow">
-                                    <span class="inline-block mb-1 text-sm font-semibold text-green-600 uppercase tracking-wider">
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-green-600 uppercase tracking-wider">
                                         9-10° Grado | Web Dev
                                     </span>
                                     <h2 class="text-xl font-bold text-gray-900 leading-snug">
                                         Guía HTML-CSS (Crafteadores)
                                     </h2>
                                 </div>
-                                <a href="https://craftear-html.vercel.app/" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-2 
+                                <a href="https://craftear-html.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                    class="flex items-center space-x-2 
                                         shrink-0 
                                         px-5 py-3 
                                         bg-green-500 hover:bg-green-600 
@@ -428,15 +453,17 @@
                                         transition duration-300 transform 
                                         group-hover:translate-x-1">
                                     <span>Abrir Sitio Web</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                        <path d="M15 3h6v6"/>
-                                        <path d="M10 14 21 3"/>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-5 h-5">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                     </svg>
                                 </a>
                             </div>
                         </div>
-                        
+
                         <!-- RECURSO 8: 11° Guía Figma -->
                         <div class="group 
                                     bg-white 
@@ -449,17 +476,16 @@
                                     transition duration-500 ease-in-out">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div class="flex-grow">
-                                    <span class="inline-block mb-1 text-sm font-semibold text-purple-600 uppercase tracking-wider">
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-purple-600 uppercase tracking-wider">
                                         11° Grado | Diseño UI/UX
                                     </span>
                                     <h2 class="text-xl font-bold text-gray-900 leading-snug">
                                         Guía de Fundamentos de Figma
                                     </h2>
                                 </div>
-                                <a href="https://drive.google.com/file/d/1secENGn3zW0fUBVI4tKyT-AXJ6VNrH4i/view?usp=sharing" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-2 
+                                <a href="https://drive.google.com/file/d/1secENGn3zW0fUBVI4tKyT-AXJ6VNrH4i/view?usp=sharing"
+                                    target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 
                                         shrink-0 
                                         px-5 py-3 
                                         bg-purple-500 hover:bg-purple-600 
@@ -470,38 +496,37 @@
                                         transition duration-300 transform 
                                         group-hover:translate-x-1">
                                     <span>Abrir Recurso</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                        <path d="M15 3h6v6"/>
-                                        <path d="M10 14 21 3"/>
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-5 h-5">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                     </svg>
                                 </a>
                             </div>
                         </div>
-
-                        
-
-                        
                     </div>
                 </div>
-                
+
                 <!-- Pestaña 2: Enlaces de Interés -->
-             <div class="max-w-4xl w-full p-4 md:p-8">
-        <!-- Contenedor Principal de la Pestaña -->
-        <div id="enlaces" class="tab-content bg-white p-6 md:p-10 rounded-2xl shadow-2xl">
-            
-            <h2 class="text-3xl md:text-4xl font-extrabold text-sky-700 mb-6 border-b-4 border-sky-100 pb-3">
-                Plataformas y Sitios útiles
-            </h2>
-            <p class="text-gray-600 text-lg mb-8">
-                Sitios web y herramientas externas esenciales para practicar, crear y profundizar en los temas vistos en clase.
-            </p>
+                <!-- NOTA: Se eliminó el 'div' envoltorio y las clases extra de este 'div' -->
+                <div id="enlaces" class="tab-content">
 
-            <!-- Cuadrícula Principal: 1 columna en móvil, 2 en escritorio -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- TÍTULO UNIFICADO -->
+                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b border-sky-100 pb-3">
+                        Plataformas y Sitios útiles
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-8">
+                        Sitios web y herramientas externas esenciales para practicar, crear y profundizar en los
+                        temas vistos en clase.
+                    </p>
 
-                <!-- HERRAMIENTA 9: CREATIVOS DIGITALES (Plataforma) -->
-                <div class="group 
+                    <!-- LAYOUT UNIFICADO: Grid de 2 columnas -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <!-- HERRAMIENTA 9: CREATIVOS DIGITALES (Plataforma) -->
+                        <div class="group 
                             bg-white 
                             border border-sky-100 
                             rounded-xl 
@@ -510,22 +535,21 @@
                             hover:shadow-sky-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
-                                Plataforma | LMS
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                CREATIVOS DIGITALES (Acceso a Cursos)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="https://academia.creativos-digitales.com/login/index.php" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
+                                        Plataforma | LMS
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        CREATIVOS DIGITALES (Acceso a Cursos)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="https://academia.creativos-digitales.com/login/index.php"
+                                        target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-sky-500 hover:bg-sky-600 
@@ -535,19 +559,21 @@
                                     shadow-lg shadow-sky-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Plataforma</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Plataforma</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- HERRAMIENTA 10: ARUKAY (Plataforma) -->
-                <div class="group 
+                        <!-- HERRAMIENTA 10: ARUKAY (Plataforma) -->
+                        <div class="group 
                             bg-white 
                             border border-sky-100 
                             rounded-xl 
@@ -556,22 +582,21 @@
                             hover:shadow-sky-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
-                                Plataforma | LMS
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                ARUKAY (Acceso)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="https://app.arukay.com/" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
+                                        Plataforma | LMS
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        ARUKAY (Acceso)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="https://app.arukay.com/" target="_blank" rel="noopener noreferrer"
+                                        class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-sky-500 hover:bg-sky-600 
@@ -581,19 +606,21 @@
                                     shadow-lg shadow-sky-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Plataforma</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Plataforma</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- HERRAMIENTA 11: SCRATCH (Programación Visual) -->
-                <div class="group 
+                        <!-- HERRAMIENTA 11: SCRATCH (Programación Visual) -->
+                        <div class="group 
                             bg-white 
                             border border-yellow-100 
                             rounded-xl 
@@ -602,22 +629,21 @@
                             hover:shadow-yellow-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-yellow-600 uppercase tracking-wider">
-                                Programación por Bloques
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                SCRATCH (Editor Online)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="http://scratch.mit.edu" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-yellow-600 uppercase tracking-wider">
+                                        Programación por Bloques
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        SCRATCH (Editor Online)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="http://scratch.mit.edu" target="_blank" rel="noopener noreferrer"
+                                        class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-yellow-500 hover:bg-yellow-600 
@@ -627,19 +653,21 @@
                                     shadow-lg shadow-yellow-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Herramienta</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Herramienta</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- HERRAMIENTA 12: VISUAL STUDIO (IDE/Editor) -->
-                <div class="group 
+                        <!-- HERRAMIENTA 12: VISUAL STUDIO (IDE/Editor) -->
+                        <div class="group 
                             bg-white 
                             border border-indigo-100 
                             rounded-xl 
@@ -648,22 +676,20 @@
                             hover:shadow-indigo-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-indigo-600 uppercase tracking-wider">
-                                Desarrollo | IDE Online
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                VISUAL STUDIO CODE (Web Editor)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="https://vscode.dev/" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-indigo-600 uppercase tracking-wider">
+                                        Desarrollo | IDE Online
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        VISUAL STUDIO CODE (Web Editor)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="https://vscode.dev/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-indigo-500 hover:bg-indigo-600 
@@ -673,19 +699,21 @@
                                     shadow-lg shadow-indigo-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Editor</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Editor</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- HERRAMIENTA 13: MAKECODE ARCADE (Juegos) -->
-                <div class="group 
+                        <!-- HERRAMIENTA 13: MAKECODE ARCADE (Juegos) -->
+                        <div class="group 
                             bg-white 
                             border border-red-100 
                             rounded-xl 
@@ -694,22 +722,21 @@
                             hover:shadow-red-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-red-600 uppercase tracking-wider">
-                                Programación de Juegos
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                MAKECODE ARCADE (Crear Videojuegos)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="https://arcade.makecode.com/" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-red-600 uppercase tracking-wider">
+                                        Programación de Juegos
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        MAKECODE ARCADE (Crear Videojuegos)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="https://arcade.makecode.com/" target="_blank" rel="noopener noreferrer"
+                                        class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-red-500 hover:bg-red-600 
@@ -719,19 +746,21 @@
                                     shadow-lg shadow-red-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Editor</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Editor</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- HERRAMIENTA 14: MICROBIT (Editor) -->
-                <div class="group 
+                        <!-- HERRAMIENTA 14: MICROBIT (Editor) -->
+                        <div class="group 
                             bg-white 
                             border border-sky-100 
                             rounded-xl 
@@ -740,22 +769,21 @@
                             hover:shadow-sky-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
-                                Hardware | Editor Online
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                MICROBIT (MakeCode)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="https://makecode.microbit.org/" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-sky-600 uppercase tracking-wider">
+                                        Hardware | Editor Online
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        MICROBIT (MakeCode)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="https://makecode.microbit.org/" target="_blank"
+                                        rel="noopener noreferrer" class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-sky-500 hover:bg-sky-600 
@@ -765,19 +793,21 @@
                                     shadow-lg shadow-sky-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Editor</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Editor</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- HERRAMIENTA 15: FIGMA (Diseño UI/UX) -->
-                <div class="group 
+                        <!-- HERRAMIENTA 15: FIGMA (Diseño UI/UX) -->
+                        <div class="group 
                             bg-white 
                             border border-purple-100 
                             rounded-xl 
@@ -786,22 +816,21 @@
                             hover:shadow-purple-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-purple-600 uppercase tracking-wider">
-                                Diseño | Prototipado
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                FIGMA (Herramienta Online)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="https://www.figma.com/" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-purple-600 uppercase tracking-wider">
+                                        Diseño | Prototipado
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        FIGMA (Herramienta Online)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer"
+                                        class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-purple-500 hover:bg-purple-600 
@@ -811,19 +840,21 @@
                                     shadow-lg shadow-purple-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Editor</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Editor</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- HERRAMIENTA 16: PIXELART (Arte Digital) -->
-                <div class="group 
+                        <!-- HERRAMIENTA 16: PIXELART (Arte Digital) -->
+                        <div class="group 
                             bg-white 
                             border border-pink-100 
                             rounded-xl 
@@ -832,22 +863,21 @@
                             hover:shadow-pink-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-pink-600 uppercase tracking-wider">
-                                Diseño | Arte Digital
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                PIXELART (Crear Sprites)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="https://es.pixilart.com/draw" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-pink-600 uppercase tracking-wider">
+                                        Diseño | Arte Digital
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        PIXELART (Crear Sprites)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="https://es.pixilart.com/draw" target="_blank" rel="noopener noreferrer"
+                                        class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-pink-500 hover:bg-pink-600 
@@ -857,19 +887,21 @@
                                     shadow-lg shadow-pink-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Herramienta</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Herramienta</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- HERRAMIENTA 17: CODE.ORG - ARTIST (Dibujo/Programación) -->
-                <div class="group 
+                        <!-- HERRAMIENTA 17: CODE.ORG - ARTIST (Dibujo/Programación) -->
+                        <div class="group 
                             bg-white 
                             border border-yellow-100 
                             rounded-xl 
@@ -878,22 +910,21 @@
                             hover:shadow-yellow-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-yellow-600 uppercase tracking-wider">
-                                Programación Visual | Arte
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                CODE.ORG - ARTIST (Dibujo por Código)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="https://studio.code.org/projects/artist_k1/" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-yellow-600 uppercase tracking-wider">
+                                        Programación Visual | Arte
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        CODE.ORG - ARTIST (Dibujo por Código)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="https://studio.code.org/projects/artist_k1/" target="_blank"
+                                        rel="noopener noreferrer" class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-yellow-500 hover:bg-yellow-600 
@@ -903,19 +934,21 @@
                                     shadow-lg shadow-yellow-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Actividad</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Actividad</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- HERRAMIENTA 18: CANVA (Diseño Gráfico) -->
-                <div class="group 
+                        <!-- HERRAMIENTA 18: CANVA (Diseño Gráfico) -->
+                        <div class="group 
                             bg-white 
                             border border-pink-100 
                             rounded-xl 
@@ -924,22 +957,21 @@
                             hover:shadow-pink-300/50 
                             hover:scale-[1.01] 
                             transition duration-500 ease-in-out">
-                    <!-- CONTENIDO DE LA TARJETA (Vertical) -->
-                    <div class="flex flex-col justify-between h-full">
-                        <div>
-                            <span class="inline-block mb-1 text-sm font-semibold text-pink-600 uppercase tracking-wider">
-                                Diseño | Gráfico
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                CANVA (Plataforma de Diseño)
-                            </h2>
-                        </div>
-                        <!-- BOTÓN ABAJO Y CENTRADO -->
-                        <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
-                            <a href="https://www.canva.com/" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            class="flex items-center space-x-2 
+                            <!-- CONTENIDO DE LA TARJETA (Vertical) -->
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <span
+                                        class="inline-block mb-1 text-sm font-semibold text-pink-600 uppercase tracking-wider">
+                                        Diseño | Gráfico
+                                    </span>
+                                    <h2 class="text-xl font-bold text-gray-900 leading-snug">
+                                        CANVA (Plataforma de Diseño)
+                                    </h2>
+                                </div>
+                                <!-- BOTÓN ABAJO Y CENTRADO -->
+                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-center">
+                                    <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer"
+                                        class="flex items-center space-x-2 
                                     shrink-0 
                                     px-5 py-3 
                                     bg-pink-500 hover:bg-pink-600 
@@ -949,228 +981,338 @@
                                     shadow-lg shadow-pink-500/30 
                                     transition duration-300 transform 
                                     group-hover:translate-x-0">
-                                <span>Abrir Plataforma</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                    <path d="M15 3h6v6"/>
-                                    <path d="M10 14 21 3"/>
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                </svg>
-                            </a>
+                                        <span>Abrir Plataforma</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-            </div> <!-- Fin del contenedor grid de 2 columnas -->
-        </div> <!-- Fin de #enlaces -->
-    </div>
-                
-                <!-- Pestaña 3: Otros Recursos -->            
+                    </div> <!-- Fin del contenedor grid de 2 columnas -->
+                </div> <!-- Fin de #enlaces -->
+
+
+                <!-- Pestaña 3: Otros Recursos -->
                 <div id="recursos" class="tab-content">
-                    <h2 class="text-3xl font-bold text-sky-700 text-center border-b pb-2">Material Audiovisual y Complementario</h2>
-                    <p class="text-gray-700 mb-6">
-                        Videos, libros recomendados y herramientas IA que te servirán para ser un autodidacta en el mundo tech.
+                    <!-- TÍTULO UNIFICADO (Se quitó text-center) -->
+                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b border-sky-100 pb-3">Material Audiovisual y
+                        Complementario</h2>
+                    <p class="text-gray-700 mb-8">
+                        Videos, libros recomendados y herramientas IA que te servirán para ser un autodidacta en el
+                        mundo tech.
                     </p>
-                    <!-- Contenido de Otros Recursos  -->
-                
-                    <!-- TARJETA RECURSOS -->
-                <div class="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-xl shadow-2xl
-                    flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 transition duration-300 hover:shadow-sky-300/50 my-3">
-
-                    <!-- 1. IMAGEN/ICONO -->
-                    <div class="flex-shrink-0 w-16 h-16 rounded-full bg-sky-600 flex items-center justify-center text-white p-2 shadow-md">
-                    <img src="https://store-images.s-microsoft.com/image/apps.47708.13995459486483234.d55d4637-fda0-48bc-b660-131213c2390f.a5803faf-f2fb-4a2a-b350-a42da831ac3b?h=210" alt="logo nanobanana">
-                    </div>
-
-                    <!-- 2. CONTENIDO DE TEXTO-->
-                    <div class="flex-grow flex flex-col items-center justify-center text-center min-w-0 px-2 md:px-0">
-                    <h2 class="text-xl md:text-2xl font-extrabold text-sky-700 truncate w-full">NANO BANANA</h2>
-                    <p class="text-sm md:text-base text-gray-600 mt-1 max-w-xl">Herramienta de inteligencia artificial (IA) desarrollada por Google para la edición y generación de imágenes.</p>
-                    </div>
-
-                    <!-- 3. ENLACE-->
-                    <a href="https://nanobanana.ai/es" target="_blank"
-                    class="flex-shrink-0 text-white bg-sky-600 hover:bg-sky-700 py-2 px-4 rounded-lg font-semibold transition duration-300 ease-in-out shadow-lg transform hover:scale-105">Abrir &rarr;</a>
-                </div> 
-
-                <!-- TARJETA RECURSOS -->
-                <div class="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-xl shadow-2xl
-                    flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 transition duration-300 hover:shadow-sky-300/50 my-3">
-
-                    <!-- 1. IMAGEN/ICONO -->
-                    <div class="flex-shrink-0 w-16 h-16 rounded-full bg-sky-600 flex items-center justify-center text-white p-2 shadow-md">
-                    <img src="https://suno.com/favicon-512x512.png" alt="logo suno">
-                    </div>
-
-                    <!-- 2. CONTENIDO DE TEXTO-->
-                    <div class="flex-grow flex flex-col items-center justify-center text-center min-w-0 px-2 md:px-0">
-                    <h2 class="text-xl md:text-2xl font-extrabold text-sky-700 truncate w-full">SUNO IA </h2>
-                    <p class="text-sm md:text-base text-gray-600 mt-1 max-w-xl">Herramienta de inteligencia artificial que permite crear canciones completas, incluyendo música, letra y voz.</p>
-                    </div>
-
-                    <!-- 3. ENLACE-->
-                    <a href="https://suno.com/" target="_blank"
-                    class="flex-shrink-0 text-white bg-sky-600 hover:bg-sky-700 py-2 px-4 rounded-lg font-semibold transition duration-300 ease-in-out shadow-lg transform hover:scale-105">Abrir &rarr;</a>
-                </div> 
-
-
-            <!-- VIDEOS -->
-
-                <!-- TARJETA VIDEO  1-->
-                <div class="w-full max-w-4xl mx-auto p-5 sm:p-8 bg-white rounded-xl shadow-2xl border border-gray-200">
-                    <div class="space-y-5">
-                        <h3 class="font-extrabold text-2xl md:text-3xl text-gray-800 leading-tight text-center">
-                            Curso HTML - Principiantes.
-                        </h3>
-                        <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
-                            Por David Ruiz (CodingTube)
-                        </p>
-                        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-2xl ring-4 ring-indigo-200/50">
-                            <iframe
-                                class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/3sR5QRaLOGE"
-                                title="Curso HTML completo desde CERO GRATIS 🚀 Para PRINCIPIANTES"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VIDEO 2 -->
-                 <div class="w-full max-w-4xl mx-auto p-5 sm:p-8 bg-white rounded-xl shadow-2xl border border-gray-200">
-                    <div class="space-y-5">
-                        <h3 class="font-extrabold text-2xl md:text-3xl text-gray-800 leading-tight text-center">
-                            Curso CSS - Principiantes. 
-                        </h3>
-                        <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
-                            David Ruiz (CodingTube)
-                        </p>
-                        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-2xl ring-4 ring-indigo-200/50">
-                            <iframe
-                                class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/BA-VamCbwRU"
-                                title="Aprende CSS GRATIS - CURSO CSS desde CERO - Principiantes"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VIDEO 3 -->
-                 <div class="w-full max-w-4xl mx-auto p-5 sm:p-8 bg-white rounded-xl shadow-2xl border border-gray-200">
-                    <div class="space-y-5">
-                        <h3 class="font-extrabold text-2xl md:text-3xl text-gray-800 leading-tight text-center">
-                            Curso Javascript - Principiantes. 
-                        </h3>
-                        <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
-                            David Ruiz (CodingTube)
-                        </p>
-                        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-2xl ring-4 ring-indigo-200/50">
-                            <iframe
-                                class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/g6n0jwOUbMo"
-                                title="CURSO Javascript DESDE CERO - Para principiantes"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VIDEO 4 -->
-                 <div class="w-full max-w-4xl mx-auto p-5 sm:p-8 bg-white rounded-xl shadow-2xl border border-gray-200">
-                    <div class="space-y-5">
-                        <h3 class="font-extrabold text-2xl md:text-3xl text-gray-800 leading-tight text-center">
-                            Curso Javascript - Principiantes
-                        </h3>
-                        <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
-                            Fazt
-                        </p>
-                        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-2xl ring-4 ring-indigo-200/50">
-                            <iframe
-                                class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/RqQ1d1qEWlE"
-                                title="Curso Javascript para Principiantes"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-
-                     <!-- VIDEO 5 -->
-                 <div class="w-full max-w-4xl mx-auto p-5 sm:p-8 bg-white rounded-xl shadow-2xl border border-gray-200">
-                    <div class="space-y-5">
-                        <h3 class="font-extrabold text-2xl md:text-3xl text-gray-800 leading-tight text-center">
-                            Curso Introducción Python 
-                        </h3>
-                        <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
-                            Estefania Cassingena Navone  (freeCodeCamp.org)
-                        </p>
-                        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-2xl ring-4 ring-indigo-200/50">
-                            <iframe
-                                class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/DLikpfc64cA"
-                                title="Aprende Python - Curso de Python desde Cero"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-
-                </div> <!-- CIERRE DE LA PESTAÑA 'recursos' -->
                     
+                    <!-- LAYOUT UNIFICADO: Grid de 2 columnas -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <!-- TARJETA RECURSOS (NANO BANANA) -->
+                        <div
+                            class="w-full p-4 bg-white border border-gray-200 rounded-xl shadow-xl
+                        flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 transition duration-300 hover:shadow-sky-300/50">
+
+                            <!-- 1. IMAGEN/ICONO -->
+                            <div
+                                class="flex-shrink-0 w-16 h-16 rounded-full bg-sky-600 flex items-center justify-center text-white p-2 shadow-md">
+                                <img src="https://store-images.s-microsoft.com/image/apps.47708.13995459486483234.d55d4637-fda0-48bc-b660-131213c2390f.a5803faf-f2fb-4a2a-b350-a42da831ac3b?h=210"
+                                    alt="logo nanobanana">
+                            </div>
+
+                            <!-- 2. CONTENIDO DE TEXTO-->
+                            <div
+                                class="flex-grow flex flex-col items-center md:items-start justify-center text-center md:text-left min-w-0 px-2 md:px-0">
+                                <h2 class="text-xl md:text-2xl font-extrabold text-sky-700 truncate w-full">NANO BANANA</h2>
+                                <p class="text-sm md:text-base text-gray-600 mt-1">Herramienta de IA para edición y generación de imágenes.</p>
+                            </div>
+
+                            <!-- 3. ENLACE-->
+                            <a href="https://nanobanana.ai/es" target="_blank"
+                                class="flex-shrink-0 text-white bg-sky-600 hover:bg-sky-700 py-2 px-4 rounded-lg font-semibold transition duration-300 ease-in-out shadow-lg transform hover:scale-105">Abrir
+                                &rarr;</a>
+                        </div>
+
+                        <!-- TARJETA RECURSOS (SUNO IA) -->
+                        <div
+                            class="w-full p-4 bg-white border border-gray-200 rounded-xl shadow-xl
+                        flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 transition duration-300 hover:shadow-sky-300/50">
+
+                            <!-- 1. IMAGEN/ICONO -->
+                            <div
+                                class="flex-shrink-0 w-16 h-16 rounded-full bg-sky-600 flex items-center justify-center text-white p-2 shadow-md">
+                                <img src="https://suno.com/favicon-512x512.png" alt="logo suno">
+                            </div>
+
+                            <!-- 2. CONTENIDO DE TEXTO-->
+                            <div
+                                class="flex-grow flex flex-col items-center md:items-start justify-center text-center md:text-left min-w-0 px-2 md:px-0">
+                                <h2 class="text-xl md:text-2xl font-extrabold text-sky-700 truncate w-full">SUNO IA </h2>
+                                <p class="text-sm md:text-base text-gray-600 mt-1">Herramienta de IA que permite crear canciones completas.</p>
+                            </div>
+
+                            <!-- 3. ENLACE-->
+                            <a href="https://suno.com/" target="_blank"
+                                class="flex-shrink-0 text-white bg-sky-600 hover:bg-sky-700 py-2 px-4 rounded-lg font-semibold transition duration-300 ease-in-out shadow-lg transform hover:scale-105">Abrir
+                                &rarr;</a>
+                        </div>
+
+
+                        <!-- TARJETA VIDEO 1 -->
+                        <div
+                            class="w-full p-5 sm:p-6 bg-white rounded-xl shadow-xl border border-gray-200 transition duration-300 hover:shadow-indigo-300/50">
+                            <div class="space-y-4">
+                                <h3 class="font-extrabold text-2xl text-gray-800 leading-tight text-center">
+                                    Curso HTML - Principiantes.
+                                </h3>
+                                <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
+                                    Por David Ruiz (CodingTube)
+                                </p>
+                                <div
+                                    class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg ring-4 ring-indigo-200/50">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/3sR5QRaLOGE"
+                                        title="Curso HTML completo desde CERO GRATIS 🚀 Para PRINCIPIANTES" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VIDEO 2 -->
+                        <div
+                            class="w-full p-5 sm:p-6 bg-white rounded-xl shadow-xl border border-gray-200 transition duration-300 hover:shadow-indigo-300/50">
+                            <div class="space-y-4">
+                                <h3 class="font-extrabold text-2xl text-gray-800 leading-tight text-center">
+                                    Curso CSS - Principiantes.
+                                </h3>
+                                <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
+                                    David Ruiz (CodingTube)
+                                </p>
+                                <div
+                                    class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg ring-4 ring-indigo-200/50">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/BA-VamCbwRU"
+                                        title="Aprende CSS GRATIS - CURSO CSS desde CERO - Principiantes" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VIDEO 3 -->
+                        <div
+                            class="w-full p-5 sm:p-6 bg-white rounded-xl shadow-xl border border-gray-200 transition duration-300 hover:shadow-indigo-300/50">
+                            <div class="space-y-4">
+                                <h3 class="font-extrabold text-2xl text-gray-800 leading-tight text-center">
+                                    Curso Javascript - Principiantes.
+                                </h3>
+                                <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
+                                    David Ruiz (CodingTube)
+                                </p>
+                                <div
+                                    class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg ring-4 ring-indigo-200/50">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/g6n0jwOUbMo"
+                                        title="CURSO Javascript DESDE CERO - Para principiantes" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VIDEO 4 -->
+                        <div
+                            class="w-full p-5 sm:p-6 bg-white rounded-xl shadow-xl border border-gray-200 transition duration-300 hover:shadow-indigo-300/50">
+                            <div class="space-y-4">
+                                <h3 class="font-extrabold text-2xl text-gray-800 leading-tight text-center">
+                                    Curso Javascript - Principiantes
+                                </h3>
+                                <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
+                                    Fazt
+                                </p>
+                                <div
+                                    class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg ring-4 ring-indigo-200/50">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/RqQ1d1qEWlE"
+                                        title="Curso Javascript para Principiantes" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VIDEO 5 -->
+                        <div
+                            class="w-full p-5 sm:p-6 bg-white rounded-xl shadow-xl border border-gray-200 transition duration-300 hover:shadow-indigo-300/50">
+                            <div class="space-y-4">
+                                <h3 class="font-extrabold text-2xl text-gray-800 leading-tight text-center">
+                                    Curso Introducción Python
+                                </h3>
+                                <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider -mt-3 text-center">
+                                    Estefania Cassingena Navone (freeCodeCamp.org)
+                                </p>
+                                <div
+                                    class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg ring-4 ring-indigo-200/50">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/DLikpfc64cA"
+                                        title="Aprende Python - Curso de Python desde Cero" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- Fin del Grid Wrapper -->
+                </div> <!-- CIERRE DE LA PESTAÑA 'recursos' -->
+
 
                 <!-- Pestaña 4: Noticias Tech -->
                 <div id="noticias" class="tab-content">
-                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b pb-2">Lo Último en Tecnología y Ciencia</h2>
-                    <p class="text-gray-700 mb-6">
-                        Mantente al día con las novedades más importantes. <span class="font-medium text-red-500">Aquí encontrarás algunas noticias de lo que sucede en el mundo de la tecnología</span>
+                    <!-- TÍTULO UNIFICADO -->
+                    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b border-sky-100 pb-3">
+                        Lo Último en Tecnología y Ciencia
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-8">
+                        Mantente al día con las novedades más importantes. Hemos seleccionado los titulares más
+                        relevantes del mundo de la innovación.
                     </p>
-                    <!-- Contenido de Noticias Tech -->
-                    <div id="news-feed" class="space-y-4">
-                        <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
-                            <h3 class="font-bold text-gray-800 text-lg">OpenAI lanza un navegador que permite usar la inteligencia artificial de ChatGPT en la web; competirá con Chrome de Google</h3>
-                            <p class="text-sm text-gray-600">Fecha: 21 de octubre de 2025</p>
-                            <a href="https://www.eltiempo.com/tecnosfera/novedades-tecnologia/openai-lanza-un-navegador-que-permite-usar-la-inteligencia-artificial-de-chatgpt-en-la-web-competira-con-chrome-de-google-3501847" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
+
+                    <!-- LAYOUT UNIFICADO: Grid de 2 columnas -->
+                    <div id="news-feed" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <!-- Noticia 1: OpenAI Navegador -->
+                        <div
+                            class="news-card group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-100">
+                            <!-- Icono de Noticia (Noticias/Flash) -->
+                            <div class="flex items-center space-x-3 mb-4">
+                                <svg class="w-6 h-6 text-red-500 transition duration-300 group-hover:text-red-600"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                <p class="text-xs font-semibold uppercase text-red-500">Exclusiva</p>
+                            </div>
+
+                            <h3 class="font-extrabold text-xl text-gray-900 mb-2 leading-snug">OpenAI lanza un
+                                navegador que permite usar la inteligencia artificial de ChatGPT en la web;
+                                competirá con Chrome de Google</h3>
+
+                            <p class="text-sm text-gray-500 mt-4">
+                                <span class="font-medium text-gray-700">Fecha:</span> 21 de octubre de 2025
+                            </p>
+
+                            <a href="https://www.eltiempo.com/tecnosfera/novedades-tecnologia/openai-lanza-un-navegador-que-permite-usar-la-inteligencia-artificial-de-chatgpt-en-la-web-competira-con-chrome-de-google-3501847"
+                                target="_blank"
+                                class="mt-4 inline-block text-primary-blue font-bold group-hover:text-sky-700 transition duration-200">
+                                Leer artículo completo &rarr;
+                            </a>
                         </div>
 
-                        <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
-                            <h3 class="font-bold text-gray-800 text-lg">Una falla global en la nube de Amazon genera problemas a cientos de aplicaciones de empresas como Snapchat, Zoom y varios bancos</h3>
-                            <p class="text-sm text-gray-600">Fecha: 20 de octubre de 2025</p>
-                            <a href="https://www.bbc.com/mundo/articles/cly941r41w4o" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
+                        <!-- Noticia 2: Falla de Amazon AWS -->
+                        <div
+                            class="news-card group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-100">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <svg class="w-6 h-6 text-yellow-500 transition duration-300 group-hover:text-yellow-600"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                                    </path>
+                                </svg>
+                                <p class="text-xs font-semibold uppercase text-yellow-500">Alerta Global</p>
+                            </div>
+
+                            <h3 class="font-extrabold text-xl text-gray-900 mb-2 leading-snug">Una falla global en
+                                la nube de Amazon genera problemas a cientos de aplicaciones de empresas como
+                                Snapchat, Zoom y varios bancos</h3>
+
+                            <p class="text-sm text-gray-500 mt-4">
+                                <span class="font-medium text-gray-700">Fecha:</span> 20 de octubre de 2025
+                            </p>
+
+                            <a href="https://www.bbc.com/mundo/articles/cly941r41w4o" target="_blank"
+                                class="mt-4 inline-block text-primary-blue font-bold group-hover:text-sky-700 transition duration-200">
+                                Leer artículo completo &rarr;
+                            </a>
                         </div>
-                       
-                        <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
-                            <h3 class="font-bold text-gray-800 text-lg">Sora es la número uno en la App Store y todos quieren probarla: así funciona la nueva app para crear videos de un minuto</h3>
-                            <p class="text-sm text-gray-600">Fecha: 16 de octubre de 2025</p>
-                            <a href="https://www.enter.co/chips-bits/apps-software/sora-es-la-numero-uno-en-la-app-store-y-todos-quieren-probarla-asi-funciona-la-nueva-app-para-crear-videos-de-un-minuto/" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
+
+                        <!-- Noticia 3: App Sora -->
+                        <div
+                            class="news-card group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-100">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <svg class="w-6 h-6 text-green-500 transition duration-300 group-hover:text-green-600"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                                </svg>
+                                <p class="text-xs font-semibold uppercase text-green-500">Tendencia</p>
+                            </div>
+
+                            <h3 class="font-extrabold text-xl text-gray-900 mb-2 leading-snug">Sora es la número uno
+                                en la App Store y todos quieren probarla: así funciona la nueva app para crear
+                                videos de un minuto</h3>
+
+                            <p class="text-sm text-gray-500 mt-4">
+                                <span class="font-medium text-gray-700">Fecha:</span> 16 de octubre de 2025
+                            </p>
+
+                            <a href="https://www.enter.co/chips-bits/apps-software/sora-es-la-numero-uno-en-la-app-store-y-todos-quieren-probarla-asi-funciona-la-nueva-app-para-crear-videos-de-un-minuto/"
+                                target="_blank"
+                                class="mt-4 inline-block text-primary-blue font-bold group-hover:text-sky-700 transition duration-200">
+                                Leer artículo completo &rarr;
+                            </a>
                         </div>
-                        <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-md shadow-sm">
-                            <h3 class="font-bold text-gray-800 text-lg">La IA está abriendo las puertas de una revolución radical en internet: que todos podamos crear apps sin saber programar</h3>
-                            <p class="text-sm text-gray-600">Fecha: 24 Julio 2025</p>
-                            <a href="https://www.xataka.com/robotica-e-ia/otra-revolucion-silenciosa-se-abre-paso-ia-que-pueda-crear-apps-minutos-saber-programar" target="_blank" class="text-sky-600 hover:underline text-sm font-semibold">Leer artículo &rarr;</a>
+
+                        <!-- Noticia 4: IA y Apps (Usando 3 columnas en desktop) -->
+                        <div
+                            class="news-card group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-100">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <svg class="w-6 h-6 text-indigo-500 transition duration-300 group-hover:text-indigo-600"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9.75 17L9 20l-1 1h8l-1-1v-3.25m-7.25 0V8a3 3 0 013-3h3a3 3 0 013 3v5.75m-7.25 0h7.25">
+                                    </path>
+                                </svg>
+                                <p class="text-xs font-semibold uppercase text-indigo-500">Innovación</p>
+                            </div>
+
+                            <h3 class="font-extrabold text-xl text-gray-900 mb-2 leading-snug">La IA está abriendo
+                                las puertas de una revolución radical en internet: que todos podamos crear apps sin
+                                saber programar</h3>
+
+                            <p class="text-sm text-gray-500 mt-4">
+                                <span class="font-medium text-gray-700">Fecha:</span> 24 Julio 2025
+                            </p>
+
+                            <a href="https://www.xataka.com/robotica-e-ia/otra-revolucion-silenciosa-se-abre-paso-ia-que-pueda-crear-apps-minutos-saber-programar"
+                                target="_blank"
+                                class="mt-4 inline-block text-primary-blue font-bold group-hover:text-sky-700 transition duration-200">
+                                Leer artículo completo &rarr;
+                            </a>
                         </div>
+
                     </div>
+                    <!-- Fin Contenido de Noticias Tech -->
                 </div>
+                <!-- Fin Pestaña 4: Noticias Tech -->
 
             </main>
         </div>
-        
+
     </div>
-    
+
     <!-- Pie de Página (Footer) con estilos permanentes -->
     <footer class="bg-gray-800 text-white mt-10 p-6">
         <div class="container mx-auto max-w-6xl text-center">
@@ -1205,16 +1347,16 @@
 
             // Muestra la pestaña actual
             document.getElementById(tabName).classList.add('active');
-            
+
             // Activa el botón que fue clickeado (o el botón por defecto)
             if (evt && evt.currentTarget) {
                 evt.currentTarget.classList.add('active');
             } else {
                 // Caso de inicialización: si no hay evento, buscamos el botón.
-                 const buttonToActivate = document.querySelector(`.tab-button[onclick*="'${tabName}'"]`);
-                 if (buttonToActivate) {
+                const buttonToActivate = document.querySelector(`.tab-button[onclick*="'${tabName}'"]`);
+                if (buttonToActivate) {
                     buttonToActivate.classList.add('active');
-                 }
+                }
             }
         }
 
@@ -1222,21 +1364,35 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Selecciona la pestaña que debe ser visible por defecto: 'principal'
             const defaultTabId = 'principal';
-            
+
             // Llamamos a openTab pasando null como evento (pues no hay click real) 
             // y el ID de la pestaña por defecto.
             // Para la inicialización, necesitamos simular el botón activo
             const defaultButton = document.getElementById('defaultOpen');
-            
+
             // Como cambiamos la estructura de openTab para depender del evento,
-            
+
             if (defaultButton) {
-                
+
                 const fakeEvent = { currentTarget: defaultButton };
                 openTab(fakeEvent, defaultTabId);
             }
         });
 
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#0a6ebd',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
     </script>
 </body>
+
 </html>
