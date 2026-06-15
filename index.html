@@ -3,26 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesor Ronald - Informática, Tecnología y Ética</title>
+    <title>Profesor Ronald - Proyectos educativos y deportivos</title>
     
     <!-- SEO y Metadatos para Redes Sociales -->
-    <meta name="description" content="Portafolio de Ronald, profesor de Informática, Tecnología y Programación. Explora proyectos educativos diseñados para potenciar el aprendizaje práctico.">
-    <meta property="og:title" content="Profesor Ronald - Informática, Tecnología y Ética">
-    <meta property="og:description" content="Portafolio de proyectos educativos diseñados para potenciar el aprendizaje práctico.">
-    <meta property="og:image" content="https://placehold.co/1200x630/0284c7/ffffff?text=Portafolio+Ronald">
+    <meta name="description" content="Portafolio de Ronald, profesor de Informática, Tecnología y Programación. Descubre BingoVerse, Ethykos, Trivia Cultural Week y Torneo Beth Shalom.">
+    <meta property="og:title" content="Profesor Ronald - Plataformas educativas y torneo deportivo">
+    <meta property="og:description" content="Herramientas para bingo digital, gamificación de ética, trivia de fútbol y seguimiento de torneos escolares.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0284c7/ffffff?text=Ronald+Proyectos">
     <meta property="og:url" content="URL_DE_TU_PAGINA_AQUI">
     <meta name="twitter:card" content="summary_large_image">
-
     
     <link rel="icon" type="image/png" href="./images/favicon.png">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Color de fondo claro */
-            color: #334155; /* Color de texto principal */
+            background-color: #f8fafc;
+            color: #334155;
         }
         
         /* Estilos para el modal */
@@ -90,7 +88,7 @@
             color: #475569;
         }
 
-        /* --- ESTILOS DE TARJETA DE PROYECTO ACTUALIZADOS --- */
+        /* Estilos de tarjeta de proyecto */
         .project-card {
             background-color: #ffffff;
             padding: 1.5rem;
@@ -98,16 +96,15 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
-            flex-direction: column; /* Clave para el layout vertical */
-            min-height: 420px; 
+            flex-direction: column;
+            min-height: 480px; 
             flex-shrink: 0; 
-            width: 300px; 
+            width: 340px; 
             margin-right: 1.5rem; 
         }
         .project-card:last-child {
             margin-right: 0;
         }
-
         .project-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
@@ -115,15 +112,22 @@
         
         .image-placeholder {
             width: 100%;
-            height: 160px; /* Altura ajustada */
-            background-color: #e2e8f0; /* Gris claro */
+            height: 160px;
+            background-color: #e2e8f0;
             border-radius: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 500;
-            color: #64748b; /* Texto gris */
-            border: 2px dashed #cbd5e1; /* Borde punteado */
+            color: #64748b;
+            border: 2px dashed #cbd5e1;
+            overflow: hidden;
+        }
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
         }
 
         .nav-link {
@@ -134,7 +138,7 @@
         .project-carousel-container {
             position: relative;
             width: 100%;
-            max-width: 1200px; 
+            max-width: 1400px; 
             margin: 0 auto;
         }
         .project-carousel {
@@ -188,11 +192,44 @@
         .carousel-button.right {
             right: -0.75rem;
         }
-
         @media (max-width: 768px) {
             .carousel-button {
                 display: none;
             }
+        }
+
+        /* Estilos para listas de características */
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .feature-list li::before {
+            content: "✓";
+            color: #0ea5e9;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .benefit-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .benefit-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .benefit-list li::before {
+            content: "★";
+            color: #eab308;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
         }
     </style>
 </head>
@@ -214,7 +251,7 @@
     <!-- Sección Hero -->
     <section id="hero" class="bg-gradient-to-r from-sky-600 to-cyan-500 text-white py-20 md:py-32 text-center rounded-b-3xl shadow-xl">
         <div class="container mx-auto px-4">
-            <img src="./images/logo-oscuro.png" alt="Foto de Perfil del Profesor" class="rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover aspect-square" width="15%">
+            <img src="./images/logo-oscuro.png" alt="Foto de Perfil del Profesor" class="rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover aspect-square" width="15%" onerror="this.src='https://placehold.co/200x200/0284c7/white?text=R'">
             <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
                 ¡Hola! Soy <span class="text-yellow-300">Ronald</span>
             </h1>
@@ -230,7 +267,7 @@
             <h2 class="text-4xl font-bold text-center mb-10 text-sky-800">Sobre Mí</h2>
             <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
                 <div class="md:w-1/3 flex-shrink-0">
-                    <img src="./images/foto.png" alt="Foto profesional del profesor" class="rounded-xl shadow-lg w-full">
+                    <img src="./images/foto.png" alt="Foto profesional del profesor" class="rounded-xl shadow-lg w-full" onerror="this.src='https://placehold.co/400x400/e2e8f0/475569?text=Foto'">
                 </div>
                 <div class="md:w-2/3 text-lg text-gray-700">
                     <p class="mb-6">
@@ -247,7 +284,7 @@
         </div>
     </section>
 
-    <!-- --- SECCIÓN DE PROYECTOS ACTUALIZADA --- -->
+    <!-- SECCIÓN DE PROYECTOS: BingoVerse, Ethykos, Trivia Cultural Week y Torneo Beth Shalom -->
     <section id="proyectos" class="py-16 md:py-24 bg-sky-50 rounded-t-3xl shadow-inner">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-sky-800">IDEAS Y PROYECTOS</h2>
@@ -255,90 +292,80 @@
                 Aquí podrás explorar algunas de las ideas, aplicaciones y herramientas que he desarrollado (incluso con ayuda de IA) o que estoy creando para potenciar el aprendizaje de mis estudiantes en informática, tecnología y ética o resolver alguna que otra situación particular en la que algún compañero docente me ha pedido apoyo. Si te es útil, no dudes en utilizarlo y no olvides escribirme.
             </p>
 
-            <!-- Imagen de En Construcción -->
-            <!-- <div class="text-center mb-16"> -->
-                 <img src="./images/underConstruction.png" alt="Sección en construcción" class="mx-auto rounded-lg shadow-lg">
-            <!-- </div> -->
-
             <div class="project-carousel-container">
                 <button id="scrollLeftBtn" class="carousel-button left">&lt;</button>
                 <div class="project-carousel">
                     
-                    <!-- Tarjeta de Proyecto Plantilla 1 -->
+                    <!-- TARJETA 1: BINGOVERSE -->
                     <div class="project-card">
-                        <div class="image-placeholder">imagen</div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">nombre aplicación</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">aquí irá un resumen</p>
+                        <div class="image-placeholder">
+                            <img src="./images/bingoverse-screnshoot.png" alt="Vista previa de BingoVerse - Panel docente" onerror="this.src='https://placehold.co/300x160/0ea5e9/white?text=BingoVerse'">
+                        </div>
+                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">BingoVerse</h3>
+                        <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma educativa para crear y jugar bingos digitales personalizados, sin cartones impresos. Cartones únicos para cada estudiante.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('proyecto-1')" class="text-sky-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('bingoverse')" class="text-sky-600 hover:underline font-medium mb-4">
                                 leer más
                             </button>
                             <a href="#" target="_blank" class="block w-full text-white bg-sky-600 px-4 py-2 rounded-lg shadow-md hover:bg-sky-700 transition-all duration-300">Ver Proyecto</a>
                         </div>
                     </div>
 
-                    <!-- Tarjeta de Proyecto Plantilla 2 -->
+                    <!-- TARJETA 2: ETHYKOS -->
                     <div class="project-card">
-                        <div class="image-placeholder">imagen</div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">nombre aplicación</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">aquí irá un resumen</p>
+                        <div class="image-placeholder">
+                            <img src="./images/ethylos-placeholder.png" alt="Ethykos - Gamificación para clase de ética" onerror="this.src='https://placehold.co/300x160/8b5cf6/white?text=Ethykos'">
+                        </div>
+                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-purple-700 text-center">Ethykos</h3>
+                        <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma de gamificación que transforma la clase de ética en una aventura colaborativa mediante la organización de estudiantes en "tribus".</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('proyecto-2')" class="text-sky-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('ethylos')" class="text-purple-600 hover:underline font-medium mb-4">
                                 leer más
                             </button>
-                            <a href="#" target="_blank" class="block w-full text-white bg-sky-600 px-4 py-2 rounded-lg shadow-md hover:bg-sky-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="#" target="_blank" class="block w-full text-white bg-purple-600 px-4 py-2 rounded-lg shadow-md hover:bg-purple-700 transition-all duration-300">Ver Proyecto</a>
                         </div>
                     </div>
 
-                    <!-- Tarjeta de Proyecto Plantilla 3 -->
+                    <!-- TARJETA 3: TRIVIA CULTURAL WEEK -->
                     <div class="project-card">
-                        <div class="image-placeholder">imagen</div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">nombre aplicación</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">aquí irá un resumen</p>
+                        <div class="image-placeholder">
+                            <img src="./images/trivia-cultural-week.png" alt="Trivia Cultural Week - Juegos interactivos de fútbol y mundiales" onerror="this.src='https://placehold.co/300x160/16a34a/white?text=Trivia+Cultural+Week'">
+                        </div>
+                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-green-700 text-center">Trivia Cultural Week</h3>
+                        <p class="text-gray-600 mb-4 text-center flex-grow">Entorno de juegos interactivos que gamifica la historia de los mundiales y el fútbol, convirtiendo el conocimiento deportivo en una competencia dinámica para el aula.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('proyecto-3')" class="text-sky-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('trivia')" class="text-green-600 hover:underline font-medium mb-4">
                                 leer más
                             </button>
-                            <a href="#" target="_blank" class="block w-full text-white bg-sky-600 px-4 py-2 rounded-lg shadow-md hover:bg-sky-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="https://triviaculturalweek.vercel.app/" target="_blank" class="block w-full text-white bg-green-600 px-4 py-2 rounded-lg shadow-md hover:bg-green-700 transition-all duration-300">Ver Proyecto</a>
                         </div>
                     </div>
 
-                    <!-- Tarjeta de Proyecto Plantilla 4 -->
+                    <!-- TARJETA 4: TORNEO BETH SHALOM (NUEVO) -->
                     <div class="project-card">
-                        <div class="image-placeholder">imagen</div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">nombre aplicación</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">aquí irá un resumen</p>
+                        <div class="image-placeholder">
+                            <img src="./images/torneo-beth-shalom.png" alt="Torneo Beth Shalom - Mundialito de microfútbol" onerror="this.src='https://placehold.co/300x160/ea580c/white?text=Torneo+Beth+Shalom'">
+                        </div>
+                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-orange-700 text-center">Torneo Beth Shalom</h3>
+                        <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma oficial para seguir el "Mundialito", un campeonato de microfútbol ideado por el personero Juan Pablo Montoya para integrar colegios de Piedecuesta mediante la pasión y el deporte.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('proyecto-4')" class="text-sky-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('torneo')" class="text-orange-600 hover:underline font-medium mb-4">
                                 leer más
                             </button>
-                            <a href="#" target="_blank" class="block w-full text-white bg-sky-600 px-4 py-2 rounded-lg shadow-md hover:bg-sky-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="https://torneobethshalom.vercel.app/" target="_blank" class="block w-full text-white bg-orange-600 px-4 py-2 rounded-lg shadow-md hover:bg-orange-700 transition-all duration-300">Ver Proyecto</a>
                         </div>
                     </div>
 
-                    <!-- Tarjeta de Proyecto Plantilla 5 -->
+                    <!-- Tarjeta de Proyecto Plantilla (placeholder para futuros proyectos) -->
                     <div class="project-card">
-                        <div class="image-placeholder">imagen</div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">nombre aplicación</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">aquí irá un resumen</p>
+                        <div class="image-placeholder">📚 Próximamente</div>
+                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">Nuevo proyecto</h3>
+                        <p class="text-gray-600 mb-4 text-center flex-grow">Aquí irá el siguiente proyecto que me compartas. Espacio reservado para nuevas herramientas educativas.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('proyecto-5')" class="text-sky-600 hover:underline font-medium mb-4">
+                            <button class="text-sky-600 hover:underline font-medium mb-4 opacity-50 cursor-not-allowed">
                                 leer más
                             </button>
-                            <a href="#" target="_blank" class="block w-full text-white bg-sky-600 px-4 py-2 rounded-lg shadow-md hover:bg-sky-700 transition-all duration-300">Ver Proyecto</a>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta de Proyecto Plantilla 6 -->
-                    <div class="project-card">
-                        <div class="image-placeholder">imagen</div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">nombre aplicación</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">aquí irá un resumen</p>
-                        <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('proyecto-6')" class="text-sky-600 hover:underline font-medium mb-4">
-                                leer más
-                            </button>
-                            <a href="#" target="_blank" class="block w-full text-white bg-sky-600 px-4 py-2 rounded-lg shadow-md hover:bg-sky-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="#" class="block w-full text-white bg-gray-400 px-4 py-2 rounded-lg shadow-md cursor-not-allowed">Próximamente</a>
                         </div>
                     </div>
                 </div>
@@ -381,28 +408,22 @@
     <footer class="bg-gray-800 text-white py-8 rounded-t-3xl shadow-inner">
         <div class="container mx-auto text-center px-4">
             <p class="mb-4">&copy; 2025 Profesor Ronald. Todos los derechos reservados.</p>
-            
-            <!-- Enlace para estudiantes añadido -->
             <p class="mb-6">
                 <a href="estudiantes.html" class="text-gray-400 hover:text-sky-400 text-sm transition-colors duration-300">
                     Recursos para Estudiantes
                 </a>
             </p>
-
             <div class="flex justify-center space-x-6">
-                <!-- LinkedIn -->
                 <a href="https://www.linkedin.com/in/ronald-rojas-newball-9b8b02241/" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="LinkedIn">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
                 </a>
-                <!-- GitHub -->
                 <a href="https://github.com/chrisayuron" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="GitHub">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                 </a>
-                <!-- YouTube -->
                 <a href="https://youtube.com/@chrisayuron?si=nLjIO9nzz_Hyqr24" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="YouTube">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -412,105 +433,125 @@
         </div>
     </footer>
 
-    <!-- Modal de mi experiencia-->
+    <!-- Modal de mi experiencia -->
     <div id="trajectoryModal" class="modal-overlay">
         <div class="modal-content">
             <button id="closeTrajectoryModal" class="close-button">&times;</button>
             <h2 class="text-3xl font-bold mb-6 text-sky-800 text-center">Acerca de mi experiencia</h2>
-            <div class="trajectory-item">
-                <h3 class="text-xl">2008-2021 | Docente de Informática y Tecnología, Colegio Adventista Emmanuel, Bogotá</h3>
-                <p>Responsable de la planificación curricular y la impartición de clases de informática y tecnología desde pre-jardín hasta undécimo grado, así como de emprendimiento. También brindé soporte y mantenimiento a la infraestructura tecnológica y de red del colegio.</p>
-            </div>
-            <div class="trajectory-item">
-                <h3 class="text-xl">2021 | Semillero de Programación NoCode, Colegio Adventista Emmanuel</h3>
-                <p>Diseñé y dirigí un semillero en programación NoCode, facilitando que estudiantes desarrollaran capacidades para resolver problemas, estimulando la creatividad y el pensamiento lógico sin necesidad de código tradicional.</p>
-            </div>
-            <div class="trajectory-item">
-                <h3 class="text-xl">Marzo 2022 - Abril 2023 | Coach de Entrenamiento en Programación, Bucaramanga</h3>
-                <p>Fui el encargado de impartir formación en fundamentos de Python, desarrollo web (HTML, CSS, JavaScript) y bases de datos SQL. Mi labor incluyó el diseño curricular, la creación de materiales didácticos, guías prácticas y la evaluación de objetivos pedagógicos para asegurar un aprendizaje efectivo.</p>
-            </div>
-            <div class="trajectory-item">
-                <h3 class="text-xl">Junio 2023 – Diciembre 2023 | Desarrollador y Capacitador, Proyecto Fortalecimiento Vocaciones Científicas, CAJASAN y Gobernación de Santander, Bucaramanga</h3>
-                <p>Participé activamente en el desarrollo de software educativo, elaborando guías didácticas para la enseñanza de Python, Git, HTML, CSS y JavaScript para estudiantes de secundaria. Además, me encargué de capacitar a docentes en el uso de estos materiales y lenguajes, e impartí cursos directamente a grupos de estudiantes.</p>
-            </div>
-            <div class="trajectory-item">
-                <h3 class="text-xl">Febrero 2024 | Docente Informática y Tecnología, Gimnasio Campestre Beth Shalom, Bucaramanga</h3>
-                <p>Responsable de la planificación curricular y la impartición de clases de informática y tecnología desde transición hasta undécimo grado, implementado el desarrollo del aprendizaje STEAM con ARUKAY. También apoyo con la clase de ética.</p>
-            </div>
+            <div class="trajectory-item"><h3 class="text-xl">2008-2021 | Docente de Informática y Tecnología, Colegio Adventista Emmanuel, Bogotá</h3><p>Responsable de la planificación curricular y la impartición de clases de informática y tecnología desde pre-jardín hasta undécimo grado, así como de emprendimiento. También brindé soporte y mantenimiento a la infraestructura tecnológica y de red del colegio.</p></div>
+            <div class="trajectory-item"><h3 class="text-xl">2021 | Semillero de Programación NoCode, Colegio Adventista Emmanuel</h3><p>Diseñé y dirigí un semillero en programación NoCode, facilitando que estudiantes desarrollaran capacidades para resolver problemas, estimulando la creatividad y el pensamiento lógico sin necesidad de código tradicional.</p></div>
+            <div class="trajectory-item"><h3 class="text-xl">Marzo 2022 - Abril 2023 | Coach de Entrenamiento en Programación, Bucaramanga</h3><p>Impartí formación en fundamentos de Python, desarrollo web (HTML, CSS, JavaScript) y bases de datos SQL. Diseño curricular, materiales didácticos y evaluación pedagógica.</p></div>
+            <div class="trajectory-item"><h3 class="text-xl">Junio 2023 – Diciembre 2023 | Desarrollador y Capacitador, Proyecto Fortalecimiento Vocaciones Científicas</h3><p>Desarrollo de software educativo, guías didácticas para Python, Git, HTML, CSS y JavaScript. Capacitación a docentes y cursos a estudiantes.</p></div>
+            <div class="trajectory-item"><h3 class="text-xl">Febrero 2024 | Docente Informática y Tecnología, Gimnasio Campestre Beth Shalom, Bucaramanga</h3><p>Planificación curricular desde transición hasta undécimo grado, implementación de aprendizaje STEAM con ARUKAY y apoyo en clase de ética.</p></div>
         </div>
     </div>
 
-    <!-- Modal para la descripción completa de proyectos -->
+    <!-- Modal para descripción completa de proyectos -->
     <div id="projectModal" class="modal-overlay">
         <div class="modal-content">
             <button id="closeProjectModal" class="close-button">&times;</button>
-            <h2 id="projectModalTitle" class="text-3xl font-bold mb-6 text-sky-800 text-center"></h2>
+            <h2 id="projectModalTitle" class="text-3xl font-bold mb-6 text-center"></h2>
             <div id="projectModalContent" class="text-gray-700 text-lg"></div>
         </div>
     </div>
 
-    <!-- Script para desplazamiento suave de la navegación y control de los modales -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Desplazamiento suave de la navegación
+            // Desplazamiento suave
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) target.scrollIntoView({ behavior: 'smooth' });
                 });
             });
 
-            // Control del modal de trayectoria
-            const openTrajectoryModalBtn = document.getElementById('openTrajectoryModal');
-            const closeTrajectoryModalBtn = document.getElementById('closeTrajectoryModal');
-            const trajectoryModal = document.getElementById('trajectoryModal');
-            openTrajectoryModalBtn.addEventListener('click', () => {
-                trajectoryModal.classList.add('open');
-                document.body.style.overflow = 'hidden'; 
-            });
-            function closeTrajectoryModal() {
-                trajectoryModal.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-            closeTrajectoryModalBtn.addEventListener('click', closeTrajectoryModal);
-            trajectoryModal.addEventListener('click', (e) => {
-                if (e.target === trajectoryModal) { 
-                    closeTrajectoryModal();
-                }
-            });
+            // Modal experiencia
+            const openTraj = document.getElementById('openTrajectoryModal');
+            const closeTraj = document.getElementById('closeTrajectoryModal');
+            const trajModal = document.getElementById('trajectoryModal');
+            openTraj.addEventListener('click', () => { trajModal.classList.add('open'); document.body.style.overflow = 'hidden'; });
+            function closeTrajModal() { trajModal.classList.remove('open'); document.body.style.overflow = ''; }
+            closeTraj.addEventListener('click', closeTrajModal);
+            trajModal.addEventListener('click', (e) => { if(e.target === trajModal) closeTrajModal(); });
 
-            // --- LÓGICA DE MODAL DE PROYECTO ACTUALIZADA ---
+            // Modal de proyectos con descripciones
             const projectModal = document.getElementById('projectModal');
             const projectModalTitle = document.getElementById('projectModalTitle');
             const projectModalContent = document.getElementById('projectModalContent');
             const closeProjectModalBtn = document.getElementById('closeProjectModal');
 
             const projectDescriptions = {
-                'proyecto-1': {
-                    title: 'Nombre Aplicación 1',
-                    content: `<p class="mb-4">Aquí va la descripción <strong>ampliada y detallada</strong> del primer proyecto. Puedes usar HTML para formatear el texto, añadir listas, enlaces, etc.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>`
+                'bingoverse': {
+                    title: '🎲 BingoVerse - Bingo educativo digital',
+                    content: `
+                        <p class="mb-4"><strong>BingoVerse</strong> es una plataforma web educativa que permite crear y jugar bingos digitales completamente personalizados, reemplazando los tradicionales cartones impresos por cartones digitales generados automáticamente para cada estudiante.</p>
+                        <p class="mb-4">BingoVerse busca aprovechar las ventajas de la tecnología para hacer las clases más dinámicas, participativas y sostenibles, eliminando el uso de cartones impresos y permitiendo que cualquier docente pueda crear actividades educativas interactivas en pocos minutos, sin necesidad de conocimientos técnicos.</p>
+                        <ul class="feature-list mb-4">
+                            <li>No requiere imprimir cartones.</li>
+                            <li>Funciona desde cualquier navegador.</li>
+                            <li>Compatible con computadores, tabletas y celulares.</li>
+                            <li>Diseñado especialmente para el aula de clase.</li>
+                            <li>Cada estudiante recibe un cartón único generado automáticamente.</li>
+                        </ul>
+                    `
                 },
-                'proyecto-2': {
-                    title: 'Nombre Aplicación 2',
-                    content: `<p class="mb-4">Descripción detallada del <strong>segundo proyecto</strong>. Explica las tecnologías usadas, el objetivo y los resultados obtenidos.</p><p>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>`
+                'ethylos': {
+                    title: '⚖️ Ethykos - Gamificación para la clase de ética',
+                    content: `
+                        <p class="mb-4 font-semibold text-purple-700">Ethykos es una plataforma de gamificación que transforma la clase de ética en una aventura colaborativa mediante la organización de estudiantes en "tribus".</p>
+                        <p class="mb-4">Su objetivo principal es gamificar la enseñanza de la ética y los valores, utilizando mecánicas de juego, roles especializados y sistemas de trabajo colaborativo para aumentar la motivación, el compromiso del estudiante y la aplicación práctica de los dilemas morales en el aula.</p>
+                        
+                        <h4 class="font-bold text-lg mt-4 mb-2 text-purple-800">✨ Beneficios principales:</h4>
+                        <ul class="benefit-list mb-4">
+                            <li>Gamifica los contenidos curriculares para hacer las clases de ética mucho más atractivas.</li>
+                            <li>Asigna roles estratégicos a cada estudiante, fomentando la responsabilidad dentro de sus equipos.</li>
+                            <li>Transforma el aula en un entorno de juego donde el aprendizaje se basa en la superación de retos.</li>
+                            <li>Facilita la gestión de dinámicas grupales mediante el sistema de "tribus".</li>
+                            <li>Fomenta la participación activa a través de la identidad visual y simbólica de los equipos.</li>
+                            <li>Integra mecánicas de juego que mejoran la retención de conceptos éticos.</li>
+                            <li>Diseño intuitivo pensado para ser aplicado directamente por docentes en su planeación diaria.</li>
+                        </ul>
+                    `
                 },
-                'proyecto-3': {
-                    title: 'Nombre Aplicación 3',
-                    content: `<p class="mb-4">Descripción detallada del <strong>tercer proyecto</strong>.</p><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.</p>`
+                'trivia': {
+                    title: '⚽ Trivia Cultural Week - Historia de los Mundiales',
+                    content: `
+                        <p class="mb-4 font-semibold text-green-700">Trivia Cultural Week es un entorno de juegos interactivos que gamifica la historia de los mundiales y el fútbol, convirtiendo el conocimiento deportivo en una competencia dinámica para el aula.</p>
+                        <p class="mb-4">Potencia el aprendizaje significativo a través de retos y trivias personalizadas sobre el universo del fútbol y la historia de los mundiales, permitiendo a los docentes integrar la pasión por este deporte con actividades educativas estimulantes.</p>
+                        
+                        <h4 class="font-bold text-lg mt-4 mb-2 text-green-800">✨ Beneficios principales:</h4>
+                        <ul class="benefit-list mb-4">
+                            <li>Gamifica contenidos deportivos para fomentar la participación y el interés estudiantil.</li>
+                            <li>Incluye una variedad de juegos creados específicamente para entornos escolares.</li>
+                            <li>Estimula la competencia sana y el trabajo en equipo a través de trivias temáticas.</li>
+                            <li>Facilita la evaluación de conocimientos sobre historia y cultura general del fútbol.</li>
+                            <li>Diseño optimizado para su uso ágil y directo dentro de la dinámica de clase.</li>
+                            <li>Permite adaptar la dificultad de los retos según el nivel de los estudiantes.</li>
+                            <li>Crea una experiencia de aprendizaje inmersiva basada en el interés real de los alumnos.</li>
+                        </ul>
+                    `
                 },
-                'proyecto-4': {
-                    title: 'Nombre Aplicación 4',
-                    content: `<p class="mb-4">Descripción detallada del <strong>cuarto proyecto</strong>.</p><p>Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor.</p>`
-                },
-                'proyecto-5': {
-                    title: 'Nombre Aplicación 5',
-                    content: `<p class="mb-4">Descripción detallada del <strong>quinto proyecto</strong>.</p><p>Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.</p>`
-                },
-                'proyecto-6': {
-                    title: 'Nombre Aplicación 6',
-                    content: `<p class="mb-4">Descripción detallada del <strong>sexto proyecto</strong>.</p><p>Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh.</p>`
+                'torneo': {
+                    title: '🏆 Torneo Beth Shalom - Mundialito de Microfútbol',
+                    content: `
+                        <p class="mb-4 font-semibold text-orange-700">Torneo Beth Shalom es la plataforma oficial para seguir el "Mundialito", un campeonato de microfútbol ideado por el personero Juan Pablo Montoya para integrar colegios de Piedecuesta mediante la pasión y el deporte.</p>
+                        <p class="mb-4">Centraliza y visibiliza la información del "Mundialito", un torneo de microfútbol liderado por el personero Juan Pablo Mendoza, permitiendo a los estudiantes y docentes consultar en tiempo real los resultados, la tabla de posiciones y el progreso de los equipos en la competencia.</p>
+                        
+                        <h4 class="font-bold text-lg mt-4 mb-2 text-orange-800">✨ Beneficios principales:</h4>
+                        <ul class="benefit-list mb-4">
+                            <li>Proporciona acceso inmediato a las estadísticas y resultados del torneo.</li>
+                            <li>Fomenta el sentido de comunidad y pertenencia institucional a través del deporte.</li>
+                            <li>Facilita la transparencia en el seguimiento de la competencia escolar.</li>
+                            <li>Diseño intuitivo que permite consultar el avance de cada equipo de forma ágil.</li>
+                            <li>Conecta a los estudiantes con la iniciativa estudiantil de liderazgo deportivo.</li>
+                            <li>Mantiene a toda la comunidad informada sobre el desarrollo del campeonato.</li>
+                            <li>Plataforma optimizada para visualizarse en cualquier dispositivo dentro o fuera del colegio.</li>
+                        </ul>
+                        <div class="bg-orange-50 p-4 rounded-lg mt-2">
+                            <p class="font-semibold text-orange-800">⚽ Una iniciativa del personero estudiantil Juan Pablo Montoya que une a los colegios de Piedecuesta a través del deporte y la sana competencia.</p>
+                        </div>
+                    `
                 }
             };
 
@@ -524,23 +565,16 @@
                 }
             };
 
-            function closeProjectModal() {
-                projectModal.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-            closeProjectModalBtn.addEventListener('click', closeProjectModal);
-            projectModal.addEventListener('click', (e) => {
-                if (e.target === projectModal) {
-                    closeProjectModal();
-                }
-            });
+            function closeProjectModalFunc() { projectModal.classList.remove('open'); document.body.style.overflow = ''; }
+            closeProjectModalBtn.addEventListener('click', closeProjectModalFunc);
+            projectModal.addEventListener('click', (e) => { if(e.target === projectModal) closeProjectModalFunc(); });
 
-            // Lógica del Carrusel
+            // Carrusel
             const projectCarousel = document.querySelector('.project-carousel');
             const scrollLeftBtn = document.getElementById('scrollLeftBtn');
             const scrollRightBtn = document.getElementById('scrollRightBtn');
             let autoScrollInterval;
-            const scrollSpeed = 3000;
+            const scrollSpeed = 4000;
             let scrollAmount = 0;
 
             function calculateScrollAmount() {
@@ -550,65 +584,39 @@
                     scrollAmount = firstCard.offsetWidth + parseFloat(cardStyle.marginRight);
                 }
             }
-
             function scrollCarousel(direction) {
                 if (scrollAmount === 0) calculateScrollAmount();
                 const newScrollLeft = projectCarousel.scrollLeft + direction * scrollAmount;
-
                 if (direction > 0 && newScrollLeft >= projectCarousel.scrollWidth - projectCarousel.clientWidth) {
                     projectCarousel.scrollTo({ left: 0, behavior: 'smooth' });
                 } else if (direction < 0 && projectCarousel.scrollLeft <= 0) {
-                     projectCarousel.scrollTo({ left: projectCarousel.scrollWidth, behavior: 'smooth' });
+                    projectCarousel.scrollTo({ left: projectCarousel.scrollWidth, behavior: 'smooth' });
                 } else {
                     projectCarousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
                 }
             }
-
-            function startAutoScroll() {
-                stopAutoScroll(); 
-                autoScrollInterval = setInterval(() => scrollCarousel(1), scrollSpeed);
-            }
-
-            function stopAutoScroll() {
-                clearInterval(autoScrollInterval);
-            }
-
+            function startAutoScroll() { stopAutoScroll(); autoScrollInterval = setInterval(() => scrollCarousel(1), scrollSpeed); }
+            function stopAutoScroll() { clearInterval(autoScrollInterval); }
             scrollLeftBtn.addEventListener('click', () => { stopAutoScroll(); scrollCarousel(-1); });
             scrollRightBtn.addEventListener('click', () => { stopAutoScroll(); scrollCarousel(1); });
-
-            ['mouseenter', 'touchstart'].forEach(evt => {
-                projectCarousel.addEventListener(evt, stopAutoScroll);
-                scrollLeftBtn.addEventListener(evt, stopAutoScroll);
-                scrollRightBtn.addEventListener(evt, stopAutoScroll);
-            });
-
-             ['mouseleave', 'touchend'].forEach(evt => {
-                projectCarousel.addEventListener(evt, startAutoScroll);
-                scrollLeftBtn.addEventListener(evt, startAutoScroll);
-                scrollRightBtn.addEventListener(evt, startAutoScroll);
-            });
-            
+            ['mouseenter', 'touchstart'].forEach(evt => { projectCarousel.addEventListener(evt, stopAutoScroll); scrollLeftBtn.addEventListener(evt, stopAutoScroll); scrollRightBtn.addEventListener(evt, stopAutoScroll); });
+            ['mouseleave', 'touchend'].forEach(evt => { projectCarousel.addEventListener(evt, startAutoScroll); scrollLeftBtn.addEventListener(evt, startAutoScroll); scrollRightBtn.addEventListener(evt, startAutoScroll); });
             window.addEventListener('resize', calculateScrollAmount);
             calculateScrollAmount();
             startAutoScroll();
 
-            // Lógica para el formulario de contacto
+            // Formulario de contacto
             const contactForm = document.getElementById('contactForm');
             const submitButton = document.getElementById('submitButton');
             const alertModal = document.createElement('div');
             alertModal.className = 'modal-overlay';
             alertModal.innerHTML = `<div class="modal-content text-center"><p id="alertMessage" class="mb-4"></p><button id="closeAlert" class="text-white bg-sky-600 px-4 py-2 rounded-lg">Cerrar</button></div>`;
             document.body.appendChild(alertModal);
-            
             const alertMessage = document.getElementById('alertMessage');
             const closeAlertBtn = document.getElementById('closeAlert');
             closeAlertBtn.addEventListener('click', () => alertModal.classList.remove('open'));
 
-            function customAlert(message) {
-                alertMessage.textContent = message;
-                alertModal.classList.add('open');
-            }
-
+            function customAlert(message) { alertMessage.textContent = message; alertModal.classList.add('open'); }
             contactForm.addEventListener('submit', async function(event) {
                 event.preventDefault();
                 submitButton.textContent = 'Enviando...';
@@ -616,29 +624,13 @@
                 submitButton.classList.add('opacity-50', 'cursor-not-allowed');
                 const data = new FormData(event.target);
                 try {
-                    const response = await fetch(event.target.action, {
-                        method: event.target.method,
-                        body: data,
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    if (response.ok) {
-                        customAlert('¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.');
-                        event.target.reset();
-                    } else {
-                        const responseData = await response.json();
-                        const errorMessage = responseData.errors ? responseData.errors.map(e => e.message).join(', ') : 'Ocurrió un error.';
-                        customAlert(`Error: ${errorMessage}`);
-                    }
-                } catch (error) {
-                    customAlert('¡Ups! Hubo un problema de red. Por favor, inténtalo de nuevo.');
-                } finally {
-                    submitButton.textContent = 'Enviar Mensaje';
-                    submitButton.disabled = false;
-                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                }
+                    const response = await fetch(event.target.action, { method: event.target.method, body: data, headers: { 'Accept': 'application/json' } });
+                    if (response.ok) { customAlert('¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.'); event.target.reset(); } 
+                    else { customAlert('Error al enviar. Por favor, inténtalo de nuevo.'); }
+                } catch (error) { customAlert('¡Ups! Hubo un problema de red. Inténtalo de nuevo.'); } 
+                finally { submitButton.textContent = 'Enviar Mensaje'; submitButton.disabled = false; submitButton.classList.remove('opacity-50', 'cursor-not-allowed'); }
             });
         });
     </script>
 </body>
 </html>
-
