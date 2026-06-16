@@ -271,7 +271,16 @@
                 </div>
                 <div class="md:w-2/3 text-lg text-gray-700">
                     <p class="mb-6">
-                        Con más de 17 años de experiencia en la docencia, me dedico a formar mentes jóvenes en el fascinante mundo de la informática, la tecnología y la programación. Mi enfoque se centra en el aprendizaje práctico (sin dejar de lado los conceptos) y basado en proyectos, donde los estudiantes no solo adquieren conocimientos técnicos, sino que también desarrollan el pensamiento crítico y la capacidad de resolver problemas reales.
+                        Con más de  <span id="aniosExperiencia"></span> años de experiencia en la docencia, me dedico a formar mentes jóvenes en el fascinante mundo de la informática, la tecnología y la programación. Mi enfoque se centra en el aprendizaje práctico (sin dejar de lado los conceptos) y basado en proyectos, donde los estudiantes no solo adquieren conocimientos técnicos, sino que también desarrollan el pensamiento crítico y la capacidad de resolver problemas reales.
+                        <script>
+                            const anioInicioDocencia = 2008;
+                            // Año actual
+                            const anioActual = new Date().getFullYear();
+                            // Calcular años de experiencia
+                            const experiencia = anioActual - anioInicioDocencia;
+                            // Mostrar en la página
+                            document.getElementById("aniosExperiencia").textContent = experiencia;
+                        </script>
                     </p>
                     <p class="mb-6">
                         En mi labor docente he desarrollado e implementado diversas aplicaciones y herramientas interactivas que facilitan la comprensión de conceptos y hacen del aprendizaje una experiencia divertida y significativa. ¡Te invito a explorar mis proyectos en la siguiente sección!
@@ -440,9 +449,9 @@
             <h2 class="text-3xl font-bold mb-6 text-sky-800 text-center">Acerca de mi experiencia</h2>
             <div class="trajectory-item"><h3 class="text-xl">2008-2021 | Docente de Informática y Tecnología, Colegio Adventista Emmanuel, Bogotá</h3><p>Responsable de la planificación curricular y la impartición de clases de informática y tecnología desde pre-jardín hasta undécimo grado, así como de emprendimiento. También brindé soporte y mantenimiento a la infraestructura tecnológica y de red del colegio.</p></div>
             <div class="trajectory-item"><h3 class="text-xl">2021 | Semillero de Programación NoCode, Colegio Adventista Emmanuel</h3><p>Diseñé y dirigí un semillero en programación NoCode, facilitando que estudiantes desarrollaran capacidades para resolver problemas, estimulando la creatividad y el pensamiento lógico sin necesidad de código tradicional.</p></div>
-            <div class="trajectory-item"><h3 class="text-xl">Marzo 2022 - Abril 2023 | Coach de Entrenamiento en Programación, Bucaramanga</h3><p>Impartí formación en fundamentos de Python, desarrollo web (HTML, CSS, JavaScript) y bases de datos SQL. Diseño curricular, materiales didácticos y evaluación pedagógica.</p></div>
-            <div class="trajectory-item"><h3 class="text-xl">Junio 2023 – Diciembre 2023 | Desarrollador y Capacitador, Proyecto Fortalecimiento Vocaciones Científicas</h3><p>Desarrollo de software educativo, guías didácticas para Python, Git, HTML, CSS y JavaScript. Capacitación a docentes y cursos a estudiantes.</p></div>
-            <div class="trajectory-item"><h3 class="text-xl">Febrero 2024 | Docente Informática y Tecnología, Gimnasio Campestre Beth Shalom, Bucaramanga</h3><p>Planificación curricular desde transición hasta undécimo grado, implementación de aprendizaje STEAM con ARUKAY y apoyo en clase de ética.</p></div>
+            <div class="trajectory-item"><h3 class="text-xl">Marzo 2022 - Abril 2023 | Coach de Entrenamiento en Programación, COEX, Bucaramanga</h3><p>Impartí formación en fundamentos de Python, desarrollo web (HTML, CSS, JavaScript) y bases de datos SQL. Diseño curricular, materiales didácticos y evaluación pedagógica.</p></div>
+            <div class="trajectory-item"><h3 class="text-xl">Junio 2023 – Diciembre 2023 | Desarrollador y Capacitador, Proyecto Fortalecimiento Vocaciones Científicas - DAGABOT - CAJASAN</h3><p>Desarrollo de contenido educativo, guías didácticas para Python, Git, HTML, CSS y JavaScript. Capacitación a docentes y cursos a estudiantes.</p></div>
+            <div class="trajectory-item"><h3 class="text-xl">Febrero 2024 | Docente Informática y Tecnología, BethShalom Gimnasio Campestre, Bucaramanga</h3><p>Planificación curricular desde transición hasta undécimo grado, implementación de aprendizaje STEAM con ARUKAY y apoyo en clase de ética.</p></div>
         </div>
     </div>
 
