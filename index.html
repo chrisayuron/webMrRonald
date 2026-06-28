@@ -6,7 +6,7 @@
     <title>Profesor Ronald - Proyectos educativos y deportivos</title>
     
     <!-- SEO y Metadatos para Redes Sociales -->
-    <meta name="description" content="Portafolio de Ronald, profesor de Informática, Tecnología y Programación. Descubre BingoVerse, Ethykos, Trivia Cultural Week y Torneo Beth Shalom.">
+    <meta name="description" content="Portafolio de Ronald, profesor de Informática, Tecnología y Programación. Descubre BingoVerse, Ethykos, Ethykos Game, Trivia Cultural Week y Torneo Beth Shalom.">
     <meta property="og:title" content="Profesor Ronald - Plataformas educativas y torneo deportivo">
     <meta property="og:description" content="Herramientas para bingo digital, gamificación de ética, trivia de fútbol y seguimiento de torneos escolares.">
     <meta property="og:image" content="https://placehold.co/1200x630/0284c7/ffffff?text=Ronald+Proyectos">
@@ -293,7 +293,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE PROYECTOS: BingoVerse, Ethykos, Trivia Cultural Week y Torneo Beth Shalom -->
+    <!-- SECCIÓN DE PROYECTOS -->
     <section id="proyectos" class="py-16 md:py-24 bg-sky-50 rounded-t-3xl shadow-inner">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-sky-800">IDEAS Y PROYECTOS</h2>
@@ -320,10 +320,10 @@
                         </div>
                     </div>
 
-                    <!-- TARJETA 2: ETHYKOS -->
+                    <!-- TARJETA 2: ETHYKOS (PLATAFORMA) -->
                     <div class="project-card">
                         <div class="image-placeholder">
-                            <img src="./images/ethykos.png" alt="Ethykos - Gamificación para clase de ética" onerror="this.src='https://placehold.co/300x160/8b5cf6/white?text=Ethykos'">
+                            <img src="./images/ethykos.png" alt="Ethykos - Plataforma de gamificación para clase de ética" onerror="this.src='https://placehold.co/300x160/8b5cf6/white?text=Ethykos'">
                         </div>
                         <h3 class="text-2xl font-semibold mt-4 mb-2 text-purple-700 text-center">Ethykos</h3>
                         <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma de gamificación que transforma la clase de ética en una aventura colaborativa mediante la organización de estudiantes en "tribus".</p>
@@ -335,7 +335,22 @@
                         </div>
                     </div>
 
-                    <!-- TARJETA 3: TRIVIA CULTURAL WEEK -->
+                    <!-- TARJETA 3: ETHYKOS GAME (JUEGO) -->
+                    <div class="project-card">
+                        <div class="image-placeholder">
+                            <img src="./images/ethykosgame.png" alt="Ethykos Game - Juego interactivo para clase de ética" onerror="this.src='https://placehold.co/300x160/ec4899/white?text=Ethykos+Game'">
+                        </div>
+                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-pink-700 text-center">Ethykos Game</h3>
+                        <p class="text-gray-600 mb-4 text-center flex-grow">Juego interactivo diseñado específicamente para la clase de ética, donde los estudiantes aprenden valores y toma de decisiones a través de dinámicas lúdicas.</p>
+                        <div class="mt-auto pt-4 text-center">
+                            <button onclick="openProjectModal('ethylosgame')" class="text-pink-600 hover:underline font-medium mb-4">
+                                leer más
+                            </button>
+                            <a href="https://ethykosgame.vercel.app/" target="_blank" class="block w-full text-white bg-pink-600 px-4 py-2 rounded-lg shadow-md hover:bg-pink-700 transition-all duration-300">Ver Proyecto</a>
+                        </div>
+                    </div>
+
+                    <!-- TARJETA 4: TRIVIA CULTURAL WEEK -->
                     <div class="project-card">
                         <div class="image-placeholder">
                             <img src="./images/triviamundial.png" alt="Trivia Cultural Week - Juegos interactivos de fútbol y mundiales" onerror="this.src='https://placehold.co/300x160/16a34a/white?text=Trivia+Cultural+Week'">
@@ -350,7 +365,7 @@
                         </div>
                     </div>
 
-                    <!-- TARJETA 4: TORNEO BETH SHALOM (NUEVO) -->
+                    <!-- TARJETA 5: TORNEO BETH SHALOM -->
                     <div class="project-card">
                         <div class="image-placeholder">
                             <img src="./images/mundialito.png" alt="Torneo Beth Shalom - Mundialito de microfútbol" onerror="this.src='https://placehold.co/300x160/ea580c/white?text=Torneo+Beth+Shalom'">
@@ -365,18 +380,21 @@
                         </div>
                     </div>
 
-                    <!-- Tarjeta de Proyecto Plantilla (placeholder para futuros proyectos) -->
+                    <!-- TARJETA 6: GOZALO -->
                     <div class="project-card">
-                        <div class="image-placeholder">📚 Próximamente</div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">Nuevo proyecto</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">Aquí irá el siguiente proyecto que me compartas. Espacio reservado para nuevas herramientas educativas.</p>
+                        <div class="image-placeholder">
+                            <img src="./images/escalera.png" alt="Escalera - Juego interactivo para clase de ética" onerror="this.src='https://placehold.co/300x160/ec4899/white?text=Escalera+del+Gozo'">
+                        </div>
+                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-indigo-700 text-center">Gozalo</h3>
+                        <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma interactiva que combina juegos y aprendizaje matemático, diseñada para reforzar conceptos de una manera divertida y desafiante.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button class="text-sky-600 hover:underline font-medium mb-4 opacity-50 cursor-not-allowed">
+                            <button onclick="openProjectModal('gozalo')" class="text-indigo-600 hover:underline font-medium mb-4">
                                 leer más
                             </button>
-                            <a href="#" class="block w-full text-white bg-gray-400 px-4 py-2 rounded-lg shadow-md cursor-not-allowed">Próximamente</a>
+                            <a href="https://gozalo-pi.vercel.app/" target="_blank" class="block w-full text-white bg-indigo-600 px-4 py-2 rounded-lg shadow-md hover:bg-indigo-700 transition-all duration-300">Ver Proyecto</a>
                         </div>
                     </div>
+
                 </div>
                 <button id="scrollRightBtn" class="carousel-button right">&gt;</button>
             </div>
@@ -506,7 +524,7 @@
                     `
                 },
                 'ethylos': {
-                    title: '⚖️ Ethykos - Gamificación para la clase de ética',
+                    title: '⚖️ Ethykos - Plataforma de gamificación para ética',
                     content: `
                         <p class="mb-4 font-semibold text-purple-700">Ethykos es una plataforma de gamificación que transforma la clase de ética en una aventura colaborativa mediante la organización de estudiantes en "tribus".</p>
                         <p class="mb-4">Su objetivo principal es gamificar la enseñanza de la ética y los valores, utilizando mecánicas de juego, roles especializados y sistemas de trabajo colaborativo para aumentar la motivación, el compromiso del estudiante y la aplicación práctica de los dilemas morales en el aula.</p>
@@ -520,6 +538,23 @@
                             <li>Fomenta la participación activa a través de la identidad visual y simbólica de los equipos.</li>
                             <li>Integra mecánicas de juego que mejoran la retención de conceptos éticos.</li>
                             <li>Diseño intuitivo pensado para ser aplicado directamente por docentes en su planeación diaria.</li>
+                        </ul>
+                    `
+                },
+                'ethylosgame': {
+                    title: '🎮 Ethykos Game - Juego interactivo para ética',
+                    content: `
+                        <p class="mb-4 font-semibold text-pink-700">Ethykos Game es un juego interactivo diseñado específicamente para la clase de ética, donde los estudiantes aprenden valores y toma de decisiones a través de dinámicas lúdicas.</p>
+                        <p class="mb-4">A diferencia de la plataforma Ethykos (que es un sistema de gamificación para toda la clase), este juego está pensado como una actividad independiente que los estudiantes pueden resolver de forma individual o en grupos pequeños, enfrentando dilemas morales y situaciones éticas en un entorno de juego.</p>
+                        
+                        <h4 class="font-bold text-lg mt-4 mb-2 text-pink-800">✨ Beneficios principales:</h4>
+                        <ul class="benefit-list mb-4">
+                            <li>Convierte el aprendizaje ético en una experiencia lúdica y atractiva.</li>
+                            <li>Plantea dilemas morales que fomentan la reflexión y el debate.</li>
+                            <li>Ideal para trabajar de forma individual o en equipos reducidos.</li>
+                            <li>Proporciona retroalimentación inmediata sobre las decisiones tomadas.</li>
+                            <li>Complementa perfectamente el uso de la plataforma Ethykos.</li>
+                            <li>Diseño pensado para mantener la atención y motivación de los estudiantes.</li>
                         </ul>
                     `
                 },
@@ -560,6 +595,23 @@
                         <div class="bg-orange-50 p-4 rounded-lg mt-2">
                             <p class="font-semibold text-orange-800">⚽ Una iniciativa del personero estudiantil Juan Pablo Montoya que une a los colegios de Piedecuesta a través del deporte y la sana competencia.</p>
                         </div>
+                    `
+                },
+                'gozalo': {
+                    title: '🎮 Gozalo - Aprendizaje matemático con juegos',
+                    content: `
+                        <p class="mb-4 font-semibold text-indigo-700">Gozalo es una plataforma interactiva que combina juegos y aprendizaje matemático, diseñada para reforzar conceptos de una manera divertida y desafiante.</p>
+                        <p class="mb-4">Su objetivo es convertir el repaso de matemáticas en una experiencia lúdica, donde los estudiantes puedan practicar operaciones, razonamiento lógico y resolución de problemas a través de dinámicas gamificadas. Ideal para usar en clase o en casa.</p>
+                        
+                        <h4 class="font-bold text-lg mt-4 mb-2 text-indigo-800">✨ Beneficios principales:</h4>
+                        <ul class="benefit-list mb-4">
+                            <li>Transforma el aprendizaje matemático en un juego atractivo y retador.</li>
+                            <li>Fomenta la práctica autónoma y la mejora continua mediante desafíos progresivos.</li>
+                            <li>Diseñado para adaptarse a diferentes niveles educativos.</li>
+                            <li>Proporciona retroalimentación inmediata para reforzar el aprendizaje.</li>
+                            <li>Interfaz amigable que mantiene la motivación de los estudiantes.</li>
+                            <li>Ideal para complementar las clases presenciales o virtuales.</li>
+                        </ul>
                     `
                 }
             };
