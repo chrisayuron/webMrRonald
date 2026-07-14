@@ -9,242 +9,366 @@
     <link rel="icon" type="image/png" href="./images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
         rel="stylesheet">
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
-
-        .tab-button {
-            @apply p-4 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] cursor-pointer text-left flex items-center h-full;
-            @apply bg-white border border-gray-200 text-gray-700 font-semibold;
+        :root {
+            --ink: #16222C;
+            --ink-muted: #5B6B76;
+            --mist: #F2F4F5;
+            --surface: #FFFFFF;
+            --line: #DCE2E5;
+            --brand: #0284C7;
+            --brand-dark: #036393;
+            --chalk: #F0A202;
+            --ok: #1F9D63;
         }
 
-        .tab-button.active {
-            @apply bg-sky-600 text-white shadow-xl ring-4 ring-sky-300/50;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--mist);
+            color: var(--ink);
         }
 
-        .tab-content { display: none; animation: fadeIn 0.5s ease-out; }
-        .tab-content.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .tab-button .tab-icon { @apply text-2xl mr-4; }
-        .tab-button.active .tab-icon { @apply text-white; }
+        h1, h2, .display { font-family: 'Fraunces', serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
 
         .page-container { display: flex; flex-direction: column; min-height: 100vh; }
         .content-wrap { flex: 1; }
         footer { flex-shrink: 0; }
+
+        /* Textura sutil tipo cuaderno, pura CSS, sin imágenes */
+        .notebook-bg {
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent 0px, transparent 27px,
+                rgba(2, 132, 199, 0.06) 28px
+            );
+        }
+
+        /* --------- Nav "lomo de catálogo" --------- */
+        .tab-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            width: 100%;
+            padding: 1rem 1.1rem;
+            border-radius: 0.85rem;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            color: var(--ink);
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+        .tab-button:hover { transform: translateX(2px); box-shadow: 0 4px 14px rgba(22, 34, 44, 0.08); }
+        .tab-button .tab-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--ink-muted);
+            background: var(--mist);
+            border-radius: 0.4rem;
+            padding: 0.3rem 0.5rem;
+            letter-spacing: 0.05em;
+        }
+        .tab-button.active {
+            background: var(--ink);
+            color: white;
+            border-color: var(--ink);
+        }
+        .tab-button.active .tab-code {
+            background: rgba(255,255,255,0.15);
+            color: var(--chalk);
+        }
+
+        .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --------- Ficha de recurso --------- */
+        .ficha {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 0.9rem;
+            padding: 1.4rem 1.5rem 1.4rem 1.7rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .ficha::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0.9rem; bottom: 0.9rem;
+            width: 5px;
+            border-radius: 4px;
+            background: var(--ficha-color, var(--brand));
+        }
+        .ficha:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(22, 34, 44, 0.1); }
+
+        .ficha-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: var(--ficha-color, var(--brand));
+            text-transform: uppercase;
+        }
+
+        .ficha-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.25rem;
+            border-radius: 0.6rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+            background: var(--ficha-color, var(--brand));
+            transition: filter 0.2s ease, transform 0.2s ease;
+        }
+        .ficha-btn:hover { filter: brightness(0.9); transform: translateX(2px); }
+
+        .empty-state {
+            text-align: center;
+            padding: 3.5rem 1.5rem;
+            border: 1px dashed var(--line);
+            border-radius: 0.9rem;
+            color: var(--ink-muted);
+        }
+
+        /* Botón flotante de acceso docente */
+        .admin-fab {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            background: var(--ink);
+            color: white;
+            padding: 0.85rem;
+            border-radius: 9999px;
+            box-shadow: 0 8px 20px rgba(22, 34, 44, 0.3);
+            text-decoration: none;
+            overflow: hidden;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
+        }
+        .admin-fab .admin-fab-label {
+            max-width: 0; opacity: 0; font-size: 0.85rem; font-weight: 600;
+            white-space: nowrap; transition: max-width 0.3s ease, opacity 0.2s ease;
+        }
+        .admin-fab:hover, .admin-fab:focus-visible { padding-right: 1.25rem; }
+        .admin-fab:hover .admin-fab-label, .admin-fab:focus-visible .admin-fab-label { max-width: 10rem; opacity: 1; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .tab-button, .ficha, .ficha-btn, .admin-fab, .admin-fab-label, .tab-content { transition: none !important; animation: none !important; }
+        }
     </style>
 </head>
 
-<body class="bg-gray-100 p-4 sm:p-8 page-container">
+<body class="p-4 sm:p-8 page-container">
 
 <div class="content-wrap container mx-auto max-w-6xl">
 
-<header class="mb-10 p-6 bg-white rounded-3xl shadow-lg">
-    <div class="flex items-center justify-between flex-col md:flex-row text-center md:text-left">
-        <div class="flex items-center mb-4 md:mb-0">
-            <img src="./images/marca.png" alt="Foto de Marca"
-                class="w-20 h-20 rounded-full object-cover mr-4 shadow-md">
-            <div>
-                <h1 class="text-4xl sm:text-5xl font-extrabold text-sky-800">Contenido para estudiantes 🎓</h1>
-                <p class="text-lg sm:text-xl text-gray-600">Un espacio con recursos e información</p>
+    <header class="mb-8 p-6 sm:p-8 bg-white rounded-3xl shadow-sm border border-[var(--line)]">
+        <div class="flex items-center justify-between flex-col md:flex-row text-center md:text-left">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="./images/marca.png" alt="Foto de Marca"
+                    class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-[var(--mist)]">
+                <div>
+                    <span class="mono text-xs text-[var(--brand)] font-semibold">CATÁLOGO · ESTUDIANTES</span>
+                    <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] leading-tight">Contenido para estudiantes</h1>
+                    <p class="text-[var(--ink-muted)]">Guías, enlaces y recursos organizados por materia</p>
+                </div>
             </div>
+            <a href="index.html"
+                class="flex items-center text-white bg-[var(--ink)] px-5 py-3 rounded-xl hover:bg-[var(--brand-dark)] transition-colors duration-300 font-semibold mt-2 md:mt-0">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Volver al portafolio
+            </a>
         </div>
-        <a href="index.html"
-            class="flex items-center text-white bg-sky-600 px-6 py-3 rounded-xl shadow-lg hover:bg-sky-700 transition-all duration-300 transform hover:scale-[1.05] font-semibold mt-4 md:mt-0">
-            <i class="fas fa-home mr-2 text-xl"></i>
-            Página Principal
-        </a>
-    </div>
-</header>
+    </header>
 
-<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
-<nav class="md:col-span-1 space-y-4">
-    <button id="defaultOpen" class="tab-button" onclick="openTab(event, 'principal')">
-        <span class="tab-icon">📚</span>
-        Guías y Talleres
-    </button>
+        <nav class="md:col-span-1 space-y-3">
+            <button id="defaultOpen" class="tab-button active" onclick="openTab(event, 'principal')">
+                <span class="tab-code">GUI</span>
+                Guías y Talleres
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'enlaces')">
+                <span class="tab-code">ENL</span>
+                Enlaces de Interés
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'recursos')">
+                <span class="tab-code">OTR</span>
+                Otros Recursos
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'noticias')">
+                <span class="tab-code">NOT</span>
+                Noticias Tecnología
+            </button>
+        </nav>
 
-    <button class="tab-button" onclick="openTab(event, 'enlaces')">
-        <span class="tab-icon">🔗</span>
-        Enlaces de Interés
-    </button>
+        <main class="md:col-span-3 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-[var(--line)] notebook-bg">
 
-    <button class="tab-button" onclick="openTab(event, 'recursos')">
-        <span class="tab-icon">📹</span>
-        Otros Recursos
-    </button>
+            <!-- GUÍAS (dinámico desde Firestore) -->
+            <div id="principal" class="tab-content active">
+                <h2 class="text-2xl font-semibold mb-1">Guías para BethShalom</h2>
+                <p class="text-[var(--ink-muted)] mb-7">
+                    Guías y ejercicios diseñados para aprender y repasar las temáticas vistas en clase.
+                </p>
+                <div id="contenedor-presentaciones" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+            </div>
 
-    <button class="tab-button" onclick="openTab(event, 'noticias')">
-        <span class="tab-icon">📰</span>
-        Noticias Tecnología
-    </button>
-</nav>
+            <!-- ENLACES DE INTERÉS (dinámico desde Firestore) -->
+            <div id="enlaces" class="tab-content">
+                <h2 class="text-2xl font-semibold mb-1">Plataformas y sitios útiles</h2>
+                <p class="text-[var(--ink-muted)] mb-7">
+                    Herramientas externas para practicar, crear y profundizar en los temas vistos en clase.
+                </p>
+                <div id="contenedor-enlaces" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+            </div>
 
-<main class="md:col-span-3 bg-white p-8 rounded-2xl shadow-lg">
+            <!-- OTROS RECURSOS (dinámico desde Firestore) -->
+            <div id="recursos" class="tab-content">
+                <h2 class="text-2xl font-semibold mb-1">Material audiovisual y complementario</h2>
+                <p class="text-[var(--ink-muted)] mb-7">
+                    Videos, libros recomendados y herramientas de IA para el autoaprendizaje.
+                </p>
+                <div id="contenedor-recursos" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+            </div>
 
-<!-- =============================== -->
-<!-- 🔥 PESTAÑA GUÍAS (DINÁMICA)    -->
-<!-- =============================== -->
 
-<div id="principal" class="tab-content">
+            <!-- NOTICIAS TECNOLOGÍA -->
+            <div id="noticias" class="tab-content">
+                <h2 class="text-2xl font-semibold mb-1">Lo último en tecnología y ciencia</h2>
+                <p class="text-[var(--ink-muted)] mb-7">Feed automático — próximamente.</p>
+                <div id="news-feed" class="empty-state">
+                    <i class="fa-solid fa-newspaper text-2xl mb-3"></i>
+                    <p>El feed automático de noticias se conecta en la Fase 4.</p>
+                </div>
+            </div>
 
-    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b border-sky-100 pb-3">Guías para BethShalom</h2>
-
-    <p class="text-gray-700 mb-8">
-        Aquí podrás encontrar las guías y ejercicios que el profesor ha diseñado para que puedas
-        aprender y comprender las temáticas de las clases.
-    </p>
-
-    <!-- 🔁 ÚNICO BLOQUE REEMPLAZADO (ANTES ERA EL GRID MANUAL) -->
-    <div id="contenedor-presentaciones" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-
-</div>
-
-<!-- =============================== -->
-<!-- 🔗 ENLACES DE INTERÉS (ORIGINAL COMPLETO RESTAURADO) -->
-<!-- =============================== -->
-
-<div id="enlaces" class="tab-content">
-    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b border-sky-100 pb-3">
-        Plataformas y Sitios útiles
-    </h2>
-    <p class="text-gray-600 text-lg mb-8">
-        Sitios web y herramientas externas esenciales para practicar, crear y profundizar en los temas vistos en clase.
-    </p>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- AQUÍ VA EXACTAMENTE TU CONTENIDO ORIGINAL DE ENLACES -->
+        </main>
     </div>
 </div>
 
-<!-- =============================== -->
-<!-- 📹 OTROS RECURSOS (ORIGINAL RESTAURADO) -->
-<!-- =============================== -->
+<!-- Acceso discreto al panel de administración (solo para el docente) -->
+<a href="admin.html" class="admin-fab" aria-label="Panel de administración para docentes">
+    <i class="fa-solid fa-user-shield text-lg" aria-hidden="true"></i>
+    <span class="admin-fab-label">Panel docente</span>
+</a>
 
-<div id="recursos" class="tab-content">
-    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b border-sky-100 pb-3">
-        Material Audiovisual y Complementario
-    </h2>
-    <p class="text-gray-700 mb-8">
-        Videos, libros recomendados y herramientas IA que te servirán para ser un autodidacta en el mundo tech.
-    </p>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- AQUÍ VA EXACTAMENTE TU CONTENIDO ORIGINAL DE RECURSOS -->
-    </div>
-</div>
-
-<!-- =============================== -->
-<!-- 📰 NOTICIAS TECNOLOGÍA (ORIGINAL RESTAURADO) -->
-<!-- =============================== -->
-
-<div id="noticias" class="tab-content">
-    <h2 class="text-3xl font-bold text-sky-700 mb-6 border-b border-sky-100 pb-3">
-        Lo Último en Tecnología y Ciencia
-    </h2>
-
-    <div id="news-feed" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- AQUÍ VA EXACTAMENTE TU CONTENIDO ORIGINAL DE NOTICIAS -->
-    </div>
-</div>
-
-</main>
-</div>
-</div>
-
-<footer class="bg-gray-800 text-white mt-10 p-6">
+<footer class="bg-[var(--ink)] text-white mt-10 p-6 rounded-t-3xl">
     <div class="container mx-auto max-w-6xl text-center">
         <div class="mb-4">
-            <a href="index.html" class="mx-3 hover:text-sky-400 transition duration-300">Portafolio</a>
-            <a href="./index.html#contacto" class="mx-3 hover:text-sky-400 transition duration-300">Contacto</a>
-            <a href="./#recursos" class="mx-3 hover:text-sky-400 transition duration-300">Recursos</a>
+            <a href="index.html" class="mx-3 hover:text-[var(--chalk)] transition duration-300">Portafolio</a>
+            <a href="./index.html#contacto" class="mx-3 hover:text-[var(--chalk)] transition duration-300">Contacto</a>
+            <a href="./#recursos" class="mx-3 hover:text-[var(--chalk)] transition duration-300">Recursos</a>
         </div>
-        <p class="text-sm text-gray-400">
-            © 2025 Profesor Ronald. Todos los derechos reservados.
-        </p>
+        <p class="text-sm text-white/60">© 2025 Profesor Ronald. Todos los derechos reservados.</p>
     </div>
 </footer>
 
 <script>
-
 function openTab(evt, tabName) {
-    let tabcontent = document.getElementsByClassName("tab-content");
-    let tablinks = document.getElementsByClassName("tab-button");
-
-    for (let i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove('active');
-    }
-
-    for (let i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove('active');
-    }
-
+    document.querySelectorAll(".tab-content").forEach(el => el.classList.remove('active'));
+    document.querySelectorAll(".tab-button").forEach(el => el.classList.remove('active'));
     document.getElementById(tabName).classList.add('active');
-
-    if (evt && evt.currentTarget) {
-        evt.currentTarget.classList.add('active');
-    }
-}
-
-// 🎨 MAPA DE COLORES SEGURO
-const colorMap = {
-    sky: { border: "border-sky-100", shadow: "hover:shadow-sky-300/50", badge: "text-sky-600", button: "bg-sky-500 hover:bg-sky-600", btnShadow:"shadow-sky-500/30" },
-    indigo: { border: "border-indigo-100", shadow: "hover:shadow-indigo-300/50", badge: "text-indigo-600", button: "bg-indigo-500 hover:bg-indigo-600", btnShadow:"shadow-indigo-500/30" },
-    green: { border: "border-green-100", shadow: "hover:shadow-green-300/50", badge: "text-green-600", button: "bg-green-500 hover:bg-green-600", btnShadow:"shadow-green-500/30" },
-    purple: { border: "border-purple-100", shadow: "hover:shadow-purple-300/50", badge: "text-purple-600", button: "bg-purple-500 hover:bg-purple-600", btnShadow:"shadow-purple-500/30" }
-};
-
-async function cargarPresentaciones() {
-    try {
-        const response = await fetch('./presentaciones.json');
-        const data = await response.json();
-        const contenedor = document.getElementById('contenedor-presentaciones');
-        if (!contenedor) return;
-        contenedor.innerHTML = "";
-
-        data.filter(p => p.area === "informatica")
-            .sort((a,b)=> new Date(b.fecha)-new Date(a.fecha))
-            .forEach(p => {
-                const color = colorMap[p.color] || colorMap.sky;
-
-                const card = document.createElement('div');
-                card.className = `group bg-white border ${color.border} rounded-xl p-6 shadow-xl ${color.shadow} hover:scale-[1.01] transition duration-500 ease-in-out`;
-
-                card.innerHTML = `
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        <div class="flex-grow">
-                            <span class="inline-block mb-1 text-sm font-semibold ${color.badge} uppercase tracking-wider">
-                                ${p.grado} | ${p.categoria}
-                            </span>
-                            <h2 class="text-xl font-bold text-gray-900 leading-snug">
-                                ${p.titulo}
-                            </h2>
-                        </div>
-                        <a href="${p.link}" target="_blank" rel="noopener noreferrer"
-                            class="flex items-center space-x-2 shrink-0 px-5 py-3 ${color.button} text-white font-semibold rounded-lg shadow-lg ${color.btnShadow} transition duration-300 transform group-hover:translate-x-1">
-                            <span>Abrir Recurso</span>
-                        </a>
-                    </div>
-                `;
-                contenedor.appendChild(card);
-            });
-    } catch (error) {
-        console.error("Error cargando presentaciones:", error);
-    }
+    if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('defaultOpen').click();
-    cargarPresentaciones();
 });
+</script>
 
+<!-- Carga de "Guías y Talleres" desde Firestore -->
+<script type="module">
+    import {
+        db, RECURSOS_COLLECTION,
+        collection, query, where, getDocs
+    } from "./firebase-config.js";
+
+    const COLOR_HEX = { sky: "#0284C7", indigo: "#6366F1", green: "#16A34A", purple: "#9333EA" };
+
+    function renderFicha(p) {
+        const colorHex = COLOR_HEX[p.color] || COLOR_HEX.sky;
+
+        let multimediaHtml = "";
+        if (p.tipo === "imagen" && p.imagenUrl) {
+            multimediaHtml = `<img src="${p.imagenUrl}" alt="${p.titulo}" class="w-full h-40 object-cover rounded-lg mb-4">`;
+        } else if (p.tipo === "video" && p.videoId) {
+            multimediaHtml = `
+                <div class="aspect-video mb-4">
+                    <iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/${p.videoId}"
+                        title="${p.titulo}" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>`;
+        }
+
+        const descripcionHtml = p.descripcion ? `<p class="text-sm text-[var(--ink-muted)] mt-1 mb-3">${p.descripcion}</p>` : "";
+        const etiqueta = [p.grado, p.categoria].filter(Boolean).join(' · ');
+
+        const card = document.createElement('div');
+        card.className = "ficha flex flex-col";
+        card.style.setProperty('--ficha-color', colorHex);
+        card.innerHTML = `
+            ${multimediaHtml}
+            <span class="ficha-tag mono">${etiqueta || 'Recurso'}</span>
+            <h3 class="text-lg font-semibold mt-1 mb-1 leading-snug">${p.titulo}</h3>
+            ${descripcionHtml}
+            <a href="${p.link}" target="_blank" rel="noopener noreferrer" class="ficha-btn mt-auto self-start">
+                Abrir recurso <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+        `;
+        return card;
+    }
+
+    async function cargarSeccion(seccion, contenedorId, mensajeVacio) {
+        const contenedor = document.getElementById(contenedorId);
+        if (!contenedor) return;
+
+        try {
+            const q = query(collection(db, RECURSOS_COLLECTION), where("seccion", "==", seccion));
+            const snapshot = await getDocs(q);
+
+            const items = snapshot.docs
+                .map(d => d.data())
+                .filter(p => p.activo !== false)
+                .sort((a, b) => (b.fecha?.toDate?.() ?? new Date(b.fecha ?? 0)) - (a.fecha?.toDate?.() ?? new Date(a.fecha ?? 0)));
+
+            contenedor.innerHTML = "";
+
+            if (items.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="empty-state md:col-span-2">
+                        <i class="fa-solid fa-folder-open text-2xl mb-3"></i>
+                        <p>${mensajeVacio}</p>
+                    </div>`;
+                return;
+            }
+
+            items.forEach(p => contenedor.appendChild(renderFicha(p)));
+        } catch (error) {
+            console.error(`Error cargando la sección "${seccion}":`, error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        cargarSeccion('guias', 'contenedor-presentaciones', 'Aún no hay guías publicadas. Vuelve pronto.');
+        cargarSeccion('enlaces', 'contenedor-enlaces', 'Aún no hay enlaces publicados. Vuelve pronto.');
+        cargarSeccion('recursos', 'contenedor-recursos', 'Aún no hay otros recursos publicados. Vuelve pronto.');
+    });
 </script>
 
 </body>

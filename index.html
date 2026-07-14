@@ -15,12 +15,29 @@
     
     <link rel="icon" type="image/png" href="./images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --ink: #16222C;
+            --ink-muted: #5B6B76;
+            --mist: #F2F4F5;
+            --surface: #FFFFFF;
+            --line: #DCE2E5;
+            --brand: #0284C7;
+            --brand-dark: #036393;
+            --chalk: #F0A202;
+            --ok: #1F9D63;
+        }
+
+        h1, h2, h3, .display { font-family: 'Fraunces', serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #334155;
+            background-color: var(--mist);
+            color: var(--ink);
         }
         
         /* Estilos para el modal */
@@ -77,50 +94,69 @@
         .trajectory-item {
             margin-bottom: 1.5rem;
             padding-left: 1rem;
-            border-left: 4px solid #0ea5e9;
+            border-left: 4px solid var(--brand);
         }
         .trajectory-item h3 {
             font-weight: 600;
-            color: #0ea5e9;
+            color: var(--brand);
             margin-bottom: 0.5rem;
         }
         .trajectory-item p {
-            color: #475569;
+            color: var(--ink-muted);
         }
 
-        /* Estilos de tarjeta de proyecto */
+        /* Ficha de proyecto: franja de color a la izquierda + número de catálogo */
         .project-card {
-            background-color: #ffffff;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            position: relative;
+            background-color: var(--surface);
+            border: 1px solid var(--line);
+            padding: 1.5rem 1.5rem 1.5rem 1.9rem;
+            border-radius: 0.9rem;
+            box-shadow: 0 4px 14px rgba(22, 34, 44, 0.06);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            min-height: 480px; 
-            flex-shrink: 0; 
-            width: 340px; 
-            margin-right: 1.5rem; 
+            min-height: 480px;
+            flex-shrink: 0;
+            width: 340px;
+            margin-right: 1.5rem;
+        }
+        .project-card::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 1rem; bottom: 1rem;
+            width: 5px;
+            border-radius: 4px;
+            background: var(--tarjeta-color, var(--brand));
         }
         .project-card:last-child {
             margin-right: 0;
         }
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 10px 26px rgba(22, 34, 44, 0.12);
         }
-        
+        .project-index {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: var(--tarjeta-color, var(--brand));
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
         .image-placeholder {
             width: 100%;
             height: 160px;
-            background-color: #e2e8f0;
+            background-color: var(--mist);
             border-radius: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 500;
-            color: #64748b;
-            border: 2px dashed #cbd5e1;
+            color: var(--ink-muted);
+            border: 2px dashed var(--line);
             overflow: hidden;
         }
         .image-placeholder img {
@@ -131,9 +167,11 @@
         }
 
         .nav-link {
-            @apply text-sky-700 hover:text-sky-900 px-3 py-2 rounded-md text-lg font-medium transition duration-200;
+            @apply px-3 py-2 rounded-md text-lg font-medium transition duration-200;
+            color: var(--ink);
         }
-        
+        .nav-link:hover { color: var(--brand); }
+
         /* Estilos para el carrusel */
         .project-carousel-container {
             position: relative;
@@ -154,11 +192,11 @@
             height: 8px;
         }
         .project-carousel::-webkit-scrollbar-thumb {
-            background-color: #cbd5e1; 
+            background-color: var(--line); 
             border-radius: 10px;
         }
         .project-carousel::-webkit-scrollbar-track {
-            background-color: #e2e8f0; 
+            background-color: var(--mist); 
             border-radius: 10px;
         }
         .project-card {
@@ -168,7 +206,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(14, 165, 233, 0.8); 
+            background-color: rgba(22, 34, 44, 0.85); 
             color: white;
             padding: 0.75rem 0.5rem; 
             border-radius: 9999px; 
@@ -180,7 +218,7 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
         .carousel-button:hover {
-            background-color: #0ea5e9; 
+            background-color: var(--brand); 
             transform: translateY(-50%) scale(1.05);
         }
         .carousel-button:active {
@@ -210,7 +248,7 @@
         }
         .feature-list li::before {
             content: "✓";
-            color: #0ea5e9;
+            color: var(--brand);
             font-weight: bold;
             position: absolute;
             left: 0;
@@ -226,19 +264,49 @@
         }
         .benefit-list li::before {
             content: "★";
-            color: #eab308;
+            color: var(--chalk);
             font-weight: bold;
             position: absolute;
             left: 0;
         }
+
+        /* Botón flotante de acceso docente */
+        .admin-fab {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            background: var(--ink);
+            color: white;
+            padding: 0.85rem;
+            border-radius: 9999px;
+            box-shadow: 0 8px 20px rgba(22, 34, 44, 0.3);
+            text-decoration: none;
+            overflow: hidden;
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
+        }
+        .admin-fab .admin-fab-label {
+            max-width: 0; opacity: 0; font-size: 0.85rem; font-weight: 600;
+            white-space: nowrap; transition: max-width 0.3s ease, opacity 0.2s ease;
+        }
+        .admin-fab:hover, .admin-fab:focus-visible { padding-right: 1.25rem; }
+        .admin-fab:hover .admin-fab-label, .admin-fab:focus-visible .admin-fab-label { max-width: 10rem; opacity: 1; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .project-card, .carousel-button, .admin-fab, .admin-fab-label { transition: none !important; }
+        }
     </style>
 </head>
+
 <body class="leading-relaxed">
 
     <!-- Encabezado y Navegación -->
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <header class="bg-white shadow-sm py-4 sticky top-0 z-50 border-b border-[var(--line)]">
         <nav class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
-            <a href="#hero" class="text-2xl font-bold text-sky-700">Prof. Ronald</a>
+            <a href="#hero" class="text-2xl font-semibold text-[var(--ink)]">Prof. Ronald</a>
             <div class="mt-4 md:mt-0 space-x-2 flex flex-wrap justify-center">
                 <a href="#hero" class="nav-link">Inicio</a>
                 <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
@@ -249,13 +317,13 @@
     </header>
 
     <!-- Sección Hero -->
-    <section id="hero" class="bg-gradient-to-r from-sky-600 to-cyan-500 text-white py-20 md:py-32 text-center rounded-b-3xl shadow-xl">
+    <section id="hero" class="text-white py-20 md:py-32 text-center rounded-b-3xl shadow-xl" style="background: linear-gradient(120deg, var(--ink), var(--brand-dark));">
         <div class="container mx-auto px-4">
             <img src="./images/logo-oscuro.png" alt="Foto de Perfil del Profesor" class="rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover aspect-square" width="15%" onerror="this.src='https://placehold.co/200x200/0284c7/white?text=R'">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-                ¡Hola! Soy <span class="text-yellow-300">Ronald</span>
+            <h1 class="text-4xl md:text-6xl font-semibold mb-4 leading-tight">
+                ¡Hola! Soy <span style="color: var(--chalk);">Ronald</span>
             </h1>
-            <p class="text-lg md:text-2xl mb-8">
+            <p class="text-lg md:text-2xl mb-8 text-white/90">
                 Profesor de Informática, Tecnología y Programación. Apasionado por la educación práctica y el desarrollo de habilidades para el futuro.
             </p>
         </div>
@@ -264,7 +332,7 @@
     <!-- Sección Sobre Mí -->
     <section id="sobre-mi" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-4xl font-bold text-center mb-10 text-sky-800">Sobre Mí</h2>
+            <h2 class="text-4xl font-semibold text-center mb-10 text-[var(--ink)]">Sobre Mí</h2>
             <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
                 <div class="md:w-1/3 flex-shrink-0">
                     <img src="./images/foto.png" alt="Foto profesional del profesor" class="rounded-xl shadow-lg w-full" onerror="this.src='https://placehold.co/400x400/e2e8f0/475569?text=Foto'">
@@ -286,7 +354,7 @@
                         En mi labor docente he desarrollado e implementado diversas aplicaciones y herramientas interactivas que facilitan la comprensión de conceptos y hacen del aprendizaje una experiencia divertida y significativa. ¡Te invito a explorar mis proyectos en la siguiente sección!
                     </p>
                     <div class="text-center md:text-left mt-6 flex justify-center">
-                        <button id="openTrajectoryModal" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-large font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900 w-fit">Mi experiencia</button>
+                        <button id="openTrajectoryModal" class="text-white font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 w-fit transition-colors" style="background: var(--chalk);" onmouseover="this.style.background='#d38f00'" onmouseout="this.style.background='var(--chalk)'">Mi experiencia</button>
                     </div>
                 </div>
             </div>
@@ -294,9 +362,10 @@
     </section>
 
     <!-- SECCIÓN DE PROYECTOS -->
-    <section id="proyectos" class="py-16 md:py-24 bg-sky-50 rounded-t-3xl shadow-inner">
+    <section id="proyectos" class="py-16 md:py-24 rounded-t-3xl shadow-inner" style="background: var(--mist);">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-sky-800">IDEAS Y PROYECTOS</h2>
+            <span class="mono block text-center text-xs font-semibold mb-2" style="color: var(--brand);">CATÁLOGO · 6 PROYECTOS</span>
+            <h2 class="text-4xl font-semibold text-center mb-12 text-[var(--ink)]">Ideas y Proyectos</h2>
             <p class="text-center text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
                 Aquí podrás explorar algunas de las ideas, aplicaciones y herramientas que he desarrollado (incluso con ayuda de IA) o que estoy creando para potenciar el aprendizaje de mis estudiantes en informática, tecnología y ética o resolver alguna que otra situación particular en la que algún compañero docente me ha pedido apoyo. Si te es útil, no dudes en utilizarlo y no olvides escribirme.
             </p>
@@ -306,92 +375,98 @@
                 <div class="project-carousel">
                     
                     <!-- TARJETA 1: BINGOVERSE -->
-                    <div class="project-card">
+                    <div class="project-card" style="--tarjeta-color: #0284C7">
                         <div class="image-placeholder">
                             <img src="./images/bingoverse.png" alt="Vista previa de BingoVerse - Panel docente" onerror="this.src='https://placehold.co/300x160/0ea5e9/white?text=BingoVerse'">
                         </div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-sky-700 text-center">BingoVerse</h3>
+                        <span class="project-index mono">01 // Bingoverse</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">BingoVerse</h3>
                         <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma educativa para crear y jugar bingos digitales personalizados, sin cartones impresos. Cartones únicos para cada estudiante.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('bingoverse')" class="text-sky-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('bingoverse')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
                             </button>
-                            <a href="https://bingoverse.vercel.app/" target="_blank" class="block w-full text-white bg-sky-600 px-4 py-2 rounded-lg shadow-md hover:bg-sky-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="https://bingoverse.vercel.app/" target="_blank" class="block w-full text-white px-4 py-2 rounded-lg shadow-md transition-opacity duration-300 hover:opacity-90" style="background: var(--tarjeta-color);">Ver Proyecto</a>
                         </div>
                     </div>
 
                     <!-- TARJETA 2: ETHYKOS (PLATAFORMA) -->
-                    <div class="project-card">
+                    <div class="project-card" style="--tarjeta-color: #7C3AED">
                         <div class="image-placeholder">
                             <img src="./images/ethykos.png" alt="Ethykos - Plataforma de gamificación para clase de ética" onerror="this.src='https://placehold.co/300x160/8b5cf6/white?text=Ethykos'">
                         </div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-purple-700 text-center">Ethykos</h3>
+                        <span class="project-index mono">02 // Ethykos</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Ethykos</h3>
                         <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma de gamificación que transforma la clase de ética en una aventura colaborativa mediante la organización de estudiantes en "tribus".</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('ethylos')" class="text-purple-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('ethylos')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
                             </button>
-                            <a href="https://ethykos.vercel.app/" target="_blank" class="block w-full text-white bg-purple-600 px-4 py-2 rounded-lg shadow-md hover:bg-purple-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="https://ethykos.vercel.app/" target="_blank" class="block w-full text-white px-4 py-2 rounded-lg shadow-md transition-opacity duration-300 hover:opacity-90" style="background: var(--tarjeta-color);">Ver Proyecto</a>
                         </div>
                     </div>
 
                     <!-- TARJETA 3: ETHYKOS GAME (JUEGO) -->
-                    <div class="project-card">
+                    <div class="project-card" style="--tarjeta-color: #DB2777">
                         <div class="image-placeholder">
                             <img src="./images/ethykosgame.png" alt="Ethykos Game - Juego interactivo para clase de ética" onerror="this.src='https://placehold.co/300x160/ec4899/white?text=Ethykos+Game'">
                         </div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-pink-700 text-center">Ethykos Game</h3>
+                        <span class="project-index mono">03 // Ethykos Game</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Ethykos Game</h3>
                         <p class="text-gray-600 mb-4 text-center flex-grow">Juego interactivo diseñado específicamente para la clase de ética, donde los estudiantes aprenden valores y toma de decisiones a través de dinámicas lúdicas.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('ethylosgame')" class="text-pink-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('ethylosgame')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
                             </button>
-                            <a href="https://ethykosgame.vercel.app/" target="_blank" class="block w-full text-white bg-pink-600 px-4 py-2 rounded-lg shadow-md hover:bg-pink-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="https://ethykosgame.vercel.app/" target="_blank" class="block w-full text-white px-4 py-2 rounded-lg shadow-md transition-opacity duration-300 hover:opacity-90" style="background: var(--tarjeta-color);">Ver Proyecto</a>
                         </div>
                     </div>
 
                     <!-- TARJETA 4: TRIVIA CULTURAL WEEK -->
-                    <div class="project-card">
+                    <div class="project-card" style="--tarjeta-color: #16A34A">
                         <div class="image-placeholder">
                             <img src="./images/triviamundial.png" alt="Trivia Cultural Week - Juegos interactivos de fútbol y mundiales" onerror="this.src='https://placehold.co/300x160/16a34a/white?text=Trivia+Cultural+Week'">
                         </div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-green-700 text-center">Trivia Cultural Week</h3>
+                        <span class="project-index mono">04 // Trivia Cultural Week</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Trivia Cultural Week</h3>
                         <p class="text-gray-600 mb-4 text-center flex-grow">Entorno de juegos interactivos que gamifica la historia de los mundiales y el fútbol, convirtiendo el conocimiento deportivo en una competencia dinámica para el aula.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('trivia')" class="text-green-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('trivia')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
                             </button>
-                            <a href="https://triviaculturalweek.vercel.app/" target="_blank" class="block w-full text-white bg-green-600 px-4 py-2 rounded-lg shadow-md hover:bg-green-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="https://triviaculturalweek.vercel.app/" target="_blank" class="block w-full text-white px-4 py-2 rounded-lg shadow-md transition-opacity duration-300 hover:opacity-90" style="background: var(--tarjeta-color);">Ver Proyecto</a>
                         </div>
                     </div>
 
                     <!-- TARJETA 5: TORNEO BETH SHALOM -->
-                    <div class="project-card">
+                    <div class="project-card" style="--tarjeta-color: #EA580C">
                         <div class="image-placeholder">
                             <img src="./images/mundialito.png" alt="Torneo Beth Shalom - Mundialito de microfútbol" onerror="this.src='https://placehold.co/300x160/ea580c/white?text=Torneo+Beth+Shalom'">
                         </div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-orange-700 text-center">Torneo Beth Shalom</h3>
+                        <span class="project-index mono">05 // Torneo Beth Shalom</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Torneo Beth Shalom</h3>
                         <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma oficial para seguir el "Mundialito", un campeonato de microfútbol ideado por el personero Juan Pablo Mendoza para integrar colegios de Piedecuesta mediante la pasión y el deporte.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('torneo')" class="text-orange-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('torneo')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
                             </button>
-                            <a href="https://torneobethshalom.vercel.app/" target="_blank" class="block w-full text-white bg-orange-600 px-4 py-2 rounded-lg shadow-md hover:bg-orange-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="https://torneobethshalom.vercel.app/" target="_blank" class="block w-full text-white px-4 py-2 rounded-lg shadow-md transition-opacity duration-300 hover:opacity-90" style="background: var(--tarjeta-color);">Ver Proyecto</a>
                         </div>
                     </div>
 
                     <!-- TARJETA 6: GOZALO -->
-                    <div class="project-card">
+                    <div class="project-card" style="--tarjeta-color: #4F46E5">
                         <div class="image-placeholder">
                             <img src="./images/escalera.png" alt="Escalera - Juego interactivo para clase de ética" onerror="this.src='https://placehold.co/300x160/ec4899/white?text=Escalera+del+Gozo'">
                         </div>
-                        <h3 class="text-2xl font-semibold mt-4 mb-2 text-indigo-700 text-center">Gozalo</h3>
+                        <span class="project-index mono">06 // Gozalo</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Gozalo</h3>
                         <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma interactiva que combina juegos y aprendizaje matemático, diseñada para reforzar conceptos de una manera divertida y desafiante.</p>
                         <div class="mt-auto pt-4 text-center">
-                            <button onclick="openProjectModal('gozalo')" class="text-indigo-600 hover:underline font-medium mb-4">
+                            <button onclick="openProjectModal('gozalo')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
                             </button>
-                            <a href="https://gozalo-pi.vercel.app/" target="_blank" class="block w-full text-white bg-indigo-600 px-4 py-2 rounded-lg shadow-md hover:bg-indigo-700 transition-all duration-300">Ver Proyecto</a>
+                            <a href="https://gozalo-pi.vercel.app/" target="_blank" class="block w-full text-white px-4 py-2 rounded-lg shadow-md transition-opacity duration-300 hover:opacity-90" style="background: var(--tarjeta-color);">Ver Proyecto</a>
                         </div>
                     </div>
 
@@ -432,7 +507,7 @@
     </section>
 
     <!-- Pie de Página -->
-    <footer class="bg-gray-800 text-white py-8 rounded-t-3xl shadow-inner">
+    <footer class="text-white py-8 rounded-t-3xl shadow-inner" style="background: var(--ink);">
         <div class="container mx-auto text-center px-4">
             <p class="mb-4">&copy; 2025 Profesor Ronald. Todos los derechos reservados.</p>
             <p class="mb-6">
@@ -693,5 +768,11 @@
             });
         });
     </script>
+    <!-- Acceso discreto al panel de administración (solo para el docente) -->
+    <a href="admin.html" class="admin-fab" aria-label="Panel de administración para docentes">
+        <i class="fa-solid fa-user-shield text-lg" aria-hidden="true"></i>
+        <span class="admin-fab-label">Panel docente</span>
+    </a>
+
 </body>
 </html>

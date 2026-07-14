@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Prof. Ronald</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --paper: #F2F4F5;
+            --surface: #FFFFFF;
+            --ink: #1E2A33;
+            --ink-muted: #64748B;
+            --line: #E7E2D8;
+            --brand: #0284C7;
+            --brand-dark: #036393;
+            --ok: #15803D;
+            --danger: #B91C1C;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--paper);
+            color: var(--ink);
+        }
+
+        h1, h2, .display {
+            font-family: 'Fraunces', serif;
+        }
+
+        /* Ficha con pestaña de color a la izquierda, como un fólder de archivo */
+        .ficha {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 0.75rem;
+            padding: 1rem 1.25rem 1rem 1.5rem;
+        }
+        .ficha::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0.75rem; bottom: 0.75rem;
+            width: 5px;
+            border-radius: 4px;
+            background: var(--tab-color, var(--brand));
+        }
+
+        .input-field {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 0.6rem;
+            padding: 0.6rem 0.9rem;
+            font-size: 0.95rem;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+            background: var(--surface);
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        .btn-primary {
+            background: var(--brand);
+            color: white;
+            font-weight: 600;
+            border-radius: 0.6rem;
+            padding: 0.65rem 1.5rem;
+            transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+        .btn-primary:hover { background: var(--brand-dark); }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink-muted);
+            font-weight: 500;
+            border: 1px solid var(--line);
+            border-radius: 0.6rem;
+            padding: 0.65rem 1.25rem;
+            transition: background-color 0.15s ease;
+        }
+        .btn-ghost:hover { background: #F1EEE6; }
+
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            min-height: 44px;
+            padding: 0 0.85rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background-color 0.15s ease;
+        }
+        .icon-btn.edit { color: var(--brand); }
+        .icon-btn.edit:hover { background: rgba(2, 132, 199, 0.08); }
+        .icon-btn.delete { color: var(--danger); }
+        .icon-btn.delete:hover { background: rgba(185, 28, 28, 0.08); }
+
+        .label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ink-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .seccion-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.1rem;
+            border-radius: 0.6rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            color: var(--ink-muted);
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+        }
+        .seccion-btn:hover { background: #F1EEE6; }
+        .seccion-btn.active {
+            background: var(--brand);
+            border-color: var(--brand);
+            color: white;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 1.5rem; left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--ink);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.6rem;
+            font-size: 0.9rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 50;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast.error { background: var(--danger); }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 sm:p-8">
+
+<div class="container mx-auto max-w-4xl">
+
+    <header class="mb-8 flex items-center justify-between">
+        <div>
+            <p class="text-sm text-[var(--ink-muted)] mb-1">Recursos para estudiantes</p>
+            <h1 class="text-3xl font-semibold text-[var(--ink)]">Panel de administración</h1>
+        </div>
+        <button id="logoutBtn" class="hidden icon-btn text-[var(--ink-muted)] hover:text-[var(--danger)]">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Cerrar sesión
+        </button>
+    </header>
+
+    <!-- ===================== LOGIN ===================== -->
+    <div id="loginSection" class="ficha max-w-sm mx-auto shadow-sm">
+        <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-full bg-[var(--brand)]/10 flex items-center justify-center">
+                <i class="fa-solid fa-lock text-[var(--brand)]"></i>
+            </div>
+            <h2 class="text-lg font-semibold text-[var(--ink)]">Iniciar sesión</h2>
+        </div>
+
+        <label class="label" for="loginEmail">Correo</label>
+        <input id="loginEmail" type="email" autocomplete="username" class="input-field mb-3" placeholder="tu@correo.com">
+
+        <label class="label" for="loginPassword">Contraseña</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" class="input-field mb-4" placeholder="••••••••">
+
+        <button id="loginBtn" class="btn-primary w-full">Entrar</button>
+        <p id="loginError" class="text-[var(--danger)] text-sm mt-3 hidden" role="alert"></p>
+    </div>
+
+    <!-- ===================== PANEL (solo visible autenticado) ===================== -->
+    <div id="panelSection" class="hidden space-y-8">
+
+        <!-- Selector de sección: cada botón administra su propia pestaña pública -->
+        <div class="flex flex-wrap gap-2" id="seccionSwitcher">
+            <button type="button" data-seccion="guias" class="seccion-btn">
+                <i class="fa-solid fa-book-open"></i> Guías y Talleres
+            </button>
+            <button type="button" data-seccion="enlaces" class="seccion-btn">
+                <i class="fa-solid fa-link"></i> Enlaces de Interés
+            </button>
+            <button type="button" data-seccion="recursos" class="seccion-btn">
+                <i class="fa-solid fa-photo-film"></i> Otros Recursos
+            </button>
+        </div>
+
+        <!-- Formulario crear/editar -->
+        <section class="ficha shadow-sm" style="--tab-color: var(--brand)">
+            <h2 id="formTitle" class="text-xl font-semibold mb-1">Nueva guía o taller</h2>
+            <p id="formSubtitle" class="text-sm text-[var(--ink-muted)] mb-5">Este contenido aparecerá en la pestaña "Guías y Talleres".</p>
+
+            <form id="recursoForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="hidden" id="docId">
+
+                <div class="md:col-span-2">
+                    <label class="label" for="titulo">Título</label>
+                    <input id="titulo" required class="input-field" placeholder="Ej. Guía de funciones en Python">
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="label" for="descripcion">Descripción <span class="font-normal">(opcional)</span></label>
+                    <textarea id="descripcion" rows="2" class="input-field" placeholder="Breve resumen de qué encontrará el estudiante"></textarea>
+                </div>
+
+                <div>
+                    <label class="label" for="grado">Curso</label>
+                    <select id="grado" class="input-field">
+                        <option value="">Selecciona un curso</option>
+                        <option value="__nuevo__">+ Agregar nuevo curso</option>
+                    </select>
+                    <input id="gradoNuevo" type="text" placeholder="Escribe el nuevo curso" class="input-field mt-2 hidden">
+                </div>
+
+                <div>
+                    <label class="label" for="categoria">Categoría</label>
+                    <select id="categoria" class="input-field">
+                        <option value="">Selecciona una categoría</option>
+                        <option value="__nuevo__">+ Agregar nueva categoría</option>
+                    </select>
+                    <input id="categoriaNueva" type="text" placeholder="Escribe la nueva categoría" class="input-field mt-2 hidden">
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="label" for="link">Enlace del botón "Abrir Recurso"</label>
+                    <input id="link" type="url" placeholder="https://..." class="input-field">
+                </div>
+
+                <div class="md:col-span-2 flex items-center gap-2 -mt-1">
+                    <span class="text-xs text-[var(--ink-muted)]">Color de la ficha (se asigna automáticamente):</span>
+                    <span id="colorPreviewDot" class="inline-block w-4 h-4 rounded-full border border-[var(--line)]"></span>
+                </div>
+
+                <div>
+                    <label class="label" for="tipo">Multimedia</label>
+                    <select id="tipo" class="input-field">
+                        <option value="ninguno">Sin imagen ni video</option>
+                        <option value="imagen">Imagen (URL)</option>
+                        <option value="video">Video de YouTube</option>
+                    </select>
+                </div>
+
+                <div id="imagenUrlWrap" class="hidden md:col-span-2">
+                    <label class="label" for="imagenUrl">URL de la imagen</label>
+                    <input id="imagenUrl" type="url" placeholder="https://..." class="input-field">
+                    <p class="text-xs text-[var(--ink-muted)] mt-1">La subida directa de imágenes se activa en la próxima fase.</p>
+                </div>
+
+                <div id="videoIdWrap" class="hidden md:col-span-2">
+                    <label class="label" for="videoUrlInput">Enlace del video de YouTube</label>
+                    <input id="videoUrlInput" placeholder="https://www.youtube.com/watch?v=..." class="input-field">
+                </div>
+
+                <div class="md:col-span-2 flex items-center gap-3 mt-2">
+                    <button type="submit" id="submitBtn" class="btn-primary">
+                        <i class="fa-solid fa-floppy-disk mr-2"></i>Guardar
+                    </button>
+                    <button type="button" id="cancelEditBtn" class="hidden btn-ghost">
+                        Cancelar edición
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Lista de contenido existente -->
+        <section>
+            <h2 id="listaTitulo" class="text-xl font-semibold mb-4">Guías y talleres publicados</h2>
+            <div id="listaRecursos" class="space-y-3"></div>
+        </section>
+
+    </div>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+
+<script type="module">
+    import {
+        auth, db, RECURSOS_COLLECTION,
+        signInWithEmailAndPassword, onAuthStateChanged, signOut,
+        collection, query, where, getDocs,
+        addDoc, updateDoc, deleteDoc, doc, serverTimestamp
+    } from "./firebase-config.js";
+
+    let SECCION_ACTUAL = "guias"; // se cambia con el selector de sección
+
+    const SECCION_INFO = {
+        guias:    { titulo: "Guías y Talleres",   nuevo: "Nueva guía o taller",    lista: "Guías y talleres publicados",   nota: 'Este contenido aparecerá en la pestaña "Guías y Talleres".' },
+        enlaces:  { titulo: "Enlaces de Interés",  nuevo: "Nuevo enlace de interés", lista: "Enlaces publicados",           nota: 'Este contenido aparecerá en la pestaña "Enlaces de Interés".' },
+        recursos: { titulo: "Otros Recursos",      nuevo: "Nuevo recurso",           lista: "Otros recursos publicados",     nota: 'Este contenido aparecerá en la pestaña "Otros Recursos".' }
+    };
+
+    const COLOR_HEX = { sky: "#0284C7", indigo: "#6366F1", green: "#16A34A", purple: "#9333EA" };
+    const COLORES = Object.keys(COLOR_HEX);
+
+    // Grados estándar de un colegio colombiano (transición a 11°). Se amplía
+    // automáticamente si en Firestore ya existen otros valores guardados.
+    const GRADOS_DEFECTO = ["Transición", "1°", "2°", "3°", "4°", "5°", "6°", "7°", "8°", "9°", "10°", "11°"];
+
+    // El color de cada ficha se calcula a partir de categoría + curso, para que
+    // el mismo par siempre produzca el mismo color sin que tengas que elegirlo.
+    function colorParaCombinacion(categoria, grado) {
+        const clave = `${categoria}|${grado}`.toLowerCase();
+        let hash = 0;
+        for (let i = 0; i < clave.length; i++) {
+            hash = (hash * 31 + clave.charCodeAt(i)) | 0;
+        }
+        return COLORES[Math.abs(hash) % COLORES.length];
+    }
+
+    function actualizarVistaPreviaColor() {
+        const categoria = categoriaSelectValor();
+        const grado = gradoSelectValor();
+        const color = colorParaCombinacion(categoria, grado);
+        document.getElementById('colorPreviewDot').style.backgroundColor = COLOR_HEX[color];
+    }
+
+    // ---------- Elementos ----------
+    const loginSection = document.getElementById('loginSection');
+    const panelSection = document.getElementById('panelSection');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const loginError = document.getElementById('loginError');
+
+    const form = document.getElementById('recursoForm');
+    const formTitle = document.getElementById('formTitle');
+    const formSubtitle = document.getElementById('formSubtitle');
+    const listaTitulo = document.getElementById('listaTitulo');
+    const seccionBotones = document.querySelectorAll('.seccion-btn');
+    const submitBtn = document.getElementById('submitBtn');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const tipoSelect = document.getElementById('tipo');
+    const imagenUrlWrap = document.getElementById('imagenUrlWrap');
+    const videoIdWrap = document.getElementById('videoIdWrap');
+    const listaRecursos = document.getElementById('listaRecursos');
+    const toast = document.getElementById('toast');
+
+    const gradoSelect = document.getElementById('grado');
+    const gradoNuevo = document.getElementById('gradoNuevo');
+    const categoriaSelect = document.getElementById('categoria');
+    const categoriaNueva = document.getElementById('categoriaNueva');
+
+    function gradoSelectValor() {
+        return gradoSelect.value === '__nuevo__' ? gradoNuevo.value.trim() : gradoSelect.value;
+    }
+    function categoriaSelectValor() {
+        return categoriaSelect.value === '__nuevo__' ? categoriaNueva.value.trim() : categoriaSelect.value;
+    }
+
+    function llenarSelect(select, valores, seleccionActual) {
+        const actual = select.value;
+        select.querySelectorAll('option[data-dinamica]').forEach(o => o.remove());
+        const nuevoOption = select.querySelector('option[value="__nuevo__"]');
+        [...new Set(valores)].filter(Boolean).sort().forEach(valor => {
+            const opt = document.createElement('option');
+            opt.value = valor;
+            opt.textContent = valor;
+            opt.setAttribute('data-dinamica', '1');
+            select.insertBefore(opt, nuevoOption);
+        });
+        if (seleccionActual) select.value = seleccionActual;
+        else if (actual) select.value = actual;
+    }
+
+    async function poblarSelectsDesdeFirestore() {
+        const snapshot = await getDocs(query(collection(db, RECURSOS_COLLECTION), where("seccion", "==", SECCION_ACTUAL)));
+        const gradosExistentes = [];
+        const categoriasExistentes = [];
+        snapshot.forEach(d => {
+            const p = d.data();
+            if (p.grado) gradosExistentes.push(p.grado);
+            if (p.categoria) categoriasExistentes.push(p.categoria);
+        });
+        llenarSelect(gradoSelect, [...GRADOS_DEFECTO, ...gradosExistentes]);
+        llenarSelect(categoriaSelect, categoriasExistentes);
+    }
+
+    async function seleccionarSeccion(seccion) {
+        SECCION_ACTUAL = seccion;
+        const info = SECCION_INFO[seccion];
+
+        seccionBotones.forEach(btn => btn.classList.toggle('active', btn.dataset.seccion === seccion));
+        formSubtitle.textContent = info.nota;
+        listaTitulo.textContent = info.lista;
+
+        limpiarFormulario();
+        await poblarSelectsDesdeFirestore();
+        actualizarVistaPreviaColor();
+        await cargarLista();
+    }
+
+    seccionBotones.forEach(btn => {
+        btn.addEventListener('click', () => seleccionarSeccion(btn.dataset.seccion));
+    });
+
+    gradoSelect.addEventListener('change', () => {
+        gradoNuevo.classList.toggle('hidden', gradoSelect.value !== '__nuevo__');
+        actualizarVistaPreviaColor();
+    });
+    categoriaSelect.addEventListener('change', () => {
+        categoriaNueva.classList.toggle('hidden', categoriaSelect.value !== '__nuevo__');
+        actualizarVistaPreviaColor();
+    });
+    gradoNuevo.addEventListener('input', actualizarVistaPreviaColor);
+    categoriaNueva.addEventListener('input', actualizarVistaPreviaColor);
+
+    function mostrarToast(mensaje, esError = false) {
+        toast.textContent = mensaje;
+        toast.classList.toggle('error', esError);
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    // ---------- Login / sesión ----------
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+        loginError.classList.add('hidden');
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+        } catch (err) {
+            loginError.textContent = "Correo o contraseña incorrectos.";
+            loginError.classList.remove('hidden');
+        }
+    });
+
+    logoutBtn.addEventListener('click', async () => {
+        await signOut(auth);
+        window.location.href = 'estudiantes.html';
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            loginSection.classList.add('hidden');
+            panelSection.classList.remove('hidden');
+            logoutBtn.classList.remove('hidden');
+            await seleccionarSeccion(SECCION_ACTUAL);
+        } else {
+            loginSection.classList.remove('hidden');
+            panelSection.classList.add('hidden');
+            logoutBtn.classList.add('hidden');
+        }
+    });
+
+    // ---------- Mostrar/ocultar campos según tipo de multimedia ----------
+    tipoSelect.addEventListener('change', () => {
+        imagenUrlWrap.classList.toggle('hidden', tipoSelect.value !== 'imagen');
+        videoIdWrap.classList.toggle('hidden', tipoSelect.value !== 'video');
+    });
+
+    // ---------- Utilidad: extraer el ID de un link de YouTube ----------
+    function extraerYoutubeId(url) {
+        const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/);
+        return match ? match[1] : "";
+    }
+
+    // ---------- Limpiar formulario ----------
+    function limpiarFormulario() {
+        form.reset();
+        document.getElementById('docId').value = "";
+        formTitle.textContent = SECCION_INFO[SECCION_ACTUAL].nuevo;
+        cancelEditBtn.classList.add('hidden');
+        imagenUrlWrap.classList.add('hidden');
+        videoIdWrap.classList.add('hidden');
+        gradoNuevo.classList.add('hidden');
+        categoriaNueva.classList.add('hidden');
+        actualizarVistaPreviaColor();
+    }
+
+    cancelEditBtn.addEventListener('click', limpiarFormulario);
+
+    // ---------- Guardar (crear o actualizar) ----------
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i>Guardando...`;
+
+        const id = document.getElementById('docId').value;
+        const tipo = tipoSelect.value;
+        const grado = gradoSelectValor();
+        const categoria = categoriaSelectValor();
+
+        const datos = {
+            seccion: SECCION_ACTUAL,
+            tipo,
+            titulo: document.getElementById('titulo').value.trim(),
+            descripcion: document.getElementById('descripcion').value.trim(),
+            grado,
+            categoria,
+            link: document.getElementById('link').value.trim(),
+            color: colorParaCombinacion(categoria, grado),
+            imagenUrl: tipo === 'imagen' ? document.getElementById('imagenUrl').value.trim() : "",
+            videoId: tipo === 'video' ? extraerYoutubeId(document.getElementById('videoUrlInput').value.trim()) : "",
+            activo: true
+        };
+
+        try {
+            if (id) {
+                await updateDoc(doc(db, RECURSOS_COLLECTION, id), datos);
+                mostrarToast("Cambios guardados.");
+            } else {
+                datos.fecha = serverTimestamp();
+                await addDoc(collection(db, RECURSOS_COLLECTION), datos);
+                mostrarToast("Guía publicada.");
+            }
+            limpiarFormulario();
+            await poblarSelectsDesdeFirestore();
+            await cargarLista();
+        } catch (err) {
+            mostrarToast("No se pudo guardar: " + err.message, true);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<i class="fa-solid fa-floppy-disk mr-2"></i>Guardar`;
+        }
+    });
+
+    // ---------- Cargar y pintar la lista ----------
+    async function cargarLista() {
+        listaRecursos.innerHTML = `<p class="text-sm text-[var(--ink-muted)]">Cargando...</p>`;
+
+        const q = query(collection(db, RECURSOS_COLLECTION), where("seccion", "==", SECCION_ACTUAL));
+        const snapshot = await getDocs(q);
+
+        if (snapshot.empty) {
+            listaRecursos.innerHTML = `
+                <div class="ficha text-center py-10" style="--tab-color: var(--line)">
+                    <i class="fa-regular fa-folder-open text-3xl text-[var(--ink-muted)] mb-3"></i>
+                    <p class="text-[var(--ink-muted)]">Aún no has agregado ninguna guía.</p>
+                    <p class="text-sm text-[var(--ink-muted)]">Crea la primera con el formulario de arriba.</p>
+                </div>`;
+            return;
+        }
+
+        listaRecursos.innerHTML = "";
+        snapshot.forEach(docSnap => {
+            const p = docSnap.data();
+            const fila = document.createElement('div');
+            fila.className = "ficha flex flex-col sm:flex-row sm:items-center justify-between gap-3";
+            fila.style.setProperty('--tab-color', COLOR_HEX[p.color] || COLOR_HEX.sky);
+            fila.innerHTML = `
+                <div class="min-w-0">
+                    <p class="font-semibold truncate">${p.titulo}</p>
+                    <p class="text-xs text-[var(--ink-muted)]">${[p.grado, p.categoria].filter(Boolean).join(' · ') || 'Sin clasificar'}</p>
+                </div>
+                <div class="flex gap-1 shrink-0">
+                    <button data-id="${docSnap.id}" class="editarBtn icon-btn edit">
+                        <i class="fa-solid fa-pen"></i> Editar
+                    </button>
+                    <button data-id="${docSnap.id}" class="eliminarBtn icon-btn delete">
+                        <i class="fa-solid fa-trash"></i> Eliminar
+                    </button>
+                </div>
+            `;
+            listaRecursos.appendChild(fila);
+
+            fila.querySelector('.editarBtn').addEventListener('click', () => cargarEnFormulario(docSnap.id, p));
+            fila.querySelector('.eliminarBtn').addEventListener('click', () => eliminarRecurso(docSnap.id, p.titulo));
+        });
+    }
+
+    function cargarEnFormulario(id, p) {
+        document.getElementById('docId').value = id;
+        document.getElementById('titulo').value = p.titulo || "";
+        document.getElementById('descripcion').value = p.descripcion || "";
+        llenarSelect(gradoSelect, [p.grado], p.grado);
+        llenarSelect(categoriaSelect, [p.categoria], p.categoria);
+        document.getElementById('link').value = p.link || "";
+        tipoSelect.value = p.tipo || "ninguno";
+        document.getElementById('imagenUrl').value = p.imagenUrl || "";
+        document.getElementById('videoUrlInput').value = p.videoId ? `https://youtu.be/${p.videoId}` : "";
+
+        imagenUrlWrap.classList.toggle('hidden', tipoSelect.value !== 'imagen');
+        videoIdWrap.classList.toggle('hidden', tipoSelect.value !== 'video');
+        gradoNuevo.classList.add('hidden');
+        categoriaNueva.classList.add('hidden');
+        actualizarVistaPreviaColor();
+
+        formTitle.textContent = "Editando: " + p.titulo;
+        cancelEditBtn.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function eliminarRecurso(id, titulo) {
+        if (!confirm(`¿Eliminar "${titulo}"? Esta acción no se puede deshacer.`)) return;
+        try {
+            await deleteDoc(doc(db, RECURSOS_COLLECTION, id));
+            mostrarToast("Eliminado.");
+            await cargarLista();
+        } catch (err) {
+            mostrarToast("No se pudo eliminar: " + err.message, true);
+        }
+    }
+</script>
+
+</body>
+</html>
