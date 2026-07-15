@@ -12,11 +12,13 @@
 // - Los temas permitidos van agrupados con OR dentro de un paréntesis.
 // - Cada "AND NOT palabra" excluye ese tema aunque aparezca de forma incidental.
 // - "in=title" hace que la búsqueda solo mire el TÍTULO del artículo, no toda
-//   la descripción. Es lo que evita que una noticia de política que solo
-//   menciona "tecnología" de pasada se cuele en el feed.
+//   la descripción.
+// - "lenguaje de programación" va entre comillas para que solo empareje esa
+//   frase exacta, y no la palabra suelta "programación" (que en español
+//   también significa "agenda de un evento" y traía noticias fuera de tema).
 // GNews limita el parámetro "q" a 200 caracteres, así que se mantiene compacto.
-const TEMAS = '(programación OR "inteligencia artificial" OR invento OR "nueva tecnología")';
-const EXCLUSIONES = 'AND NOT política AND NOT gobierno AND NOT elecciones AND NOT farándula AND NOT famoso';
+const TEMAS = '(ChatGPT OR Anthropic OR Claude OR Gemini OR OpenAI OR OpenCode OR Microsoft OR Google OR Tesla OR SpaceX OR Starlink OR Globant OR "lenguaje de programación")';
+const EXCLUSIONES = 'AND NOT política AND NOT farándula';
 
 function construirUrl(apiKey, { country } = {}) {
     const consulta = encodeURIComponent(`${TEMAS} ${EXCLUSIONES}`);
