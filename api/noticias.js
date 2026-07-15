@@ -17,8 +17,16 @@ export default async function handler(req, res) {
     }
 
     // Palabras clave del feed. Se pueden ajustar aquí sin tocar el frontend.
-    const consulta = encodeURIComponent('tecnología OR "inteligencia artificial" OR programación');
-    const url = `https://gnews.io/api/v4/search?q=${consulta}&lang=es&max=8&sortby=publishedAt&apikey=${apiKey}`;
+    //
+    // - Los temas permitidos van agrupados con OR dentro de un paréntesis.
+    // - Cada "AND NOT palabra" excluye ese tema aunque aparezca de forma incidental.
+    // - "in=title" hace que la búsqueda solo mire el TÍTULO del artículo, no la
+    //   descripción completa. Es lo que evita que una noticia de política que
+    //   solo menciona "tecnología" de pasada se cuele en el feed.
+    const temas = '(programación OR "lenguajes de programación" OR "inteligencia artificial" OR invento OR "nueva tecnología" OR innovación)';
+    const exclusiones = 'AND NOT política AND NOT gobierno AND NOT elecciones AND NOT farándula AND NOT famoso AND NOT celebridad';
+    const consulta = encodeURIComponent(`${temas} ${exclusiones}`);
+    const url = `https://gnews.io/api/v4/search?q=${consulta}&lang=es&max=8&in=title&sortby=publishedAt&apikey=${apiKey}`;
 
     try {
         const respuestaGNews = await fetch(url);
