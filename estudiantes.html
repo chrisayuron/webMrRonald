@@ -247,14 +247,11 @@
             </div>
 
 
-            <!-- NOTICIAS TECNOLOGÍA -->
+            <!-- NOTICIAS TECNOLOGÍA (feed automático vía GNews) -->
             <div id="noticias" class="tab-content">
                 <h2 class="text-2xl font-semibold mb-1">Lo último en tecnología y ciencia</h2>
-                <p class="text-[var(--ink-muted)] mb-7">Feed automático — próximamente.</p>
-                <div id="news-feed" class="empty-state">
-                    <i class="fa-solid fa-newspaper text-2xl mb-3"></i>
-                    <p>El feed automático de noticias se conecta en la Fase 4.</p>
-                </div>
+                <p class="text-[var(--ink-muted)] mb-7">Actualizado automáticamente — no necesitas publicar nada aquí.</p>
+                <div id="news-feed" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
             </div>
 
         </main>
@@ -364,10 +361,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function cargarNoticias() {
+        const contenedor = document.getElementById('news-feed');
+        if (!contenedor) return;
+
+        try {
+            const respuesta = await fetch('/api/noticias');
+            const data = await respuesta.json();
+
+            if (data.error) {
+                contenedor.innerHTML = `
+                    <div class="empty-state md:col-span-2">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl mb-3"></i>
+                        <p>No se pudo cargar el feed de noticias en este momento.</p>
+                    </div>`;
+                console.error("Error del feed de noticias:", data.error, data.detalle);
+                return;
+            }
+
+            const noticias = data.noticias || [];
+            contenedor.innerHTML = "";
+
+            if (noticias.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="empty-state md:col-span-2">
+                        <i class="fa-solid fa-newspaper text-2xl mb-3"></i>
+                        <p>No hay noticias disponibles por ahora. Vuelve más tarde.</p>
+                    </div>`;
+                return;
+            }
+
+            noticias.forEach(n => {
+                const fecha = n.fecha ? new Date(n.fecha).toLocaleDateString('es-CO', { day: 'numeric', month: 'short' }) : "";
+                contenedor.appendChild(renderFicha({
+                    titulo: n.titulo,
+                    descripcion: n.descripcion,
+                    link: n.link,
+                    tipo: n.imagenUrl ? "imagen" : "ninguno",
+                    imagenUrl: n.imagenUrl,
+                    grado: n.fuente,
+                    categoria: fecha,
+                    color: "sky"
+                }));
+            });
+        } catch (error) {
+            console.error("Error cargando /api/noticias:", error);
+            contenedor.innerHTML = `
+                <div class="empty-state md:col-span-2">
+                    <i class="fa-solid fa-triangle-exclamation text-2xl mb-3"></i>
+                    <p>No se pudo conectar con el feed de noticias.</p>
+                </div>`;
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         cargarSeccion('guias', 'contenedor-presentaciones', 'Aún no hay guías publicadas. Vuelve pronto.');
         cargarSeccion('enlaces', 'contenedor-enlaces', 'Aún no hay enlaces publicados. Vuelve pronto.');
         cargarSeccion('recursos', 'contenedor-recursos', 'Aún no hay otros recursos publicados. Vuelve pronto.');
+        cargarNoticias();
     });
 </script>
 
