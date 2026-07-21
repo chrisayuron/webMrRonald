@@ -6,9 +6,9 @@
     <title>Profesor Ronald - Proyectos educativos y deportivos</title>
     
     <!-- SEO y Metadatos para Redes Sociales -->
-    <meta name="description" content="Portafolio de Ronald, profesor de Informática, Tecnología y Programación. Descubre BingoVerse, Ethykos, Ethykos Game, Trivia Cultural Week y Torneo Beth Shalom.">
+    <meta name="description" content="Portafolio de Ronald, profesor de Informática, Tecnología y Programación. Descubre BingoVerse, Ethykos, Ethykos Game, Trivia Cultural Week, Torneo Beth Shalom, Gozalo y Code Space Mission.">
     <meta property="og:title" content="Profesor Ronald - Plataformas educativas y torneo deportivo">
-    <meta property="og:description" content="Herramientas para bingo digital, gamificación de ética, trivia de fútbol y seguimiento de torneos escolares.">
+    <meta property="og:description" content="Herramientas para bingo digital, gamificación de ética, trivia de fútbol, matemáticas y aprendizaje de HTML/CSS a través del juego.">
     <meta property="og:image" content="https://placehold.co/1200x630/0284c7/ffffff?text=Ronald+Proyectos">
     <meta property="og:url" content="URL_DE_TU_PAGINA_AQUI">
     <meta name="twitter:card" content="summary_large_image">
@@ -107,19 +107,27 @@
 
         /* Ficha de proyecto: franja de color a la izquierda + número de catálogo */
         .project-card {
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 50%;
             background-color: var(--surface);
             border: 1px solid var(--line);
-            padding: 1.5rem 1.5rem 1.5rem 1.9rem;
+            padding: 1.25rem 1.25rem 1.25rem 1.6rem;
             border-radius: 0.9rem;
-            box-shadow: 0 4px 14px rgba(22, 34, 44, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 22px rgba(22, 34, 44, 0.12);
             display: flex;
             flex-direction: column;
-            min-height: 480px;
-            flex-shrink: 0;
-            width: 340px;
-            margin-right: 1.5rem;
+            height: 420px;
+            width: 300px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease, box-shadow 0.4s ease;
+        }
+        .card-desc {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
         }
         .project-card::before {
             content: "";
@@ -128,13 +136,6 @@
             width: 5px;
             border-radius: 4px;
             background: var(--tarjeta-color, var(--brand));
-        }
-        .project-card:last-child {
-            margin-right: 0;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 26px rgba(22, 34, 44, 0.12);
         }
         .project-index {
             font-family: 'JetBrains Mono', monospace;
@@ -148,7 +149,7 @@
 
         .image-placeholder {
             width: 100%;
-            height: 160px;
+            height: 140px;
             background-color: var(--mist);
             border-radius: 0.5rem;
             display: flex;
@@ -156,14 +157,18 @@
             justify-content: center;
             font-weight: 500;
             color: var(--ink-muted);
-            border: 2px dashed var(--line);
+            border: 1px solid var(--line);
             overflow: hidden;
         }
         .image-placeholder img {
             width: 100%;
             height: 100%;
-            object-fit:contain;
+            object-fit: contain;
             object-position: top;
+            transition: transform 0.4s ease;
+        }
+        .project-card.cf-center:hover .image-placeholder img {
+            transform: scale(1.05);
         }
 
         .nav-link {
@@ -172,68 +177,98 @@
         }
         .nav-link:hover { color: var(--brand); }
 
-        /* Estilos para el carrusel */
-        .project-carousel-container {
+        /* Carrusel 3D tipo "coverflow" */
+        .coverflow {
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+            height: 470px;
+            perspective: 1600px;
+            overflow: hidden;
+        }
+        .coverflow:focus-visible { outline: none; }
+        .cf-stage {
             position: relative;
             width: 100%;
-            max-width: 1400px; 
-            margin: 0 auto;
+            height: 100%;
+            transform-style: preserve-3d;
         }
-        .project-carousel {
-            display: flex;
-            overflow-x: auto; 
-            -webkit-overflow-scrolling: touch; 
-            padding: 1rem; 
-            margin-bottom: 2rem; 
-            scroll-snap-type: x mandatory; 
-            align-items: stretch; 
+        .cf-center  { transform: translate(-50%,0) translateZ(0)      rotateY(0)     scale(1);    opacity: 1;    z-index: 7; }
+        .cf-p1      { transform: translate(-50%,0) translateX(195px)  translateZ(-150px) rotateY(-32deg) scale(0.8);  opacity: 0.85; z-index: 6; }
+        .cf-n1      { transform: translate(-50%,0) translateX(-195px) translateZ(-150px) rotateY(32deg)  scale(0.8);  opacity: 0.85; z-index: 6; }
+        .cf-p2      { transform: translate(-50%,0) translateX(350px)  translateZ(-290px) rotateY(-38deg) scale(0.62); opacity: 0.5;  z-index: 5; }
+        .cf-n2      { transform: translate(-50%,0) translateX(-350px) translateZ(-290px) rotateY(38deg)  scale(0.62); opacity: 0.5;  z-index: 5; }
+        .cf-p3      { transform: translate(-50%,0) translateX(470px)  translateZ(-410px) rotateY(-42deg) scale(0.48); opacity: 0.22; z-index: 4; }
+        .cf-n3      { transform: translate(-50%,0) translateX(-470px) translateZ(-410px) rotateY(42deg)  scale(0.48); opacity: 0.22; z-index: 4; }
+        .cf-p1:hover, .cf-n1:hover, .cf-p2:hover, .cf-n2:hover, .cf-p3:hover, .cf-n3:hover {
+            box-shadow: 0 14px 28px rgba(22, 34, 44, 0.2);
         }
-        .project-carousel::-webkit-scrollbar {
-            height: 8px;
-        }
-        .project-carousel::-webkit-scrollbar-thumb {
-            background-color: var(--line); 
-            border-radius: 10px;
-        }
-        .project-carousel::-webkit-scrollbar-track {
-            background-color: var(--mist); 
-            border-radius: 10px;
-        }
-        .project-card {
-            scroll-snap-align: start; 
-        }
-        .carousel-button {
+        .cf-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(22, 34, 44, 0.85); 
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(22, 34, 44, 0.85);
             color: white;
-            padding: 0.75rem 0.5rem; 
-            border-radius: 9999px; 
             border: none;
+            border-radius: 9999px;
             cursor: pointer;
-            font-size: 1.5rem;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1.6rem;
+            line-height: 1;
+            z-index: 20;
+            box-shadow: 0 6px 14px rgba(22, 34, 44, 0.22);
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        .carousel-button:hover {
-            background-color: var(--brand); 
-            transform: translateY(-50%) scale(1.05);
+        .cf-arrow:hover { background-color: var(--brand); transform: translateY(-50%) scale(1.08); }
+        .cf-arrow:active { transform: translateY(-50%) scale(0.95); }
+        .cf-arrow-left { left: 0.5rem; }
+        .cf-arrow-right { right: 0.5rem; }
+        .cf-dots {
+            position: absolute;
+            left: 50%;
+            bottom: 0.25rem;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 20;
         }
-        .carousel-button:active {
-            transform: translateY(-50%) scale(0.95);
+        .cf-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            border: none;
+            padding: 0;
+            background: var(--line);
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
-        .carousel-button.left {
-            left: -0.75rem; 
+        .cf-dot.is-active {
+            transform: scale(1.6);
         }
-        .carousel-button.right {
-            right: -0.75rem;
+        @media (max-width: 900px) {
+            .coverflow { height: 430px; perspective: 1100px; }
+            .project-card { width: 250px; height: 370px; padding: 1.1rem 1.1rem 1.1rem 1.4rem; }
+            .image-placeholder { height: 120px; }
+            .card-desc { -webkit-line-clamp: 2; }
+            .cf-p1 { transform: translate(-50%,0) translateX(130px) translateZ(-110px) rotateY(-30deg) scale(0.76); }
+            .cf-n1 { transform: translate(-50%,0) translateX(-130px) translateZ(-110px) rotateY(30deg) scale(0.76); }
+            .cf-p2 { transform: translate(-50%,0) translateX(220px) translateZ(-210px) rotateY(-36deg) scale(0.56); opacity: 0.4; }
+            .cf-n2 { transform: translate(-50%,0) translateX(-220px) translateZ(-210px) rotateY(36deg) scale(0.56); opacity: 0.4; }
+            .cf-p3, .cf-n3 { opacity: 0.12; }
         }
-        @media (max-width: 768px) {
-            .carousel-button {
-                display: none;
-            }
+        @media (max-width: 640px) {
+            .coverflow { height: 400px; perspective: 800px; }
+            .project-card { width: 220px; height: 355px; }
+            .image-placeholder { height: 105px; }
+            .card-desc { -webkit-line-clamp: 2; }
+            .cf-arrow { width: 2.1rem; height: 2.1rem; font-size: 1.3rem; }
+            .cf-p1 { transform: translate(-50%,0) translateX(95px) translateZ(-90px) rotateY(-26deg) scale(0.72); }
+            .cf-n1 { transform: translate(-50%,0) translateX(-95px) translateZ(-90px) rotateY(26deg) scale(0.72); }
+            .cf-p2, .cf-n2, .cf-p3, .cf-n3 { opacity: 0.1; }
         }
 
         /* Estilos para listas de características */
@@ -296,7 +331,7 @@
         .admin-fab:hover .admin-fab-label, .admin-fab:focus-visible .admin-fab-label { max-width: 10rem; opacity: 1; }
 
         @media (prefers-reduced-motion: reduce) {
-            .project-card, .carousel-button, .admin-fab, .admin-fab-label { transition: none !important; }
+            .project-card, .cf-arrow, .cf-dot, .admin-fab, .admin-fab-label, .image-placeholder img { transition: none !important; }
         }
     </style>
 </head>
@@ -317,20 +352,20 @@
     </header>
 
     <!-- Sección Hero -->
-    <section id="hero" class="text-white py-20 md:py-32 text-center rounded-b-3xl shadow-xl" style="background: linear-gradient(120deg, var(--ink), var(--brand-dark));">
+    <section id="hero" class="text-white py-14 md:py-20 text-center rounded-b-3xl shadow-xl" style="background: linear-gradient(120deg, var(--ink), var(--brand-dark));">
         <div class="container mx-auto px-4">
-            <img src="./images/logo-oscuro.png" alt="Foto de Perfil del Profesor" class="rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover aspect-square" width="15%" onerror="this.src='https://placehold.co/200x200/0284c7/white?text=R'">
-            <h1 class="text-4xl md:text-6xl font-semibold mb-4 leading-tight">
+            <img src="./images/logo-oscuro.png" alt="Foto de Perfil del Profesor" class="rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover aspect-square" style="width: 120px; max-width: 15%;" onerror="this.src='https://placehold.co/200x200/0284c7/white?text=R'">
+            <h1 class="text-3xl md:text-5xl font-semibold mb-4 leading-tight">
                 ¡Hola! Soy <span style="color: var(--chalk);">Ronald</span>
             </h1>
-            <p class="text-lg md:text-2xl mb-8 text-white/90">
+            <p class="text-base md:text-xl mb-8 text-white/90">
                 Profesor de Informática, Tecnología y Programación. Apasionado por la educación práctica y el desarrollo de habilidades para el futuro.
             </p>
         </div>
     </section>
 
     <!-- Sección Sobre Mí -->
-    <section id="sobre-mi" class="py-16 md:py-24 bg-white">
+    <section id="sobre-mi" class="py-12 md:py-16 bg-white">
         <div class="container mx-auto px-4 max-w-4xl">
             <h2 class="text-4xl font-semibold text-center mb-10 text-[var(--ink)]">Sobre Mí</h2>
             <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -362,26 +397,26 @@
     </section>
 
     <!-- SECCIÓN DE PROYECTOS -->
-    <section id="proyectos" class="py-16 md:py-24 rounded-t-3xl shadow-inner" style="background: var(--mist);">
+    <section id="proyectos" class="py-12 md:py-16 rounded-t-3xl shadow-inner" style="background: var(--mist);">
         <div class="container mx-auto px-4">
-            <span class="mono block text-center text-xs font-semibold mb-2" style="color: var(--brand);">CATÁLOGO · 6 PROYECTOS</span>
+            <span class="mono block text-center text-xs font-semibold mb-2" style="color: var(--brand);">CATÁLOGO · 7 PROYECTOS</span>
             <h2 class="text-4xl font-semibold text-center mb-12 text-[var(--ink)]">Ideas y Proyectos</h2>
             <p class="text-center text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
                 Aquí podrás explorar algunas de las ideas, aplicaciones y herramientas que he desarrollado (incluso con ayuda de IA) o que estoy creando para potenciar el aprendizaje de mis estudiantes en informática, tecnología y ética o resolver alguna que otra situación particular en la que algún compañero docente me ha pedido apoyo. Si te es útil, no dudes en utilizarlo y no olvides escribirme.
             </p>
 
-            <div class="project-carousel-container">
-                <button id="scrollLeftBtn" class="carousel-button left">&lt;</button>
-                <div class="project-carousel">
-                    
+            <div class="coverflow" id="coverflow">
+                <button id="cfPrev" class="cf-arrow cf-arrow-left" aria-label="Proyecto anterior">&lsaquo;</button>
+                <div class="cf-stage" id="cfStage">
+
                     <!-- TARJETA 1: BINGOVERSE -->
-                    <div class="project-card" style="--tarjeta-color: #0284C7">
+                    <div class="project-card" data-index="0" style="--tarjeta-color: #0284C7">
                         <div class="image-placeholder">
                             <img src="./images/bingoverse.png" alt="Vista previa de BingoVerse - Panel docente" onerror="this.src='https://placehold.co/300x160/0ea5e9/white?text=BingoVerse'">
                         </div>
                         <span class="project-index mono">01 // Bingoverse</span>
-                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">BingoVerse</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma educativa para crear y jugar bingos digitales personalizados, sin cartones impresos. Cartones únicos para cada estudiante.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--ink)] text-center">BingoVerse</h3>
+                        <p class="card-desc text-gray-600 mb-4 text-center flex-grow">Plataforma educativa para crear y jugar bingos digitales personalizados, sin cartones impresos. Cartones únicos para cada estudiante.</p>
                         <div class="mt-auto pt-4 text-center">
                             <button onclick="openProjectModal('bingoverse')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
@@ -391,13 +426,13 @@
                     </div>
 
                     <!-- TARJETA 2: ETHYKOS (PLATAFORMA) -->
-                    <div class="project-card" style="--tarjeta-color: #7C3AED">
+                    <div class="project-card" data-index="1" style="--tarjeta-color: #7C3AED">
                         <div class="image-placeholder">
                             <img src="./images/ethykos.png" alt="Ethykos - Plataforma de gamificación para clase de ética" onerror="this.src='https://placehold.co/300x160/8b5cf6/white?text=Ethykos'">
                         </div>
                         <span class="project-index mono">02 // Ethykos</span>
-                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Ethykos</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma de gamificación que transforma la clase de ética en una aventura colaborativa mediante la organización de estudiantes en "tribus".</p>
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--ink)] text-center">Ethykos</h3>
+                        <p class="card-desc text-gray-600 mb-4 text-center flex-grow">Plataforma de gamificación que transforma la clase de ética en una aventura colaborativa mediante la organización de estudiantes en "tribus".</p>
                         <div class="mt-auto pt-4 text-center">
                             <button onclick="openProjectModal('ethylos')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
@@ -407,13 +442,13 @@
                     </div>
 
                     <!-- TARJETA 3: ETHYKOS GAME (JUEGO) -->
-                    <div class="project-card" style="--tarjeta-color: #DB2777">
+                    <div class="project-card" data-index="2" style="--tarjeta-color: #DB2777">
                         <div class="image-placeholder">
                             <img src="./images/ethykosgame.png" alt="Ethykos Game - Juego interactivo para clase de ética" onerror="this.src='https://placehold.co/300x160/ec4899/white?text=Ethykos+Game'">
                         </div>
                         <span class="project-index mono">03 // Ethykos Game</span>
-                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Ethykos Game</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">Juego interactivo diseñado específicamente para la clase de ética, donde los estudiantes aprenden valores y toma de decisiones a través de dinámicas lúdicas.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--ink)] text-center">Ethykos Game</h3>
+                        <p class="card-desc text-gray-600 mb-4 text-center flex-grow">Juego interactivo diseñado específicamente para la clase de ética, donde los estudiantes aprenden valores y toma de decisiones a través de dinámicas lúdicas.</p>
                         <div class="mt-auto pt-4 text-center">
                             <button onclick="openProjectModal('ethylosgame')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
@@ -423,13 +458,13 @@
                     </div>
 
                     <!-- TARJETA 4: TRIVIA CULTURAL WEEK -->
-                    <div class="project-card" style="--tarjeta-color: #16A34A">
+                    <div class="project-card" data-index="3" style="--tarjeta-color: #16A34A">
                         <div class="image-placeholder">
                             <img src="./images/triviamundial.png" alt="Trivia Cultural Week - Juegos interactivos de fútbol y mundiales" onerror="this.src='https://placehold.co/300x160/16a34a/white?text=Trivia+Cultural+Week'">
                         </div>
                         <span class="project-index mono">04 // Trivia Cultural Week</span>
-                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Trivia Cultural Week</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">Entorno de juegos interactivos que gamifica la historia de los mundiales y el fútbol, convirtiendo el conocimiento deportivo en una competencia dinámica para el aula.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--ink)] text-center">Trivia Cultural Week</h3>
+                        <p class="card-desc text-gray-600 mb-4 text-center flex-grow">Entorno de juegos interactivos que gamifica la historia de los mundiales y el fútbol, convirtiendo el conocimiento deportivo en una competencia dinámica para el aula.</p>
                         <div class="mt-auto pt-4 text-center">
                             <button onclick="openProjectModal('trivia')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
@@ -439,13 +474,13 @@
                     </div>
 
                     <!-- TARJETA 5: TORNEO BETH SHALOM -->
-                    <div class="project-card" style="--tarjeta-color: #EA580C">
+                    <div class="project-card" data-index="4" style="--tarjeta-color: #EA580C">
                         <div class="image-placeholder">
                             <img src="./images/mundialito.png" alt="Torneo Beth Shalom - Mundialito de microfútbol" onerror="this.src='https://placehold.co/300x160/ea580c/white?text=Torneo+Beth+Shalom'">
                         </div>
                         <span class="project-index mono">05 // Torneo Beth Shalom</span>
-                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Torneo Beth Shalom</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma oficial para seguir el "Mundialito", un campeonato de microfútbol ideado por el personero Juan Pablo Mendoza para integrar colegios de Piedecuesta mediante la pasión y el deporte.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--ink)] text-center">Torneo Beth Shalom</h3>
+                        <p class="card-desc text-gray-600 mb-4 text-center flex-grow">Plataforma oficial para seguir el "Mundialito", un campeonato de microfútbol ideado por el personero Juan Pablo Mendoza para integrar colegios de Piedecuesta mediante la pasión y el deporte.</p>
                         <div class="mt-auto pt-4 text-center">
                             <button onclick="openProjectModal('torneo')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
@@ -455,13 +490,13 @@
                     </div>
 
                     <!-- TARJETA 6: GOZALO -->
-                    <div class="project-card" style="--tarjeta-color: #4F46E5">
+                    <div class="project-card" data-index="5" style="--tarjeta-color: #4F46E5">
                         <div class="image-placeholder">
                             <img src="./images/escalera.png" alt="Escalera - Juego interactivo para clase de ética" onerror="this.src='https://placehold.co/300x160/ec4899/white?text=Escalera+del+Gozo'">
                         </div>
                         <span class="project-index mono">06 // Gozalo</span>
-                        <h3 class="text-2xl font-semibold mb-2 text-[var(--ink)] text-center">Gozalo</h3>
-                        <p class="text-gray-600 mb-4 text-center flex-grow">Plataforma interactiva que combina juegos y aprendizaje matemático, diseñada para reforzar conceptos de una manera divertida y desafiante.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--ink)] text-center">Gozalo</h3>
+                        <p class="card-desc text-gray-600 mb-4 text-center flex-grow">Plataforma interactiva que combina juegos y aprendizaje matemático, diseñada para reforzar conceptos de una manera divertida y desafiante.</p>
                         <div class="mt-auto pt-4 text-center">
                             <button onclick="openProjectModal('gozalo')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
                                 leer más
@@ -470,14 +505,31 @@
                         </div>
                     </div>
 
+                    <!-- TARJETA 7: CODE SPACE MISSION -->
+                    <div class="project-card" data-index="6" style="--tarjeta-color: #0D9488">
+                        <div class="image-placeholder">
+                            <img src="./images/spaceracer.png" alt="Code Space Mission - Juego arcade para aprender HTML y CSS" onerror="this.src='https://placehold.co/300x160/0d9488/white?text=Code+Space+Mission'">
+                        </div>
+                        <span class="project-index mono">07 // Code Space Mission</span>
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--ink)] text-center">Code Space Mission</h3>
+                        <p class="card-desc text-gray-600 mb-4 text-center flex-grow">Juego arcade espacial que enseña HTML y CSS: recolecta logos como combustible, esquiva obstáculos y responde preguntas para avanzar de nivel.</p>
+                        <div class="mt-auto pt-4 text-center">
+                            <button onclick="openProjectModal('spaceracer')" class="hover:underline font-medium mb-4" style="color: var(--tarjeta-color);">
+                                leer más
+                            </button>
+                            <a href="https://codespacemission.vercel.app/" target="_blank" class="block w-full text-white px-4 py-2 rounded-lg shadow-md transition-opacity duration-300 hover:opacity-90" style="background: var(--tarjeta-color);">Ver Proyecto</a>
+                        </div>
+                    </div>
+
                 </div>
-                <button id="scrollRightBtn" class="carousel-button right">&gt;</button>
+                <button id="cfNext" class="cf-arrow cf-arrow-right" aria-label="Siguiente proyecto">&rsaquo;</button>
+                <div class="cf-dots mono" id="cfDots"></div>
             </div>
         </div>
     </section>
 
     <!-- Sección de Contacto -->
-    <section id="contacto" class="py-16 md:py-24 bg-white">
+    <section id="contacto" class="py-12 md:py-16 bg-white">
         <div class="container mx-auto px-4 max-w-2xl">
             <h2 class="text-4xl font-bold text-center mb-10 text-sky-800">Contacto</h2>
             <p class="text-center text-lg text-gray-700 mb-8">
@@ -688,6 +740,22 @@
                             <li>Ideal para complementar las clases presenciales o virtuales.</li>
                         </ul>
                     `
+                },
+                'spaceracer': {
+                    title: '🚀 Code Space Mission - Aprende jugando',
+                    content: `
+                        <p class="mb-4 font-semibold text-teal-700">Code Space Mission es un juego arcade espacial pensado para reforzar los fundamentos de HTML y CSS de una forma dinámica y competitiva.</p>
+                        <p class="mb-4">Los estudiantes pilotan una nave que debe recolectar logos de HTML y CSS como combustible mientras esquiva asteroides, planetas y otros obstáculos. A lo largo de 5 niveles, deben responder preguntas sobre los temas vistos en clase para ganar velocidad y avanzar más lejos en la misión.</p>
+                        
+                        <h4 class="font-bold text-lg mt-4 mb-2 text-teal-800">✨ Beneficios principales:</h4>
+                        <ul class="benefit-list mb-4">
+                            <li>Convierte el repaso de HTML y CSS en un reto arcade entretenido.</li>
+                            <li>Refuerza conceptos mediante preguntas integradas en la jugabilidad.</li>
+                            <li>Progresión por niveles, desde HTML básico hasta CSS más avanzado.</li>
+                            <li>Mecánica de combustible y obstáculos que mantiene la atención del estudiante.</li>
+                            <li>Ideal como actividad corta de cierre o repaso de clase.</li>
+                        </ul>
+                    `
                 }
             };
 
@@ -705,41 +773,84 @@
             closeProjectModalBtn.addEventListener('click', closeProjectModalFunc);
             projectModal.addEventListener('click', (e) => { if(e.target === projectModal) closeProjectModalFunc(); });
 
-            // Carrusel
-            const projectCarousel = document.querySelector('.project-carousel');
-            const scrollLeftBtn = document.getElementById('scrollLeftBtn');
-            const scrollRightBtn = document.getElementById('scrollRightBtn');
-            let autoScrollInterval;
-            const scrollSpeed = 4000;
-            let scrollAmount = 0;
+            // Carrusel 3D "coverflow"
+            const coverflow = document.getElementById('coverflow');
+            const stage = document.getElementById('cfStage');
+            const cards = Array.from(stage.querySelectorAll('.project-card'));
+            const dotsWrap = document.getElementById('cfDots');
+            const prevBtn = document.getElementById('cfPrev');
+            const nextBtn = document.getElementById('cfNext');
+            const total = cards.length;
+            let current = 0;
+            let autoTimer;
 
-            function calculateScrollAmount() {
-                if (projectCarousel.children.length > 0) {
-                    const firstCard = projectCarousel.children[0];
-                    const cardStyle = window.getComputedStyle(firstCard);
-                    scrollAmount = firstCard.offsetWidth + parseFloat(cardStyle.marginRight);
-                }
+            cards.forEach((card, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'cf-dot';
+                dot.type = 'button';
+                dot.setAttribute('aria-label', 'Ir al proyecto ' + (i + 1));
+                dot.addEventListener('click', () => { goTo(i); resetAuto(); });
+                dotsWrap.appendChild(dot);
+            });
+            const dots = Array.from(dotsWrap.children);
+
+            function offsetFor(i) {
+                let o = i - current;
+                if (o > total / 2) o -= total;
+                if (o < -total / 2) o += total;
+                return o;
             }
-            function scrollCarousel(direction) {
-                if (scrollAmount === 0) calculateScrollAmount();
-                const newScrollLeft = projectCarousel.scrollLeft + direction * scrollAmount;
-                if (direction > 0 && newScrollLeft >= projectCarousel.scrollWidth - projectCarousel.clientWidth) {
-                    projectCarousel.scrollTo({ left: 0, behavior: 'smooth' });
-                } else if (direction < 0 && projectCarousel.scrollLeft <= 0) {
-                    projectCarousel.scrollTo({ left: projectCarousel.scrollWidth, behavior: 'smooth' });
-                } else {
-                    projectCarousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-                }
+            function posClass(o) {
+                if (o === 0) return 'cf-center';
+                return (o > 0 ? 'cf-p' : 'cf-n') + Math.min(Math.abs(o), 3);
             }
-            function startAutoScroll() { stopAutoScroll(); autoScrollInterval = setInterval(() => scrollCarousel(1), scrollSpeed); }
-            function stopAutoScroll() { clearInterval(autoScrollInterval); }
-            scrollLeftBtn.addEventListener('click', () => { stopAutoScroll(); scrollCarousel(-1); });
-            scrollRightBtn.addEventListener('click', () => { stopAutoScroll(); scrollCarousel(1); });
-            ['mouseenter', 'touchstart'].forEach(evt => { projectCarousel.addEventListener(evt, stopAutoScroll); scrollLeftBtn.addEventListener(evt, stopAutoScroll); scrollRightBtn.addEventListener(evt, stopAutoScroll); });
-            ['mouseleave', 'touchend'].forEach(evt => { projectCarousel.addEventListener(evt, startAutoScroll); scrollLeftBtn.addEventListener(evt, startAutoScroll); scrollRightBtn.addEventListener(evt, startAutoScroll); });
-            window.addEventListener('resize', calculateScrollAmount);
-            calculateScrollAmount();
-            startAutoScroll();
+            function render() {
+                cards.forEach((card, i) => {
+                    card.className = 'project-card ' + posClass(offsetFor(i));
+                });
+                dots.forEach((dot, i) => {
+                    const active = i === current;
+                    dot.classList.toggle('is-active', active);
+                    dot.style.background = active ? (cards[i].style.getPropertyValue('--tarjeta-color') || 'var(--brand)') : '';
+                });
+            }
+            function goTo(i) { current = ((i % total) + total) % total; render(); }
+            function next() { goTo(current + 1); }
+            function prev() { goTo(current - 1); }
+            function startAuto() { autoTimer = setInterval(next, 4500); }
+            function stopAuto() { clearInterval(autoTimer); }
+            function resetAuto() { stopAuto(); startAuto(); }
+
+            cards.forEach((card, i) => {
+                card.addEventListener('click', (e) => {
+                    if (offsetFor(i) === 0) return;
+                    if (e.target.closest('a, button')) return;
+                    goTo(i);
+                    resetAuto();
+                });
+            });
+            prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+            nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+            ['mouseenter', 'touchstart', 'focusin'].forEach(evt => coverflow.addEventListener(evt, stopAuto));
+            ['mouseleave', 'touchend', 'focusout'].forEach(evt => coverflow.addEventListener(evt, startAuto));
+
+            let dragStartX = null;
+            stage.addEventListener('pointerdown', (e) => { dragStartX = e.clientX; });
+            stage.addEventListener('pointerup', (e) => {
+                if (dragStartX === null) return;
+                const dx = e.clientX - dragStartX;
+                if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); resetAuto(); }
+                dragStartX = null;
+            });
+
+            coverflow.setAttribute('tabindex', '0');
+            coverflow.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') { next(); resetAuto(); }
+                if (e.key === 'ArrowLeft') { prev(); resetAuto(); }
+            });
+
+            render();
+            startAuto();
 
             // Formulario de contacto
             const contactForm = document.getElementById('contactForm');
